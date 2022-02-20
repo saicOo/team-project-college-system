@@ -243,18 +243,21 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 *,
 *::before,
 *::after {
-  box-sizing: border-box; }
+  box-sizing: border-box; 
+}
 
 html {
   font-family: sans-serif;
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); 
+}
 
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block; }
 
 body {
+  direction: rtl;
   margin: 0;
   font-family: "Roboto", sans-serif;
   font-size: 0.875rem;
@@ -262,7 +265,8 @@ body {
   line-height: 1.5;
   color: #BDBDC7;
   text-align: left;
-  background-color: rgba(88, 115, 254, 0.04); }
+  background-color: rgba(88, 115, 254, 0.04); 
+}
 
 [tabindex="-1"]:focus {
   outline: 0 !important; }
@@ -8050,7 +8054,7 @@ a {
 
 [data-header-position="fixed"] .nav-header {
   position: fixed;
-  left: auto; }
+  right: auto; }
 
 .nav-header {
   height: 5rem;
@@ -8095,7 +8099,7 @@ a {
         padding-right: 0;
         justify-content: center; } }
   .nav-header .brand-title {
-    margin-left: 15px;
+    margin-right: 15px;
     max-width: 75px; }
     [data-theme-version="dark"] .nav-header .brand-title {
       background-position: 0 120%; }
@@ -10300,12 +10304,12 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
   top: 0.625rem; }
 
 .content-body {
-  margin-left: 17.1875rem;
+  margin-right: 17.1875rem;
   z-index: 0;
   transition: all .2s ease; }
   @media only screen and (min-width: 1200px) and (max-width: 1350px) {
     .content-body {
-      margin-left: 14.375rem; } }
+      margin-right: 14.375rem; } }
 
 .quixnav {
   width: 17.1875rem;

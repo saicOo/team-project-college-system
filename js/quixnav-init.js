@@ -12,7 +12,7 @@
         sidebarPosition: "fixed",
         headerPosition: "fixed",
         containerLayout: "wide",
-        direction: "ltr"
+        direction: "rtl"
     });
 
 

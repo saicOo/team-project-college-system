@@ -13,7 +13,7 @@ function quixSettings({typography, version, layout, navheaderBg, headerBg, sideb
     this.sidebarPosition = sidebarPosition || "static";
     this.headerPosition = headerPosition || "static";
     this.containerLayout = containerLayout || "wide";
-    this.direction = direction || "ltr";
+    this.direction = direction || "rtl";
 
     // this.manageTypography();
     this.manageVersion();
@@ -305,13 +305,13 @@ quixSettings.prototype.manageRtlLayout = function() {
             body.attr("direction", "rtl");
             break;
         case "ltr": 
-            html.attr("dir", "ltr");
+            html.attr("dir", "rtl");
             html.removeClass('rtl');
-            body.attr("direction", "ltr");
+            body.attr("direction", "rtl");
             break;
         default: 
-            html.attr("dir", "ltr");
-            body.attr("direction", "ltr");
+            html.attr("dir", "rtl");
+            body.attr("direction", "rtl");
     }
 }
 
