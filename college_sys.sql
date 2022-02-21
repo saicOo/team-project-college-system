@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 19, 2022 at 08:45 PM
+-- Generation Time: Feb 21, 2022 at 01:52 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.24
 
@@ -51,6 +51,21 @@ CREATE TABLE `alert_msgss` (
   `msg_content` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `std_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comment_news`
+--
+
+CREATE TABLE `comment_news` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `comment` text NOT NULL,
+  `date_comment` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `news_id` int(10) UNSIGNED NOT NULL,
+  `admin_id` bigint(20) UNSIGNED NOT NULL,
+  `std_id` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -115,6 +130,19 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `news`
+--
+
+CREATE TABLE `news` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `text` text NOT NULL,
+  `date_news` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `admin_id` bigint(20) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `password_resets`
 --
 
@@ -137,20 +165,6 @@ CREATE TABLE `private_qas` (
   `private_q` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `private_ans` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `std_id` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `public_qas`
---
-
-CREATE TABLE `public_qas` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `public_qa` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `public_ans` text COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -227,6 +241,15 @@ ALTER TABLE `alert_msgss`
   ADD KEY `alert_msgss_std_id_foreign` (`std_id`);
 
 --
+-- Indexes for table `comment_news`
+--
+ALTER TABLE `comment_news`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `news_id` (`news_id`),
+  ADD KEY `admin_id` (`admin_id`),
+  ADD KEY `std_id` (`std_id`);
+
+--
 -- Indexes for table `departments`
 --
 ALTER TABLE `departments`
@@ -245,6 +268,13 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `news`
+--
+ALTER TABLE `news`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `admin_id` (`admin_id`);
+
+--
 -- Indexes for table `password_resets`
 --
 ALTER TABLE `password_resets`
@@ -256,12 +286,6 @@ ALTER TABLE `password_resets`
 ALTER TABLE `private_qas`
   ADD PRIMARY KEY (`id`),
   ADD KEY `private_qas_std_id_foreign` (`std_id`);
-
---
--- Indexes for table `public_qas`
---
-ALTER TABLE `public_qas`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `student_desires`
@@ -305,6 +329,12 @@ ALTER TABLE `alert_msgss`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `comment_news`
+--
+ALTER TABLE `comment_news`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `departments`
 --
 ALTER TABLE `departments`
@@ -323,15 +353,15 @@ ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT for table `private_qas`
+-- AUTO_INCREMENT for table `news`
 --
-ALTER TABLE `private_qas`
+ALTER TABLE `news`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `public_qas`
+-- AUTO_INCREMENT for table `private_qas`
 --
-ALTER TABLE `public_qas`
+ALTER TABLE `private_qas`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
@@ -361,6 +391,20 @@ ALTER TABLE `users`
 --
 ALTER TABLE `alert_msgss`
   ADD CONSTRAINT `alert_msgss_std_id_foreign` FOREIGN KEY (`std_id`) REFERENCES `student_detailss` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `comment_news`
+--
+ALTER TABLE `comment_news`
+  ADD CONSTRAINT `comment_news_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admins` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `comment_news_ibfk_2` FOREIGN KEY (`news_id`) REFERENCES `news` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `comment_news_ibfk_3` FOREIGN KEY (`std_id`) REFERENCES `student_detailss` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `news`
+--
+ALTER TABLE `news`
+  ADD CONSTRAINT `news_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admins` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `private_qas`
