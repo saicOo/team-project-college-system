@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 21, 2022 at 01:52 AM
+-- Generation Time: Feb 21, 2022 at 11:54 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.24
 
@@ -33,10 +33,18 @@ CREATE TABLE `admins` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `role` int(11) NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `admins`
+--
+
+INSERT INTO `admins` (`id`, `name`, `email`, `email_verified_at`, `password`, `role`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'admin', 'admin@gmail.com', NULL, '$2y$10$QPYvkG8KLP2ZtVA/qn9HG..oBcvKobFaVmvEUMAxet7IIBfzLrag2', 0, NULL, '2022-02-21 12:17:42', '2022-02-21 12:17:42');
 
 -- --------------------------------------------------------
 
@@ -197,6 +205,8 @@ CREATE TABLE `student_detailss` (
   `last_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `phone` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL,
   `address` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `age` date NOT NULL,
+  `gender` enum('1','2') COLLATE utf8mb4_unicode_ci NOT NULL,
   `degree` decimal(5,2) NOT NULL,
   `img` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `partial_payment_status` tinyint(1) NOT NULL DEFAULT 0,
@@ -320,7 +330,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `alert_msgss`
