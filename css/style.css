@@ -10230,7 +10230,7 @@ svg.pulse-svg {
   text-align: right; }
   @media only screen and (min-width: 1800px) {
     [direction="rtl"] .quixnav {
-      right: 3.125rem; } }
+      right: 0; } }
   [direction="rtl"] .quixnav .metismenu li.active > .has-arrow:after {
     transform: rotate(45deg) translateY(-50%); }
   [direction="rtl"] .quixnav .metismenu .has-arrow:after {
@@ -16701,6 +16701,7 @@ button {
 
 .table tbody tr td {
   vertical-align: middle;
+  text-align: initial;
   border-color: #eaeaea; }
   [data-theme-version="dark"] .table tbody tr td {
     border-color: #424D63; }
@@ -19224,7 +19225,7 @@ span#counter {
   text-align: right; }
   @media only screen and (min-width: 1800px) {
     [direction="rtl"] .quixnav {
-      right: 3.125rem; } }
+      right: 0; } }
   [direction="rtl"] .quixnav .metismenu li.active > .has-arrow:after {
     transform: rotate(45deg) translateY(-50%); }
   [direction="rtl"] .quixnav .metismenu .has-arrow:after {
