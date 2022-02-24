@@ -889,13 +889,13 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
 	background-color:#FF6700;
 }
 
-.pagination-next:after {
+.pagination-next:before {
 	content:"\f178";
 	font-family:FontAwesome;
 	margin-left:15px;
 }
 
-.pagination-back:before {
+.pagination-back:after {
 	content:"\f177";
 	font-family:FontAwesome;
 	margin-right:15px;
