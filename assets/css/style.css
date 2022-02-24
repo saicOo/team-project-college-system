@@ -1,6 +1,4 @@
 /*
-
-
 Colors:
 	Body 		: #798696
 	Headers 	: #374050
@@ -32,6 +30,9 @@ Table OF Contents
 \*------------------------------------*/
 /* --- typography --- */
 @import url("https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap");
+*{
+  scroll-behavior: smooth;
+}
 body {
   font-family: "Tajawal", sans-serif;
   font-size: 15px;
