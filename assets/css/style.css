@@ -1631,3 +1631,14 @@ textarea:focus {
   width: 100%;
   object-fit: cover;
 }
+
+/*
+==============================
+inbox
+==============================
+*/
+
+.inbox{
+  margin-top: 3rem;
+  
+}
