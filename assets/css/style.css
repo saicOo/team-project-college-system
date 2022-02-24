@@ -161,26 +161,23 @@ blockquote:before{
 }
 
 /* --- Buttons --- */
-.main-button {
+.main-button, .sign-in-btn{
 	position:relative;
 	display:inline-block;
-	padding:10px 30px;
+	padding:10px 30px !important;
 	background-color: #FF6700;
+	margin-top: .3rem;
 	border: 2px solid transparent;
 	border-radius: 40px;
 	color: #FFF;
 	-webkit-transition:0.2s all;
 	transition:0.2s all;
-	-webkit-border-radius: 40px;
-	-moz-border-radius: 40px;
-	-ms-border-radius: 40px;
-	-o-border-radius: 40px;
 	-moz-transition:0.2s all;
 	-ms-transition:0.2s all;
 	-o-transition:0.2s all;
 }
 
-.main-button:hover , .main-button:focus {
+.main-button:hover , .main-button:focus, .sign-in-btn:hover{
 	background-color:#fff;
 	border: 2px solid #FF6700;
 	color:#FF6700;
@@ -219,6 +216,9 @@ input[type="text"], input[type="email"], input[type="password"], input[type="num
 	-moz-border-radius:4px;
 	-ms-border-radius:4px;
 	-o-border-radius:4px;
+	-moz-transition:0.2s border-color;
+	-ms-transition:0.2s border-color;
+	-o-transition:0.2s border-color;
 }
 
 textarea {
@@ -227,6 +227,9 @@ textarea {
 
 input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, input[type="number"]:focus, input[type="date"]:focus, input[type="url"]:focus, input[type="tel"]:focus, textarea:focus {
 	border-color:#FF6700;
+}
+.sign-in-btn:hover::after{
+	display: none;
 }
 
 /*------------------------------------*\
