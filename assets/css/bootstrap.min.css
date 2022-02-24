@@ -6125,6 +6125,10 @@ a.label:hover {
     border-radius: 10px
 }
 
+.badge-warning{
+    background-color: #d58512;
+}
+
 .badge:empty {
     display: none
 }
