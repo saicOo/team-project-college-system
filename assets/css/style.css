@@ -1,6 +1,5 @@
 /*
-Template Name: HTML Education Template
-Author: yaminncco
+
 
 Colors:
 	Body 		: #798696
@@ -671,15 +670,7 @@ textarea:focus {
   border-top: 1px solid #ebebeb;
 }
 
-/* -- Footer Logo -- */
-.footer-logo .logo {
-  margin-top: 20px;
-  display: inline-block;
-}
 
-.footer-logo .logo > img {
-  max-height: 30px;
-}
 
 /* -- Footer Nav -- */
 .footer-nav {
@@ -1640,5 +1631,5 @@ inbox
 
 .inbox{
   margin-top: 3rem;
-  
+
 }
