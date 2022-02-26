@@ -92,6 +92,9 @@ pre {
 
 .collapse.in {
   display: block; }
+  .ibox-body {
+    overflow-x: auto;
+  }
 
 .btn {
   -webkit-border-radius: 2px;
