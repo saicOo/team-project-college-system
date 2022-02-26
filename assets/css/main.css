@@ -3073,16 +3073,16 @@ body:not(.fixed-layout).sidebar-mini .side-menu li .nav-2-level {
   display: none;
   position: absolute;
   top: 43px;
-  left: 60px;
+  right: 60px;
   min-width: 200px;
-  padding-left: 0; }
+  padding-right: 0; }
   body:not(.fixed-layout).sidebar-mini .side-menu li .nav-2-level ul {
-    padding-left: 0; }
+    padding-right: 0; }
   body:not(.fixed-layout).sidebar-mini .side-menu li .nav-2-level li a {
-    padding-left: 20px; }
+    padding-right: 20px; }
 
 body:not(.fixed-layout).sidebar-mini .side-menu li .nav-3-level > li > a {
-  padding-left: 27px; }
+  padding-right: 27px; }
 
 body:not(.fixed-layout).sidebar-mini .side-menu > li > a > .nav-label {
   display: none; }
@@ -3092,7 +3092,7 @@ body:not(.fixed-layout).sidebar-mini .side-menu > li:hover > a {
   width: 260px; }
   body:not(.fixed-layout).sidebar-mini .side-menu > li:hover > a > .nav-label {
     display: block;
-    padding-left: 50px; }
+    padding-right: 50px; }
 
 body:not(.fixed-layout).sidebar-mini .side-menu > li:hover .nav-2-level {
   display: block;
