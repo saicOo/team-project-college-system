@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 21, 2022 at 11:54 PM
+-- Generation Time: Mar 02, 2022 at 12:53 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.24
 
@@ -185,10 +185,9 @@ CREATE TABLE `student_desires` (
   `id` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `desire_1_id` int(10) UNSIGNED NOT NULL,
+  `desire_1_id` int(10) UNSIGNED DEFAULT NULL,
   `desire_2_id` int(10) UNSIGNED DEFAULT NULL,
-  `desire_3_id` int(10) UNSIGNED NOT NULL,
-  `std_id` int(10) UNSIGNED NOT NULL
+  `desire_3_id` int(10) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -201,18 +200,19 @@ CREATE TABLE `student_detailss` (
   `id` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `first_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `last_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `phone` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `address` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `age` date NOT NULL,
-  `gender` enum('1','2') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `degree` decimal(5,2) NOT NULL,
-  `img` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `partial_payment_status` tinyint(1) NOT NULL DEFAULT 0,
-  `full_payment_status` tinyint(1) NOT NULL DEFAULT 0,
-  `dept_id` int(10) UNSIGNED DEFAULT NULL,
-  `std_id` bigint(20) UNSIGNED DEFAULT NULL
+  `first_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `last_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(11) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `age` date DEFAULT NULL,
+  `gender` enum('1','2') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `english_degree` int(3) DEFAULT NULL,
+  `degree` decimal(5,2) DEFAULT NULL,
+  `national_id` bigint(20) DEFAULT NULL,
+  `img` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `attachments` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` int(1) NOT NULL DEFAULT 0,
+  `dept_id` int(10) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -222,7 +222,7 @@ CREATE TABLE `student_detailss` (
 --
 
 CREATE TABLE `users` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` int(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
@@ -304,16 +304,14 @@ ALTER TABLE `student_desires`
   ADD PRIMARY KEY (`id`),
   ADD KEY `student_desires_desire_1_id_foreign` (`desire_1_id`),
   ADD KEY `student_desires_desire_2_id_foreign` (`desire_2_id`),
-  ADD KEY `student_desires_desire_3_id_foreign` (`desire_3_id`),
-  ADD KEY `student_desires_std_id_foreign` (`std_id`);
+  ADD KEY `student_desires_desire_3_id_foreign` (`desire_3_id`);
 
 --
 -- Indexes for table `student_detailss`
 --
 ALTER TABLE `student_detailss`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `student_detailss_dept_id_foreign` (`dept_id`),
-  ADD KEY `std_id` (`std_id`);
+  ADD KEY `student_detailss_dept_id_foreign` (`dept_id`);
 
 --
 -- Indexes for table `users`
@@ -375,24 +373,6 @@ ALTER TABLE `private_qas`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `student_desires`
---
-ALTER TABLE `student_desires`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `student_detailss`
---
-ALTER TABLE `student_detailss`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
 -- Constraints for dumped tables
 --
 
@@ -429,14 +409,14 @@ ALTER TABLE `student_desires`
   ADD CONSTRAINT `student_desires_desire_1_id_foreign` FOREIGN KEY (`desire_1_id`) REFERENCES `departments` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `student_desires_desire_2_id_foreign` FOREIGN KEY (`desire_2_id`) REFERENCES `departments` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `student_desires_desire_3_id_foreign` FOREIGN KEY (`desire_3_id`) REFERENCES `departments` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `student_desires_std_id_foreign` FOREIGN KEY (`std_id`) REFERENCES `student_detailss` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `student_desires_ibfk_1` FOREIGN KEY (`id`) REFERENCES `student_detailss` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `student_detailss`
 --
 ALTER TABLE `student_detailss`
   ADD CONSTRAINT `student_detailss_dept_id_foreign` FOREIGN KEY (`dept_id`) REFERENCES `departments` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `student_detailss_ibfk_1` FOREIGN KEY (`std_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `student_detailss_ibfk_1` FOREIGN KEY (`id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
