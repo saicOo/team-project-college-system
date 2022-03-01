@@ -1,134 +1,61 @@
 
-
 <!DOCTYPE html>
-
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width initial-scale=1.0">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Laravel') }}</title>
-    <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicon.png') }}">
-    <link href="{{ asset('assets/vendor/pg-calendar/css/pignose.calendar.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/vendor/chartist/css/chartist.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+    <!-- GLOBAL MAINLY STYLES-->
+    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
 
+    <link href="{{ asset('assets/css/font-awesome.min.css') }}" rel="stylesheet">
+
+    <link href="{{ asset('assets/css/themify-icons.css') }}" rel="stylesheet">
+    <!-- THEME STYLES-->
+    <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
+
+    <!-- PAGE LEVEL STYLES-->
 </head>
 
-<body>
-
-    <!--*******************
-        Preloader start
-    ********************-->
-    <div id="preloader">
-        <div class="sk-three-bounce">
-            <div class="sk-child sk-bounce1"></div>
-            <div class="sk-child sk-bounce2"></div>
-            <div class="sk-child sk-bounce3"></div>
-        </div>
-    </div>
-    <!--*******************
-        Preloader end
-    ********************-->
-
-
-    <!--**********************************
-        Main wrapper start
-    ***********************************-->
-    <div id="main-wrapper">
-
-        <!--**********************************
-            Nav header start
-        ***********************************-->
-        <div class="nav-header">
-            <a href="index.html" class="brand-logo">
-                <img class="logo-abbr" src="{{ asset('assets/images/logo.png') }}" alt="">
-                <img class="logo-compact" src="{{ asset('assets/images/logo-text.png') }}" alt="">
-                <img class="brand-title" src="{{ asset('assets/images/logo-text.png') }}" alt="">
-            </a>
-
-            <div class="nav-control">
-                <div class="hamburger">
-                    <span class="line"></span><span class="line"></span><span class="line"></span>
-                </div>
-            </div>
-        </div>
-        <!--**********************************
-            Nav header end
-        ***********************************-->
-
-        <!--**********************************
-            Header start
-        ***********************************-->
+<body class="fixed-navbar">
+    <div class="page-wrapper">
+        <!-- START HEADER-->
         @include('layouts.header')
-        <!--**********************************
-            Header end ti-comment-alt
-        ***********************************-->
-
-        <!--**********************************
-            Sidebar start
-        ***********************************-->
+        <!-- END HEADER-->
+        <!-- START SIDEBAR-->
         @include('layouts.sidebar')
-        <!--**********************************
-            Sidebar end
-        ***********************************-->
-
-        <!--**********************************
-            Content body start
-        ***********************************-->
-        @yield('content')
-        <!--**********************************
-            Content body end
-        ***********************************-->
-
-
-        <!--**********************************
-            Footer start
-        ***********************************-->
-        <div class="footer">
-            <div class="copyright">
-                <p>Copyright © Designed &amp; Developed by <a href="#" target="_blank">Quixkit</a> 2019</p>
-                <p>Distributed by <a href="https://themewagon.com/" target="_blank">Themewagon</a></p>
-            </div>
+        <!-- END SIDEBAR-->
+        <div class="content-wrapper">
+            <!-- START PAGE CONTENT-->
+            @yield('content')
+            <!-- END PAGE CONTENT-->
+            <footer class="page-footer">
+                <div class="font-13">2018 © <b>AdminCAST</b> - All rights reserved.</div>
+                <a class="px-4" href="http://themeforest.net/item/adminca-responsive-bootstrap-4-3-angular-4-admin-dashboard-template/20912589" target="_blank">BUY PREMIUM</a>
+                <div class="to-top"><i class="fa fa-angle-double-up"></i></div>
+            </footer>
         </div>
-        <!--**********************************
-            Footer end
-        ***********************************-->
-
-        <!--**********************************
-           Support ticket button start
-        ***********************************-->
-
-        <!--**********************************
-           Support ticket button end
-        ***********************************-->
-
-
     </div>
-    <!--**********************************
-        Main wrapper end
-    ***********************************-->
 
-    <!--**********************************
-        Scripts
-    ***********************************-->
-    <!-- Required vendors -->
-    <script src="{{ asset('assets/vendor/global/global.min.js') }}"></script>
-    <script src="{{ asset('assets/js/quixnav-init.js') }}"></script>
-    <script src="{{ asset('assets/js/custom.min.js') }}"></script>
-
-    <script src="{{ asset('assets/vendor/chartist/js/chartist.min.js') }}"></script>
-
-    <script src="{{ asset('assets/vendor/moment/moment.min.js') }}"></script>
-    <script src="{{ asset('assets/vendor/pg-calendar/js/pignose.calendar.min.js') }}"></script>
-
-
-    <script src="{{ asset('assets/js/dashboard/dashboard-2.js') }}"></script>
-    <!-- Circle progress -->
+    <!-- BEGIN PAGA BACKDROPS-->
+    <div class="sidenav-backdrop backdrop"></div>
+    <div class="preloader-backdrop">
+        <div class="page-preloader">Loading</div>
+    </div>
+    <!-- END PAGA BACKDROPS-->
+    <!-- CORE PLUGINS-->
+    <script src="{{ asset('assets/js/scripts/jquery.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/js/scripts/popper.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/js/scripts/bootstrap.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/js/scripts/metisMenu.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/js/scripts/jquery.slimscroll.min.js') }}" type="text/javascript"></script>
+    <!-- CORE SCRIPTS-->
+    <script src="{{ asset('assets/js/app.min.js') }}" type="text/javascript"></script>
+    <!-- PAGE LEVEL SCRIPTS-->
 
 </body>
 

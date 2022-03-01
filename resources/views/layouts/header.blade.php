@@ -1,101 +1,44 @@
 
-<div class="header">
-    <div class="header-content">
-        <nav class="navbar navbar-expand">
-            <div class="collapse navbar-collapse justify-content-between">
-                <div class="header-left">
-
-                </div>
-
-                <ul class="navbar-nav header-right">
-                    <li class="nav-item dropdown notification_dropdown">
-                        <a class="nav-link" href="#" role="button" data-toggle="dropdown">
-                            <i class="mdi mdi-bell"></i>
-                            <div class="pulse-css"></div>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <ul class="list-unstyled">
-                                <li class="media dropdown-item">
-                                    <span class="success"><i class="ti-user"></i></span>
-                                    <div class="media-body">
-                                        <a href="#">
-                                            <p><strong>Martin</strong> has added a <strong>customer</strong> Successfully
-                                            </p>
-                                        </a>
-                                    </div>
-                                    <span class="notify-time">3:20 am</span>
-                                </li>
-                                <li class="media dropdown-item">
-                                    <span class="primary"><i class="ti-shopping-cart"></i></span>
-                                    <div class="media-body">
-                                        <a href="#">
-                                            <p><strong>Jennifer</strong> purchased Light Dashboard 2.0.</p>
-                                        </a>
-                                    </div>
-                                    <span class="notify-time">3:20 am</span>
-                                </li>
-                                <li class="media dropdown-item">
-                                    <span class="danger"><i class="ti-bookmark"></i></span>
-                                    <div class="media-body">
-                                        <a href="#">
-                                            <p><strong>Robin</strong> marked a <strong>ticket</strong> as unsolved.
-                                            </p>
-                                        </a>
-                                    </div>
-                                    <span class="notify-time">3:20 am</span>
-                                </li>
-                                <li class="media dropdown-item">
-                                    <span class="primary"><i class="ti-heart"></i></span>
-                                    <div class="media-body">
-                                        <a href="#">
-                                            <p><strong>David</strong> purchased Light Dashboard 1.0.</p>
-                                        </a>
-                                    </div>
-                                    <span class="notify-time">3:20 am</span>
-                                </li>
-                                <li class="media dropdown-item">
-                                    <span class="success"><i class="ti-image"></i></span>
-                                    <div class="media-body">
-                                        <a href="#">
-                                            <p><strong> James.</strong> has added a<strong>customer</strong> Successfully
-                                            </p>
-                                        </a>
-                                    </div>
-                                    <span class="notify-time">3:20 am</span>
-                                </li>
-                            </ul>
-                            <a class="all-notification" href="#">See all notifications <i
-                                    class="ti-arrow-right"></i></a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown header-profile">
-                        <a class="nav-link" href="#" role="button" data-toggle="dropdown">
-                            <i class="mdi mdi-account"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a href="./app-profile.html" class="dropdown-item">
-                                <i class="icon-user"></i>
-                                <span class="ml-2">الصفحة الشخصية</span>
-                            </a>
-                            <a href="./email-inbox.html" class="dropdown-item">
-                                <i class="icon-envelope-open"></i>
-                                <span class="ml-2">الرسائل </span>
-                            </a>
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
-                                     <i class="icon-key"></i><span class="ml-2">تسجيل الخروج</span>
-                                </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+<header class="header">
+    <div class="page-brand">
+        <a class="link" href="index.html">
+            <span class="brand">لوحة تحكم أنجاز
+                <span class="brand-tip"></span>
+            </span>
+            <span class="brand-mini"><img src="./assets/img/logos/icons8-fast-forward-100.png" alt=""></span>
+        </a>
     </div>
-</div>
+    <div class="flexbox flex-1">
+        <!-- START TOP-LEFT TOOLBAR-->
+        <ul class="nav navbar-toolbar">
+            <li>
+                <a class="nav-link sidebar-toggler js-sidebar-toggler"><i class="ti-menu"></i></a>
+            </li>
+
+        </ul>
+        <!-- END TOP-LEFT TOOLBAR-->
+        <!-- START TOP-RIGHT TOOLBAR-->
+        <ul class="nav navbar-toolbar">
+            <li class="dropdown dropdown-user">
+                <a class="nav-link dropdown-toggle link" data-toggle="dropdown">
+                    <img src="./assets/img/admin-avatar.png" />
+                    <span></span>Admin<i class="fa fa-angle-down m-r-5"></i></a>
+                <ul class="dropdown-menu dropdown-menu-left text-right">
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                                  document.getElementById('logout-form').submit();">
+                     <i class="fa fa-power-off"></i><span class="ml-2">تسجيل الخروج</span>
+                 </a>
+
+                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                     @csrf
+                 </form>
+
+                </ul>
+            </li>
+        </ul>
+        <!-- END TOP-RIGHT TOOLBAR-->
+    </div>
+</header>
 
 
