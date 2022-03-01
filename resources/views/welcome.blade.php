@@ -1,100 +1,238 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-        <title>Laravel</title>
+@section('content')
+	<!-- Home -->
+	<div id="home" class="hero-area">
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
+		<!-- Backgound Image -->
+		<div class="bg-image bg-parallax overlay" style="background-image:url(./assets/img/home-background.jpg)"></div>
+		<!-- /Backgound Image -->
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
+		<div class="home-wrapper">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8">
+						<h1 class="white-text">انجاز يساعدك على تحقيق احلامك</h1>
+						<p class="lead white-text">تلتزم كلية التجارة بتقديم خدمات التعليم والبحوث والاستشارات والتدريب
+							وبناء شخصية الطالب فى مجالات علوم ودراسات وبحوث الأعمال وفق معايير الجوده، من خلال برامج
+							اكاديمية متميزة، وبيئة محفزه للتعلم والابداع الفكرى، وتوظيف امثل لتقنيات المعرفة وتنمية رأس
+							المال البشرى مع تحقيق الشراكة المحلية والعالمية الفعالة، وذلك سعياً نحو خدمه المجتمع وبيئة
+							الأعمال</p>
+						<a class="main-button icon-button" href="./add-data-st.html">سجل الان!</a>
+					</div>
+				</div>
+			</div>
+		</div>
 
-            .full-height {
-                height: 100vh;
-            }
+	</div>
+	<!-- /Home -->
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
+	<!-- About -->
+	<div id="about" class="section">
 
-            .position-ref {
-                position: relative;
-            }
+		<!-- container -->
+		<div class="container">
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
+			<!-- row -->
+			<div class="row">
 
-            .content {
-                text-align: center;
-            }
+				<div class="col-md-6 myclass">
+					<div class="section-header">
+						<h2>خداماتنا</h2>
+						<p class="lead">نسعى لتقديم افضل الخدمات للطلاب الراغبين في الانضمام الينا</p>
+					</div>
 
-            .title {
-                font-size: 84px;
-            }
+					<!-- feature -->
+					<div class="feature">
+						<i class="feature-icon fa-solid fa-file"></i>
+						<div class="feature-content">
+							<h4>تسجيل بياناتك و الرغبات</h4>
+							<p>تسجيل بياناتك الشخصية بضغطة زر و ترتيب الرغبات حسب معدلك
+							</p>
+						</div>
+					</div>
+					<!-- /feature -->
 
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
+					<!-- feature -->
+					<div class="feature">
+						<i class="feature-icon fa-solid fa-square-phone"></i>
+						<div class="feature-content">
+							<h4>متابعة حالتك</h4>
+							<p>امكانية تعديل بياناتك و عرضها و متابعة حالة قبولك
+							</p>
+						</div>
+					</div>
+					<!-- /feature -->
 
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
+					<!-- feature -->
+					<div class="feature">
+						<i class="feature-icon fa-solid fa-newspaper"></i>
+						<div class="feature-content">
+							<h4>اخر الاخبار</h4>
+							<p>لمتابعة اخر الاخبار و المستجدات و معرفة مواعيد التسجيل و القبول
+							</p>
+						</div>
+					</div>
+					<!-- /feature -->
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
+				</div>
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
+				<div class="col-md-6">
+					<div class="about-img">
+						<img src="./assets/img/about.png" alt="">
+					</div>
+				</div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
-        </div>
-    </body>
-</html>
+			</div>
+			<!-- row -->
+
+		</div>
+		<!-- container -->
+	</div>
+	<!-- /About -->
+
+	<!-- Call To Action -->
+	<div id="cta" class="section">
+
+		<!-- Backgound Image -->
+		<div class="bg-image bg-parallax overlay" style="background-image:url(./assets/img/cta1-background.jpg)"></div>
+		<!-- /Backgound Image -->
+
+		<!-- container -->
+		<div class="container" id="vision">
+
+			<!-- row -->
+			<div class="row">
+
+				<div class="col-md-6 myclass">
+					<h2 class="white-text">رؤيتنا</h2>
+					<p class="lead white-text">أن تكون كلية التجارة واحده من أفضل الكليات فى مجال علوم
+						ودراسات وبحوث الاعمال فى ضوء مفهوم جامعات الجيل الثالث مع التأكيد على الهوية والريادة الإقليمية.
+					</p>
+				</div>
+
+			</div>
+			<!-- /row -->
+
+		</div>
+		<!-- /container -->
+
+	</div>
+	<!-- /Call To Action -->
+
+	<!-- Why us -->
+	<div id="why-us" class="section">
+
+		<!-- container -->
+		<div class="container">
+
+			<!-- row -->
+			<div class="row">
+				<div class="section-header text-center">
+					<h2>الاقسام</h2>
+					<p class="lead">اقسام كلية التجارة - لغة انجليزية</p>
+				</div>
+
+				<!-- card -->
+				<div class="col-md-4">
+					<div class="card">
+						<img src="./assets/img/bis.jpg" class="card-img-top" alt="">
+						<div class="card-body">
+							<h5 class="card-title">BIS</h5>
+							<p class="card-text">كلية BIS هي اختصار لـ«Business Information System» وهو أحد البرامج
+								التابعة لكلية التجارة مع كلية إدارة الأعمال</p>
+							<a href="#" class="btn main-button">اعرف المزيد</a>
+						</div>
+					</div>
+				</div>
+				<!-- /card -->
+
+				<!-- card -->
+				<div class="col-md-4">
+					<div class="card">
+						<img src="./assets/img/fmi.jpg" class="card-img-top" alt="...">
+						<div class="card-body">
+							<h5 class="card-title">FMI</h5>
+							<p class="card-text">هو الاختصار لمسمى " الأسواق والمنشآت المالية" Financial Markets &
+								Institutions . وهو برنامج دراسي أكاديمى تطبيقى</p>
+							<a href="#" class="btn main-button">اعرف المزيد</a>
+						</div>
+					</div>
+				</div>
+				<!-- /card -->
+
+				<!-- card -->
+				<div class="col-md-4">
+					<div class="card">
+						<img src="./assets/img/enComm.jpg" class="card-img-top" alt="...">
+						<div class="card-body">
+							<h5 class="card-title">English commerce</h5>
+							<p class="card-text">يقوم الطالب بدراسة المواد الخاصة بمجال التجارة ولكن باللغة الأنجليزية
+							</p>
+							<a href="#" class="btn main-button">اعرف المزيد</a>
+						</div>
+					</div>
+				</div>
+				<!-- /card -->
+
+			</div>
+			<!-- /row -->
+
+			<hr class="section-hr">
+
+			<!-- row -->
+			<div class="row">
+
+				<div class="col-md-6">
+					<h3>اعرف المزيد عن جامعتنا</h3>
+					<p class="lead">Libris vivendo eloquentiam ex ius, nec id splendide abhorreant.</p>
+					<p>No vel facete sententiae, quodsi dolores no quo, pri ex tamquam interesset necessitatibus. Te
+						denique cotidieque delicatissimi sed. Eu doming epicurei duo. Sit ea perfecto deseruisse
+						theophrastus. At sed malis hendrerit, elitr deseruisse in sit, sit ei facilisi mediocrem.</p>
+				</div>
+
+				<div class="col-md-5 col-md-offset-1">
+					<a class="about-video" href="https://www.youtube.com/watch?v=P-dznsHGzN0&t=15s" target="_blank">
+						<img src="./assets/img/about-video.jpg" alt="">
+						<i class="play-icon fa fa-play"></i>
+					</a>
+				</div>
+
+			</div>
+			<!-- /row -->
+
+		</div>
+		<!-- /container -->
+
+	</div>
+	<!-- /Why us -->
+
+	<!-- Contact CTA -->
+	<div id="contact-cta" class="section">
+
+		<!-- Backgound Image -->
+		<div class="bg-image bg-parallax overlay" style="background-image:url(./assets/img/cta2-background.jpg)"></div>
+		<!-- Backgound Image -->
+
+		<!-- container -->
+		<div class="container">
+
+			<!-- row -->
+			<div class="row">
+
+				<div class="col-md-8 col-md-offset-2 text-center">
+					<h2 class="white-text">تواصل معنا</h2>
+					<p class="lead white-text">للاستفسارات و المقتراحات و الشكاوى</p>
+					<a class="main-button icon-button" href="contact.html">تواصل معنا الان</a>
+				</div>
+
+			</div>
+			<!-- /row -->
+
+		</div>
+		<!-- /container -->
+
+	</div>
+	<!-- /Contact CTA -->
+
+@endsection

@@ -1,80 +1,95 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!DOCTYPE html>
+<html lang="ar">
 
-    <!-- CSRF Token -->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <title>{{ config('app.name', 'Laravel') }}</title>
+        <link href="{{ asset('assets/img/icons8-fast-forward-100.png') }}" rel="icon" type="image/x-icon">
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+        <!-- Bootstrap -->
+        <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+        <!-- Font Awesome Icon -->
+        <script src="https://kit.fontawesome.com/b1a40c9d53.js" crossorigin="anonymous"></script>
 
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-</head>
-<body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <!-- Custom stlylesheet -->
+        <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+    </head>
+
+    <body>
+
+        <!-- Header -->
+        @include('layouts.header')
+        <!-- /Header -->
+
+        @yield('content')
+
+        <!-- Footer -->
+        <footer id="footer" class="section">
+
+            <!-- container -->
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
+                <!-- row -->
+                <div class="row">
 
-                    </ul>
+                    <!-- footer nav -->
+                    <div class="col-md-12">
+                        <ul class="footer-nav">
+                            <li><a href="index.html">الرئيسية</a></li>
+                            <li><a href="#">عن الكلية</a></li>
+                            <li><a href="#">الاقسام</a></li>
+                            <li><a href="blog.html">الاخبار</a></li>
+						<li><a href="contact.html">تواصل معنا</a></li>
+					</ul>
+				</div>
+				<!-- /footer nav -->
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
+			</div>
+			<!-- /row -->
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+			<!-- row -->
+			<div id="bottom-footer" class="row">
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
+                <!-- social -->
+				<div class="col-md-4 col-md-push-8">
+                    <ul class="footer-social">
+                        <li><a href="#" class="facebook"><i class="fa fa-facebook"></i></a></li>
+						<li><a href="#" class="twitter"><i class="fa fa-twitter"></i></a></li>
+						<li><a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a></li>
+						<li><a href="#" class="instagram"><i class="fa fa-instagram"></i></a></li>
+						<li><a href="#" class="youtube"><i class="fa fa-youtube"></i></a></li>
+						<li><a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a></li>
+					</ul>
+				</div>
+				<!-- /social -->
 
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div>
+			</div>
+			<!-- row -->
+
+		</div>
+		<!-- /container -->
+
+	</footer>
+	<!-- /Footer -->
+
+	<!-- preloader -->
+	<div id='preloader'>
+		<div class='preloader'></div>
+	</div>
+	<!-- /preloader -->
+
+
+	<!-- jQuery Plugins -->
+    <script src="{{ asset('assets/js/jquery.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/js/bootstrap.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/js/main.js') }}" type="text/javascript"></script>
+
 </body>
+
 </html>
