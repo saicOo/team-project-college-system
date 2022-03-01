@@ -24,6 +24,7 @@
             <a class="link" href="index.html">ادمن انجاز</a>
         </div>
         <form method="POST" action="{{ route('login') }}">
+            @csrf
             <h2 class="login-title">سجل دخولك</h2>
             <div class="form-group">
                 <div class="input-group-icon right">
