@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Private_qa extends Model
+class Department extends Model
 {
 
-    protected $table = 'private_qas';
+    protected $table = 'departments';
     public $timestamps = true;
 
 }
