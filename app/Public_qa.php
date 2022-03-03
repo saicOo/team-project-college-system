@@ -1,10 +1,10 @@
 <?php
 
-namespace Public_qa;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Public_qa extends Model 
+class Public_qa extends Model
 {
 
     protected $table = 'public_qas';
