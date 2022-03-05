@@ -30,3 +30,6 @@ Route::resource('public_qa', 'Public_qaController');
 // map students routes
 Route::get('map_students', 'MapStudentController@index')->name('map_students.index');
 Route::get('map_students/map', 'MapStudentController@map')->name('map_students.map');
+
+// admin add|list routes
+Route::resource('admin', 'AdminController');

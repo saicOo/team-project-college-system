@@ -201,5 +201,7 @@ window.addEventListener('load', () => {
         $('#home-page').addClass('active');
     } else if (uri == 'map_students') {
         $('#map-std-page').addClass('active');
+    } else if (uri == 'admin') {
+        $('#admin-pages').addClass('active');
     }
 });

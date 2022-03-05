@@ -54,7 +54,7 @@
     <script src="{{ asset('assets/js/scripts/metisMenu.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/js/scripts/jquery.slimscroll.min.js') }}" type="text/javascript"></script>
     <!-- CORE SCRIPTS-->
-    <script src="{{ asset('assets/js/app.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/js/app.js') }}" type="text/javascript"></script>
     <!-- PAGE LEVEL SCRIPTS-->
 
 </body>

@@ -29,22 +29,26 @@
             <div class="form-group">
                 <div class="input-group-icon right">
                     <div class="input-icon"><i class="fa fa-envelope"></i></div>
-                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
+                        name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                     @error('email')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror                </div>
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                </div>
             </div>
             <div class="form-group">
                 <div class="input-group-icon right">
                     <div class="input-icon"><i class="fa fa-lock font-16"></i></div>
-                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
+                        name="password" required autocomplete="current-password">
                     @error('password')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
-                @enderror                </div>
+                    @enderror
+                </div>
             </div>
             <div class="form-group">
                 <button class="btn btn-info btn-block" type="submit">تسجيل الدخول</button>
@@ -67,7 +71,7 @@
     <script src="{{ asset('assets/js/app.js') }}" type="text/javascript"></script>
 
     <script type="text/javascript">
-        $(function() {
+        $(function () {
             $('#login-form').validate({
                 errorClass: "help-block",
                 rules: {
@@ -79,14 +83,15 @@
                         required: true
                     }
                 },
-                highlight: function(e) {
+                highlight: function (e) {
                     $(e).closest(".form-group").addClass("has-error")
                 },
-                unhighlight: function(e) {
+                unhighlight: function (e) {
                     $(e).closest(".form-group").removeClass("has-error")
                 },
             });
         });
+
     </script>
 </body>
 

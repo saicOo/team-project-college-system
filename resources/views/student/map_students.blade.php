@@ -20,6 +20,7 @@
             <!-- Search form -->
             <div class="col-md-3 col-sm-6 col-xs-8">
                 <form action="/map_students/map" method="GET">
+                    @csrf
                     <div class="form-group m-auto">
                         <button class="btn btn-warning font-weight-bold w-100" type="submit">
                             <span class="ml-1">توزيع</span>
@@ -60,12 +61,5 @@
     </div>
 </div>
 <!-- END PAGE CONTENT-->
-<footer class="page-footer">
-    <div class="font-13">2018 © <b>AdminCAST</b> - All rights reserved.</div>
-    <a class="px-4"
-        href="http://themeforest.net/item/adminca-responsive-bootstrap-4-3-angular-4-admin-dashboard-template/20912589"
-        target="_blank">BUY PREMIUM</a>
-    <div class="to-top"><i class="fa fa-angle-double-up"></i></div>
-</footer>
 
 @endsection
