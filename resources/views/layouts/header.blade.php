@@ -21,7 +21,7 @@
         <ul class="nav navbar-toolbar">
             <li class="dropdown dropdown-user">
                 <a class="nav-link dropdown-toggle link" data-toggle="dropdown">
-                    <img src="./assets/img/admin-avatar.png" />
+                    <img src="{{asset('assets/img/admin-avatar.png')}}" />
                     <span></span>Admin<i class="fa fa-angle-down m-r-5"></i></a>
                 <ul class="dropdown-menu dropdown-menu-left text-right">
                     <a class="dropdown-item" href="{{ route('logout') }}"

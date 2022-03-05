@@ -25,3 +25,7 @@ Route::resource('student_desire', 'Student_desireController');
 Route::resource('alert_msgs', 'Alert_msgsController');
 Route::resource('private_qa', 'Private_qaController');
 Route::resource('public_qa', 'Public_qaController');
+
+// map students routes
+Route::get('map_students', 'MapStudentController@index')->name('map_students.index');
+Route::get('map_students/map', 'MapStudentController@map')->name('map_students.map');
