@@ -188,3 +188,18 @@ $(function () {
     }
 
 });
+
+// sidebar activing current link
+window.addEventListener('load', () => {
+    let activeDivs = document.querySelectorAll('.side-menu .active');
+    activeDivs.forEach(e => {
+        $(e).removeClass('active');
+    });
+
+    let uri = location.href.split('/')[3];
+    if(uri == ''){
+        $('#home-page').addClass('active');
+    } else if (uri == 'map_students') {
+        $('#map-std-page').addClass('active');
+    }
+});

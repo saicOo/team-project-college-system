@@ -20,7 +20,7 @@ class MapStudentController extends Controller
 
         // dd($depts->firstWhere('id', $desires->firstWhere('id', 1)->desire_1_id)->dept_name);
 
-        return view ('map_students',
+        return view ('student.map_students',
             [
                 'stds' => $stds,
                 'desires' => $desires,

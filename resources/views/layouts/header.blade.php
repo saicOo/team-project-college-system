@@ -5,7 +5,7 @@
             <span class="brand">لوحة تحكم أنجاز
                 <span class="brand-tip"></span>
             </span>
-            <span class="brand-mini"><img src="./assets/img/logos/icons8-fast-forward-100.png" alt=""></span>
+            <span class="brand-mini"><img src="{{asset('assets/img/logos/icons8-fast-forward-100.png')}}" alt=""></span>
         </a>
     </div>
     <div class="flexbox flex-1">

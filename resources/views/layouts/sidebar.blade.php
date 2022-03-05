@@ -9,12 +9,12 @@
                 <div class="font-strong">مهندس انجاز</div><small>المسئول</small></div>
         </div>
         <ul class="side-menu metismenu">
-            <li>
-                <a class="active" href="index.html"><i class="sidebar-item-icon fa fa-th-large"></i>
+            <li id="home-page">
+                <a href="/"><i class="sidebar-item-icon fa fa-th-large"></i>
                     <span class="nav-label">الصفخة الرئيسية</span>
                 </a>
             </li>
-            <li class="heading">الادمن</li>
+            <li id="admin-pages" class="heading">الادمن</li>
             <li>
                 <a href="javascript:;"><i class="sidebar-item-icon fa fa-bookmark"></i>
                     <span class="nav-label">الادمن</span><i class="fa fa-angle-left arrow"></i></a>
@@ -27,18 +27,18 @@
                         </li>
                     </ul>
             </li>
-            <li class="heading">الاقسام</li>
+            <li id="dept-page" class="heading">الاقسام</li>
             <li>
                 <a href="./view/department/dept-list.html"><i class="sidebar-item-icon fa fa-sitemap"></i>
                     <span class="nav-label">الاقسام</span>
                 </a>
             </li>
-            <li>
-                <a href="./view/auth/registered_std.html"><i class="sidebar-item-icon fa fa-file-text"></i>
+            <li id="map-std-page">
+                <a href="{{route('map_students.index')}}"><i class="sidebar-item-icon fa fa-file-text"></i>
                     <span class="nav-label">توزيع الطلاب</span>
                 </a>
             </li>
-            <li class="heading">الطلاب</li>
+            <li id="std-pages" class="heading">الطلاب</li>
             <li>
                 <a href="javascript:;"><i class="sidebar-item-icon fa fa-smile-o"></i>
                     <span class="nav-label">الطلاب</span><i class="fa fa-angle-left arrow"></i></a>
@@ -63,8 +63,8 @@
                     </li>
                 </ul>
             </li>
-            <li class="heading">البريد</li>
-            <li>
+            <li id="mail-page" class="heading">البريد</li>
+            <li id="inbox-page">
                 <a href="./view/mail/mailbox.html"><i class="sidebar-item-icon fa fa-envelope"></i>
                     <span class="nav-label">صندوق البريد</span>
                 </a>
