@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 02, 2022 at 12:53 AM
+-- Generation Time: Mar 05, 2022 at 03:24 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.24
 
@@ -118,23 +118,6 @@ CREATE TABLE `migrations` (
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `migrations`
---
-
-INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2014_10_12_000000_create_admins_table', 1),
-(2, '2022_02_19_093357_create_alert_msgss_table', 1),
-(3, '2022_02_19_093357_create_departments_table', 1),
-(4, '2022_02_19_093357_create_private_qas_table', 1),
-(5, '2022_02_19_093357_create_public_qas_table', 1),
-(6, '2022_02_19_093357_create_student_desires_table', 1),
-(7, '2022_02_19_093357_create_student_detailss_table', 1),
-(8, '2022_02_19_093407_create_foreign_keys', 1),
-(9, '2014_10_12_000000_create_users_table', 2),
-(10, '2014_10_12_100000_create_password_resets_table', 2),
-(11, '2019_08_19_000000_create_failed_jobs_table', 2);
-
 -- --------------------------------------------------------
 
 --
@@ -205,7 +188,7 @@ CREATE TABLE `student_detailss` (
   `phone` varchar(11) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `address` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `age` date DEFAULT NULL,
-  `gender` enum('1','2') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `gender` enum('ذكر','انثي') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `english_degree` int(3) DEFAULT NULL,
   `degree` decimal(5,2) DEFAULT NULL,
   `national_id` bigint(20) DEFAULT NULL,
@@ -227,6 +210,7 @@ CREATE TABLE `users` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` int(11) NOT NULL DEFAULT 0,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -346,7 +330,7 @@ ALTER TABLE `comment_news`
 -- AUTO_INCREMENT for table `departments`
 --
 ALTER TABLE `departments`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -358,7 +342,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `news`
@@ -371,6 +355,12 @@ ALTER TABLE `news`
 --
 ALTER TABLE `private_qas`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -415,8 +405,7 @@ ALTER TABLE `student_desires`
 -- Constraints for table `student_detailss`
 --
 ALTER TABLE `student_detailss`
-  ADD CONSTRAINT `student_detailss_dept_id_foreign` FOREIGN KEY (`dept_id`) REFERENCES `departments` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `student_detailss_ibfk_1` FOREIGN KEY (`id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `student_detailss_dept_id_foreign` FOREIGN KEY (`dept_id`) REFERENCES `departments` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
