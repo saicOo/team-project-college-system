@@ -29,7 +29,7 @@
             </li>
             <li class="heading">الاقسام</li>
             <li>
-                <a href="./view/department/dept-list.html"><i class="sidebar-item-icon fa fa-sitemap"></i>
+                <a href="{{route('department.index')}}"><i class="sidebar-item-icon fa fa-sitemap"></i>
                     <span class="nav-label">الاقسام</span>
                 </a>
             </li>

@@ -19,7 +19,30 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::resource('department', 'DepartmentController');
+
+#########   department Route  #########
+
+// Displye Data 
+Route::get('department' , 'DepartmentController@index' )->name('department.index');
+
+// create Data 
+Route::get('department/create' , 'DepartmentController@create' )->name('department.create');
+
+// store Data 
+Route::post('department/store' , 'DepartmentController@store' )->name('department.store');
+
+// show Data 
+Route::get('department/show/{id}' , 'DepartmentController@show' )->name('department.show');
+
+// edit Data 
+Route::get('department/edit/{id}' , 'DepartmentController@edit' )->name('department.edit');
+
+// update Data 
+Route::post('department/update/{id}' , 'DepartmentController@update' )->name('department.update');
+
+// Remove Data 
+Route::get('department/destroy/id/{id}' , 'DepartmentController@destroy' )->name('department.destroy');
+
 Route::resource('student_details', 'Student_detailsController');
 Route::resource('student_desire', 'Student_desireController');
 Route::resource('alert_msgs', 'Alert_msgsController');

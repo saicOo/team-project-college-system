@@ -15,7 +15,8 @@ class DepartmentController extends Controller
    */
   public function index()
   {
-    
+        $department = Department::all();
+        return view('department.index', compact("department" ,$department));
   }
 
   /**
@@ -25,6 +26,7 @@ class DepartmentController extends Controller
    */
   public function create()
   {
+    return view('department.index');
 
   }
 
@@ -35,6 +37,19 @@ class DepartmentController extends Controller
    */
   public function store(Request $request)
   {
+      $request->validate([
+        "dept_name"            => 'required',
+        "dept_capacity_num"    => 'required',
+        "price"                => 'required',
+        "minimum_degree"       => 'required'
+    ]);
+    $department = new Department();
+    $department->dept_name =$request->dept_name;
+    $department->dept_capacity_num =$request->dept_capacity_num;
+    $department->price =$request->price;
+    $department->minimum_degree =$request->minimum_degree;
+    $department->save();
+    return redirect("department")->with("done" , "Insert in database");
 
   }
 
@@ -57,7 +72,8 @@ class DepartmentController extends Controller
    */
   public function edit($id)
   {
-
+        $department = Department::find($id);
+        return view('department.edit' , compact("department" ,$department));
   }
 
   /**
@@ -66,8 +82,21 @@ class DepartmentController extends Controller
    * @param  int  $id
    * @return Response
    */
-  public function update($id)
+  public function update(Request $request,$id)
   {
+    $request->validate([
+      "dept_name"            => 'required',
+      "dept_capacity_num"    => 'required',
+      "price"                => 'required',
+      "minimum_degree"       => 'required'
+    ]);
+    $department = Department::find($id);
+    $department->dept_name =$request->dept_name;
+    $department->dept_capacity_num =$request->dept_capacity_num;
+    $department->price =$request->price;
+    $department->minimum_degree =$request->minimum_degree;
+    $department->save();
+    return redirect("department")->with("done" , "Updata in database");
 
   }
 
@@ -79,6 +108,9 @@ class DepartmentController extends Controller
    */
   public function destroy($id)
   {
+    $department = Department::find($id);
+    $department->DELETE();
+    return redirect("department")->with('done' , "Remove Succeessfuly");
 
   }
 

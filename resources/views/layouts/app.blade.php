@@ -15,6 +15,7 @@
     <link href="{{ asset('assets/css/font-awesome.min.css') }}" rel="stylesheet">
 
     <link href="{{ asset('assets/css/themify-icons.css') }}" rel="stylesheet">
+
     <!-- THEME STYLES-->
     <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
 
