@@ -43,23 +43,34 @@ class AdminController extends Controller
         return redirect('/admin');
     }
 
-    public function show($id)
+    public function show($id) // show and edit pages in profile
     {
-        //
-    }
-
-    public function edit($id)
-    {
-        //
+        return view('admin.profile', ['admin' => Admin::find($id)]);
     }
 
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|email',
+            'role' => 'required'
+        ]);
+
+        $admin = Admin::find($id);
+
+        $admin->name = $validated['name'];
+        $admin->email = $validated['email'];
+        $admin->role = $validated['role'];
+
+        $admin->save();
+
+        return $this->show($id);
     }
 
     public function destroy($id)
     {
-        //
+        Admin::destroy($id);
+
+        return redirect('/admin');
     }
 }

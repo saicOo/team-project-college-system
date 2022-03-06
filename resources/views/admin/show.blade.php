@@ -34,7 +34,7 @@
                                     @foreach ($admins as $admin)
                                     <tr>
                                         <td>{{$admin->id}}</td>
-                                        <td><a href="./profile.html">{{$admin->name}}</a></td>
+                                        <td><a href="{{route('admin.show', $admin->id)}}">{{$admin->name}}</a></td>
                                         <td>
                                             @if ($admin->role == 0)
                                                 {{'مدير'}}
@@ -47,14 +47,16 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <form action="{{route('admin.destroy', 1)}}" method="POST">
-                                                <input type="hidden" name="_method" value="DELETE">
+                                            <form action="{{route('admin.destroy', $admin->id)}}" method="POST">
+                                                @csrf
+
+                                                <input type="hidden" name="_method" value="delete">
                                                 <button class="btn btn-danger btn-xs" data-toggle="tooltip"
                                                     data-original-title="ازالة" type="submit">
                                                     <i class="fa fa-times font-14"></i>
                                                 </button>
-                                            </form>
 
+                                            </form>
                                         </td>
                                     </tr>
                                     @endforeach
