@@ -41,11 +41,9 @@
                     <!-- footer nav -->
                     <div class="col-md-12">
                         <ul class="footer-nav">
-                            <li><a href="index.html">الرئيسية</a></li>
-                            <li><a href="#">عن الكلية</a></li>
-                            <li><a href="#">الاقسام</a></li>
-                            <li><a href="blog.html">الاخبار</a></li>
-						<li><a href="contact.html">تواصل معنا</a></li>
+                            <li><a href="{{route('home')}}">الرئيسية</a></li>
+                            <li><a href="{{route('news.index')}}">الاخبار</a></li>
+						<li><a href="contact">تواصل معنا</a></li>
 					</ul>
 				</div>
 				<!-- /footer nav -->

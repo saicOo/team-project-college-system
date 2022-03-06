@@ -23,20 +23,20 @@
               <div class="input-field">
                   <i class="fas fa-envelope"></i>
                   <input type="email" placeholder="البريد الالكتروني" name="email" class="@error('email') is-invalid @enderror" value="{{ old('email') }}" required autocomplete="email" autofocus />
-                  @error('email')
+                  {{-- @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror
+                                @enderror --}}
                 </div>
                 <div class="input-field">
                     <i class="fas fa-lock"></i>
                     <input type="password" class="@error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="كلمة المرور" />
-                    @error('password')
+                    {{-- @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror
+                                @enderror --}}
                 </div>
                 <button type="submit" class="btn solid">
                     تسجيل الدخول
@@ -52,29 +52,29 @@
           <div class="input-field">
             <i class="fas fa-user"></i>
             <input type="text" placeholder="الاسم" class="@error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus />
-            @error('name')
+            {{-- @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror
+                                @enderror --}}
           </div>
           <div class="input-field">
             <i class="fas fa-envelope"></i>
             <input type="email" placeholder="البريد الالكتروني" class="@error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" />
-            @error('email')
+            {{-- @error('email')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
-        @enderror
+        @enderror --}}
           </div>
           <div class="input-field">
             <i class="fas fa-lock"></i>
             <input type="password" placeholder="كلمة المرور" class="@error('password') is-invalid @enderror" name="password" required autocomplete="new-password" />
-            @error('password')
+            {{-- @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror
+                                @enderror --}}
           </div>
           <div class="input-field">
             <i class="fas fa-key"></i>

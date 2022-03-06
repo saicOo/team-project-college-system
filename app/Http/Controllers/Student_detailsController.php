@@ -2,11 +2,17 @@
 
 namespace App\Http\Controllers;
 use App\Student_details;
+use App\Student_desire;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class Student_detailsController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
   /**
    * Display a listing of the resource.
    *
@@ -45,7 +51,15 @@ class Student_detailsController extends Controller
    */
   public function show($id)
   {
+      if($id = Auth::user()->id){
 
+          $student_details = Student_details::findOrFail($id);
+          $student_desire = Student_desire::findOrFail($id);
+              return view('profile.profile',compact('student_details','student_desire'));
+
+    }else{
+            return "test";
+    }
   }
 
   /**

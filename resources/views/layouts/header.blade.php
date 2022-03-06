@@ -21,36 +21,32 @@
         <!-- Navigation -->
         <nav id="nav">
             <ul class="main-menu nav navbar-nav navbar-left">
-                <li><a href="index.html">الرئيسية</a></li>
-                <li><a href="#vision">عن الكلية</a></li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                        aria-expanded="false">
-                        الاقسام
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">BIS</a>
-                        <a class="dropdown-item" href="#">FMI</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">EN Commerce</a>
-                    </div>
-                </li>
-                <li><a href="blog.html">الاخبار</a></li>
-                <li><a href="contact.html">تواصل معنا</a></li>
+                <li><a href="{{route('home')}}">الرئيسية</a></li>
+                <li><a href="{{route('news.index')}}">الاخبار</a></li>
+                <li><a href="contact">تواصل معنا</a></li>
                 @guest
 
-                    <li><a class="sign-in-btn" href="./auth/login-and-signup.html">تسجيل الدخول</a></li>
+                    <li><a class="sign-in-btn" href="{{route('login')}}">تسجيل الدخول</a></li>
                 @else
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-expanded="false">
                             <i class="fas fa-user"></i>
-                            اسم المستخدم
+                           {{Auth::user()->name}}
                         </a>
                         <div class="dropdown-menu profile" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="./profile.html">الحساب</a>
-                            <a class="dropdown-item" href="./inbox.html">الرسائل</a>
-                            <a class="dropdown-item" href="#">تسجيل الخروج</a>
+                            <a class="dropdown-item" href="{{route('student_details.show',Auth::user()->id)}}">الحساب</a>
+                            <a class="dropdown-item" href="{{route('messages.index')}}">الرسائل</a>
+
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                                          document.getElementById('logout-form').submit();">
+                            تسجيل الخروج
+                         </a>
+
+                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                             @csrf
+                         </form>
                         </div>
                     </li>
                 @endguest

@@ -10,9 +10,17 @@ class Student_desire extends Model
     protected $table = 'student_desires';
     public $timestamps = true;
 
-    public function departments()
+    public function department1()
     {
-        return $this->belongsTo('Department', 'desire_1id');
+        return $this->belongsTo('App\Department', 'desire_1_id');
+    }
+    public function department2()
+    {
+        return $this->belongsTo('App\Department', 'desire_2_id');
+    }
+    public function department3()
+    {
+        return $this->belongsTo('App\Department', 'desire_3_id');
     }
 
 }

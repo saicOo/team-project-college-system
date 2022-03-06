@@ -12,7 +12,7 @@ class Student_details extends Model
 
     public function department()
     {
-        return $this->belongsTo('Department', 'dept_id');
+        return $this->belongsTo('App\Department', 'dept_id');
     }
 
 }
