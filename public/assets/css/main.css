@@ -8,7 +8,9 @@
   clear: both; }
 
 html {
-  font-size: 14px; }
+  font-size: 14px;
+  scroll-behavior: smooth;
+}
 
 body {
   overflow-x: hidden;
@@ -16,6 +18,7 @@ body {
   background-color: #f1f1f1;
   color: #333;
   direction: rtl;
+  overflow: overlay;
 }
 
 a {
@@ -1729,7 +1732,7 @@ body.fullscreen-mode {
   -webkit-border-radius: 2px;
   border-radius: 2px;
   -webkit-box-shadow: none !important;
-  box-shadow: none !important; 
+  box-shadow: none !important;
 direction: ltr;
 }
   .form-control:focus {
@@ -1939,7 +1942,7 @@ direction: ltr;
 .table thead th {
   border-bottom: 1px solid #ddd !important;
   border-top: 0;
-  font-weight: 700; 
+  font-weight: 700;
   text-align: inherit;
 }
 
@@ -3346,7 +3349,7 @@ body.has-backdrop .backdrop {
 
 .to-top {
   position: fixed;
-  right: 3px;
+  right: 20px;
   bottom: 40px;
   width: 30px;
   height: 30px;
@@ -3540,3 +3543,28 @@ table.dataTable {
     -webkit-justify-content: start !important;
     -ms-flex-pack: start !important;
     justify-content: start !important; } }
+
+
+/* kareem adds |  */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background-color: rgba(100, 100, 100, 0);
+}
+
+::-webkit-scrollbar-track:hover{
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: royalblue;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #23b7e5;
+}

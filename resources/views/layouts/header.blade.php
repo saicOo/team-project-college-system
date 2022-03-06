@@ -5,7 +5,7 @@
             <span class="brand">لوحة تحكم أنجاز
                 <span class="brand-tip"></span>
             </span>
-            <span class="brand-mini"><img src="./assets/img/logos/icons8-fast-forward-100.png" alt=""></span>
+            <span class="brand-mini"><img src="{{asset('assets/img/logos/icons8-fast-forward-100.png')}}" alt=""></span>
         </a>
     </div>
     <div class="flexbox flex-1">
@@ -21,8 +21,8 @@
         <ul class="nav navbar-toolbar">
             <li class="dropdown dropdown-user">
                 <a class="nav-link dropdown-toggle link" data-toggle="dropdown">
-                    <img src="./assets/img/admin-avatar.png" />
-                    <span></span>Admin<i class="fa fa-angle-down m-r-5"></i></a>
+                    <img src="{{asset('assets/img/admin-avatar.png')}}" />
+                    <span></span>{{Auth::user()->email}}<i class="fa fa-angle-down m-r-5"></i></a>
                 <ul class="dropdown-menu dropdown-menu-left text-right">
                     <a class="dropdown-item" href="{{ route('logout') }}"
                     onclick="event.preventDefault();
