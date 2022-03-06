@@ -71,7 +71,7 @@ class MapStudentController extends Controller
 
         }
 
-        return redirect('/map_students');
+        return redirect('/map_students')->with('done', 'تم توزيع الطلاب على الاقسام حسب المعايير المحدده');
 
     }
 
