@@ -12,7 +12,7 @@ class Student_desire extends Model
 
     public function departments()
     {
-        return $this->belongsTo('Department', 'desire_1id');
+        return $this->belongsTo('App\Department', 'desire_1id');
     }
 
 }

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Student_details;
+use App\Student_desire;
+use App\Student;
+use App\Department;
 use Illuminate\Http\Request;
 
 class Student_detailsController extends Controller
@@ -45,7 +48,14 @@ class Student_detailsController extends Controller
    */
   public function show($id)
   {
+    $degree = Student_details::findOrFail($id)->degree;
+    $degree_en = Student_details::findOrFail($id)->english_degree;
 
+    $departments = Department::where('minimum_degree','<=', $degree)->where('minimum_degree_en','<=', $degree_en)->get();
+
+    $student = Student_details::findOrFail($id);
+    $user = Student::findOrFail($id);
+    return view('student.profile',compact('student','user','departments'));
   }
 
   /**
@@ -65,9 +75,31 @@ class Student_detailsController extends Controller
    * @param  int  $id
    * @return Response
    */
-  public function update($id)
+  public function update(Request $request , $id)
   {
+    $request->validate([
+        'first_name' => 'required|max:25|min:2',
+        'last_name' => 'required|max:25|min:2',
+        'address' => 'required|max:100|min:2',
+        'phone' => 'required|digits:11',
+        'national_id' => 'required|integer|digits:15',
+        'age' => 'required|date',
+        'dept_id' => 'required|integer',
 
+    ]);
+    $student_details = Student_details::findOrFail($id);
+    $student_details->first_name = $request->first_name;
+    $student_details->last_name = $request->last_name;
+    $student_details->phone = $request->phone;
+    $student_details->national_id = $request->national_id;
+    $student_details->address = $request->address;
+    $student_details->age = $request->age;
+    $student_details->dept_id = $request->dept_id;
+
+
+    $student_details->save();
+    session()->flash('done',"تم التعديل بنجاح");
+    return redirect()->back();
   }
 
   /**

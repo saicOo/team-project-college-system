@@ -16,6 +16,8 @@
 
     <link href="{{ asset('assets/css/themify-icons.css') }}" rel="stylesheet">
 
+    @yield('css')
+
     <!-- THEME STYLES-->
     <link href="{{ asset('assets/css/main.min.css') }}" rel="stylesheet">
 
@@ -57,6 +59,7 @@
     <!-- CORE SCRIPTS-->
     <script src="{{ asset('assets/js/app.min.js') }}" type="text/javascript"></script>
     <!-- PAGE LEVEL SCRIPTS-->
+    @yield('js')
 
 </body>
 

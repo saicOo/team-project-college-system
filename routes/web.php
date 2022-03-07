@@ -44,12 +44,14 @@ Route::post('department/update/{id}' , 'DepartmentController@update' )->name('de
 // Remove Data
 Route::get('department/destroy/id/{id}' , 'DepartmentController@destroy' )->name('department.destroy');
 
-Route::resource('student_details', 'Student_detailsController');
 Route::resource('student_desire', 'Student_desireController');
 Route::resource('alert_msgs', 'Alert_msgsController');
-Route::resource('private_qa', 'Private_qaController');
 Route::resource('public_qa', 'Public_qaController');
-
+// Routes Student (Show profile & Update)
+Route::resource('student_details', 'Student_detailsController');
+// Routes Messages
+Route::resource('inbox', 'MessageController');
+Route::get('ajax_inbox', 'MessageController@ajax_show');
 // map students routes
 Route::get('map_students', 'StudentController@not_mapped_students')->name('map_students.index');
 Route::get('map_students/map', 'StudentController@map')->name('map_students.map');

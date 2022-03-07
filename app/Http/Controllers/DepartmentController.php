@@ -17,24 +17,25 @@ class DepartmentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            "dept_name"            => 'required',
-            "dept_capacity_num"    => 'required',
-            "price"                => 'required',
-            "minimum_degree"       => 'required'
+            "dept_name"            => ['required','unique:departments' ],
+            "dept_capacity_num"    => ['required','numeric'],
+            "price"                => ['required','numeric'],
+            "minimum_degree"       => ['required','numeric' ,'max:500|min250'],
+            "minimum_degree_en"    => ['required','numeric','max:60|min30'],
         ]);
         $department = new Department();
-        $department->dept_name =$request->dept_name;
+        $department->dept_name         =$request->dept_name;
         $department->dept_capacity_num =$request->dept_capacity_num;
-        $department->price =$request->price;
-        $department->minimum_degree =$request->minimum_degree;
+        $department->price             =$request->price;
+        $department->minimum_degree    =$request->minimum_degree;
+        $department->minimum_degree_en =$request->minimum_degree_en;
         $department->save();
 
         // add new dept in session for side bar use
         Session::forget('depts');
         Session::put('depts', Department::all('dept_name'));
 
-        return redirect("department")->with("done" , "Insert in database");
-
+        return redirect("department")->with("done" , "تمت اضافة القسم بنجاح");
     }
 
     public function show($id, $students = NULL)
@@ -80,25 +81,27 @@ class DepartmentController extends Controller
     public function update(Request $request,$id)
     {
         $request->validate([
-        "dept_name"            => 'required',
-        "dept_capacity_num"    => 'required',
-        "price"                => 'required',
-        "minimum_degree"       => 'required'
+            "dept_name"            => ['required','unique:departments' ],
+            "dept_capacity_num"    => ['required','numeric'],
+            "price"                => ['required','numeric'],
+            "minimum_degree"       => ['required','numeric' ,'max:500|min:250'],
+            "minimum_degree_en"    => ['required','numeric','max:60|min:30'],
         ]);
         $department = Department::find($id);
-        $department->dept_name =$request->dept_name;
+        $department->dept_name         =$request->dept_name;
         $department->dept_capacity_num =$request->dept_capacity_num;
-        $department->price =$request->price;
-        $department->minimum_degree =$request->minimum_degree;
+        $department->price             =$request->price;
+        $department->minimum_degree    =$request->minimum_degree;
+        $department->minimum_degree_en =$request->minimum_degree_en;
         $department->save();
-        return redirect("department")->with("done" , "Updata in database");
-
+        return redirect("department")->with("done" , "تم تعديل القسم بنجاح");
     }
 
     public function destroy($id)
     {
-        Department::destroy($id);
-        return redirect("department")->with('done' , "Remove Succeessfuly");
+        $department = Department::find($id);
+        $department->DELETE();
+        return redirect("department")->with('done' , "تم حذف القسم المطلوب");
     }
 
 }

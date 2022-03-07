@@ -74,7 +74,7 @@
             </li>
             <li class="heading">البريد</li>
             <li id="mail-page">
-                <a href="./view/mail/mailbox.html"><i class="sidebar-item-icon fa fa-envelope"></i>
+                <a href="{{route('inbox.index')}}"><i class="sidebar-item-icon fa fa-envelope"></i>
                     <span class="nav-label">صندوق البريد</span>
                 </a>
             </li>

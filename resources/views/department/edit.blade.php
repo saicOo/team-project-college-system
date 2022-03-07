@@ -35,25 +35,31 @@
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">اسم القسم</label>
                                                 <div class="col-sm-10">
-                                                    <input class="form-control  text-right" name="dept_name"  value="{{$department->dept_name}}" type="text">
+                                                    <input class="form-control  text-right" name="dept_name"  value="{{$department->dept_name}}" type="text" required>
                                                 </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">عدد الطلاب</label>
                                                 <div class="col-sm-10">
-                                                    <input class="form-control text-right" name="dept_capacity_num" value="{{$department->dept_capacity_num}}" type="text">
+                                                    <input class="form-control text-right" name="dept_capacity_num" value="{{$department->dept_capacity_num}}" type="text" required>
                                                 </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">السعر</label>
+                                            <label class="col-sm-2 col-form-label">المصاريف الدارسية</label>
                                                 <div class="col-sm-10">
-                                                    <input class="form-control text-right" name="price" value="{{$department->price}}" type="text">
+                                                    <input class="form-control text-right" name="price" value="{{$department->price}}" type="text" required>
                                                 </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">درجة القبول</label>
                                                 <div class="col-sm-10">
-                                                    <input class="form-control text-right" name="minimum_degree" value="{{$department->minimum_degree}}" type="text">
+                                                    <input class="form-control text-right" name="minimum_degree" value="{{$department->minimum_degree}}" type="text" required>
+                                                </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">درجة القبول</label>
+                                                <div class="col-sm-10">
+                                                    <input class="form-control text-right" name="minimum_degree_en" value="{{$department->minimum_degree_en}}" type="text" required>
                                                 </div>
                                         </div>
                                     </tbody>
