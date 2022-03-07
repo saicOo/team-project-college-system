@@ -52,7 +52,7 @@
                     @foreach ($stds as $std)
 
                         <tr>
-                            <td>{{$std->first_name . ' ' . $std->last_name}}</td>
+                            <td><a href="{{route('student_details.show', $std->id)}}">{{$std->first_name . ' ' . $std->last_name}}</a></td>
                             <td>{{$std->national_id}}</td>
                             <td>{{$depts->firstWhere('id', $desires->firstWhere('id', $std->id)->desire_1_id)->dept_name}}</td>
                             <td>{{$depts->firstWhere('id', $desires->firstWhere('id', $std->id)->desire_2_id)->dept_name}}</td>

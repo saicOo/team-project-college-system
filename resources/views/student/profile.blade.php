@@ -1,175 +1,228 @@
 @extends('layouts.app')
 
 @section('content')
-    <!-- START PAGE CONTENT-->
-    @if (Session::has('done'))
-        <div class="alert alert-success" role="alert">
-            {{ Session::get('done') }}
-        </div>
-    @endif
 
-    <div class="page-heading">
-        <h1 class="page-title">عرض بيانات الطالب</h1>
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <a href="index.html"><i class="la la-home font-20"></i></a>
-            </li>
-            <li class="breadcrumb-item">عرض بيانات الطالب</li>
-        </ol>
+<!-- START PAGE CONTENT-->
+@if (Session::has('done'))
+    <div class="alert alert-success" role="alert">
+        {{ Session::get('done') }}
     </div>
-    <div class="page-content fade-in-up">
-        <div class="row">
-            <div class="col-lg-8 col-md-10">
-                <div class="ibox">
-                    <div class="ibox-body">
-                        <ul class="nav nav-tabs tabs-line">
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#tab-1" data-toggle="tab"><i class="ti-bar-chart"></i>
-                                    بيانات الطالب</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#tab-2" data-toggle="tab"><i class="ti-settings"></i>
-                                    تعديل البيانات</a>
-                            </li>
+@endif
 
-                        </ul>
-                        <div class="tab-content">
-                            @if ($errors->any())
-                                <div class="alert alert-danger">
-                                    <ul>
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            @endif
-                            <div class="tab-pane fade show active" id="tab-1">
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-8 m-auto">
+<div class="page-heading">
+    <h1 class="page-title">عرض بيانات الطالب</h1>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="index.html"><i class="la la-home font-20"></i></a>
+        </li>
+        <li class="breadcrumb-item">عرض بيانات الطالب</li>
+    </ol>
+</div>
+<div class="page-content fade-in-up">
+    <div class="row">
+        <div class="col-lg-8 col-md-10">
+            <div class="ibox">
+                <div class="ibox-body">
+                    <ul class="nav nav-tabs tabs-line">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#tab-1" data-toggle="tab"><i class="ti-bar-chart"></i>
+                                بيانات الطالب</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#tab-2" data-toggle="tab"><i class="ti-settings"></i>
+                                تعديل البيانات</a>
+                        </li>
 
-                                        <div class="ibox">
-                                            <div class="ibox-body text-center">
-                                                <div class="m-t-20">
-                                                    <img class="img-circle" src="../../assets/img/users/u3.jpg" />
+                    </ul>
+                    <div class="tab-content">
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul class="m-0">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        <div class="tab-pane fade show active" id="tab-1">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-8 m-auto">
+
+                                    <div class="ibox">
+                                        <div class="ibox-body text-center">
+                                            <div class="m-t-20" >
+                                                <div class="display-inline" style="position: relative; display: inline-block">
+                                                    @if ($student->img)
+                                                        <img class="img-circle" src="data:image/jpeg;base64,{{base64_encode($student->img)}}"
+                                                        width="100" height="100" />
+
+                                                        <button class="btn btn-info border border-dark text-light btn-xs"
+                                                        style="position: absolute; right: 0; bottom: 0" data-toggle="modal"
+                                                        title="Upload img" data-target="#uploadImg">
+                                                            <i class="fa fa-edit"></i>
+                                                        </button>
+                                                    @else
+                                                        <img class="img-circle" src="{{asset('assets/img/image.jpg')}}"
+                                                        width="100" height="100" />
+
+                                                        <button class="btn btn-warning border border-dark text-light btn-xs"
+                                                        style="position: absolute; right: 0; bottom: 0" data-toggle="modal"
+                                                        title="Upload img" data-target="#uploadImg">
+                                                            <i class="fa fa-plus"></i>
+                                                        </button>
+                                                    @endif
+                                            </div>
                                                 </div>
-                                                <h5 class="font-strong m-b-10 m-t-10">{{ $user->name }}</h5>
-                                                <div class="m-b-20 text-muted">{{ $user->email }}</div>
+
+                                            <h5 class="font-strong m-b-10 m-t-10">{{ $user->name }}</h5>
+                                            <div class="m-b-20 text-muted">{{ $user->email }}</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Start add img modal -->
+                                    <div class="modal fade" id="uploadImg" tabindex="-1" aria-labelledby="addDepartmentLabel"
+                                    aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="addDepartmentLabel">اضف صورة</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <form class="form-horizontal" action="{{route('students.upload', $student->id)}} "  enctype="multipart/form-data"  method="POST">
+                                                @csrf
+                                                    <div class="modal-body">
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-2 col-form-label" for="img">اختر الملف</label>
+                                                            <div class="col-sm-10">
+                                                                <input class="form-control text-right" id="img" type="file" name="img" required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">اغلاق</button>
+                                                        <button class="btn btn-info mr-3" type="submit">رفع</button>
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
-
-
-
-                                        <ul class="list-group list-group-full list-group-divider p-0">
-                                            <li class="list-group-item">الاسم الاول
-                                                <span class="pull-left color-orange">{{ $student->first_name }}</span>
-                                            </li>
-                                            <li class="list-group-item">الاسم الثاني
-                                                <span class="pull-left color-orange">{{ $student->last_name }}</span>
-                                            </li>
-                                            <li class="list-group-item">القسم
-
-                                                @if (null != $student->dept_id)
-                                                <span class="pull-left color-orange">{{ $student->department->dept_name }}</span>
-                                                @else
-                                                <span class="pull-left color-orange">لم يتم الالتحاق</span>
-                                                @endif
-
-                                            </li>
-                                            <li class="list-group-item">السن
-                                                <span class="pull-left color-orange">{{ $student->age }}</span>
-                                            </li>
-                                            <li class="list-group-item">العنوان
-                                                <span class="pull-left color-orange">{{ $student->address }}</span>
-                                            </li>
-                                            <li class="list-group-item">رقم الهاتف
-                                                <span class="pull-left color-orange">{{ $student->phone }}</span>
-                                            </li>
-                                            <li class="list-group-item">الرقم القومي
-                                                <span class="pull-left color-orange">{{ $student->national_id }}</span>
-                                            </li>
-                                            <li class="list-group-item">حالة الدفع
-                                                @if ($student->status == 1)
-                                                <span class="pull-left color-orange">تم الدفع</span>
-                                                @else
-                                                <span class="pull-left color-orange">لم يتم الدفع</span>
-                                                @endif
-                                            </li>
-                                        </ul>
                                     </div>
+                                    <!-- end add img modal -->
 
+                                    <ul class="list-group list-group-full list-group-divider p-0">
+                                        <li class="list-group-item">الاسم الاول
+                                            <span class="pull-left color-orange">{{ $student->first_name }}</span>
+                                        </li>
+                                        <li class="list-group-item">الاسم الثاني
+                                            <span class="pull-left color-orange">{{ $student->last_name }}</span>
+                                        </li>
+                                        <li class="list-group-item">القسم
+
+                                            @if (null != $student->dept_id)
+                                            <span class="pull-left color-orange">{{ $student->department->dept_name }}</span>
+                                            @else
+                                            <span class="pull-left color-orange">لم يتم الالتحاق</span>
+                                            @endif
+
+                                        </li>
+                                        <li class="list-group-item">السن
+                                            <span class="pull-left color-orange">{{ $student->age }}</span>
+                                        </li>
+                                        <li class="list-group-item">العنوان
+                                            <span class="pull-left color-orange">{{ $student->address }}</span>
+                                        </li>
+                                        <li class="list-group-item">رقم الهاتف
+                                            <span class="pull-left color-orange">{{ $student->phone }}</span>
+                                        </li>
+                                        <li class="list-group-item">الرقم القومي
+                                            <span class="pull-left color-orange">{{ $student->national_id }}</span>
+                                        </li>
+                                        <li class="list-group-item">حالة الدفع
+                                            @if ($student->status == 1)
+                                            <span class="pull-left color-orange">تم الدفع</span>
+                                            @else
+                                            <span class="pull-left color-orange">لم يتم الدفع</span>
+                                            @endif
+                                        </li>
+                                    </ul>
                                 </div>
 
                             </div>
-                            <div class="tab-pane fade" id="tab-2">
-                                <form action="{{ route('student_details.update', $student->id) }}" method="POST">
-                                    @csrf
-                                    {{ method_field('PUT') }}
 
-                                    <div class="row">
-                                        <div class="col-sm-6 form-group">
-                                            <label>الاسم الاول</label>
-                                            <input class="form-control" type="text" name="first_name"
-                                                value="{{ $student->first_name }}" placeholder="الاسم الاول">
-                                        </div>
-                                        <div class="col-sm-6 form-group">
-                                            <label>الاسم الثاني</label>
-                                            <input class="form-control" type="text" name="last_name"
-                                                value="{{ $student->last_name }}" placeholder="الاسم الثاني">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-6 form-group">
-                                            <label>رقم الهاتف</label>
-                                            <input class="form-control" type="text" name="phone"
-                                                value="{{ $student->phone }}" placeholder="رقم الهاتف">
-                                        </div>
-                                        <div class="col-sm-6 form-group">
-                                            <label>الرقم القومي</label>
-                                            <input class="form-control" type="text" name="national_id"
-                                                value="{{ $student->national_id }}" placeholder="الرقم القومي">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-6 form-group">
-                                            <label>رقم الهاتف</label>
-                                            <input class="form-control" type="date" name="age"
-                                                value="{{ $student->age }}" placeholder="تاريخ الميلاد">
-                                        </div>
-                                        <div class="col-sm-6 form-group">
-                                            <label>العنوان</label>
-                                            <input class="form-control" type="text" name="address"
-                                                value="{{ $student->address }}" placeholder="العنوان">
-                                        </div>
-                                    </div>
-                                    <div class="row">
+                        </div>
+                        <div class="tab-pane fade" id="tab-2">
+                            <form action="{{ route('student_details.update', $student->id) }}" method="POST">
+                                @csrf
+                                {{ method_field('PUT') }}
 
-                                        <div class="col-sm-6 form-group">
-                                            <label>القسم</label>
-                                            <select class="form-control input-sm" name="dept_id">
-                                                @if (null != $student->dept_id)
-                                                    <option value="{{$student->department->id}}">{{ $student->department->dept_name }}</option>
-                                                @else
-                                                    <option>--لم يتم اخيار قسم--</option>
-                                                @endif
-                                                @foreach ($departments as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->dept_name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
+                                <div class="row">
+                                    <div class="col-sm-6 form-group">
+                                        <label>الاسم الاول</label>
+                                        <input class="form-control" type="text" name="first_name"
+                                            value="{{ $student->first_name }}" placeholder="الاسم الاول">
                                     </div>
-                                    <div class="form-group">
-                                        <button class="btn btn-default" type="supmit">تعديل</button>
+                                    <div class="col-sm-6 form-group">
+                                        <label>الاسم الثاني</label>
+                                        <input class="form-control" type="text" name="last_name"
+                                            value="{{ $student->last_name }}" placeholder="الاسم الثاني">
                                     </div>
-                                </form>
-                            </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6 form-group">
+                                        <label>رقم الهاتف</label>
+                                        <input class="form-control" type="text" name="phone"
+                                            value="{{ $student->phone }}" placeholder="رقم الهاتف">
+                                    </div>
+                                    <div class="col-sm-6 form-group">
+                                        <label>الرقم القومي</label>
+                                        <input class="form-control" type="text" name="national_id"
+                                            value="{{ $student->national_id }}" placeholder="الرقم القومي">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6 form-group">
+                                        <label>رقم الهاتف</label>
+                                        <input class="form-control" type="date" name="age"
+                                            value="{{ $student->age }}" placeholder="تاريخ الميلاد">
+                                    </div>
+                                    <div class="col-sm-6 form-group">
+                                        <label>العنوان</label>
+                                        <input class="form-control" type="text" name="address"
+                                            value="{{ $student->address }}" placeholder="العنوان">
+                                    </div>
+                                </div>
+                                <div class="row">
+
+                                    <div class="col-sm-6 form-group">
+                                        <label>القسم</label>
+                                        <select class="form-control input-sm" name="dept_id">
+                                            @if (null != $student->dept_id)
+                                                <option value="{{$student->department->id}}">{{ $student->department->dept_name }}</option>
+                                            @else
+                                                <option>--لم يتم اخيار قسم--</option>
+                                            @endif
+                                            @foreach ($departments as $item)
+                                                <option value="{{ $item->id }}">{{ $item->dept_name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-default" type="supmit">تعديل</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-
     </div>
-    <!-- END PAGE CONTENT-->
+
+
+</div>
+<!-- END PAGE CONTENT-->
 
 @endsection

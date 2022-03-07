@@ -48,15 +48,70 @@
                         <div class="tab-pane fade show active" id="tab-1">
                             <div class="row">
                                 <div class="col-lg-6 col-md-8 m-auto">
+
                                     <div class="ibox">
                                         <div class="ibox-body text-center">
-                                            <div class="m-t-20">
-                                                <img class="img-circle" src="../../assets/img/users/u3.jpg" />
+                                            <div class="m-t-20" >
+                                                <div class="display-inline" style="position: relative; display: inline-block">
+                                                    @if ($admin->img)
+                                                        <img class="img-circle" src="data:image/jpeg;base64,{{base64_encode($admin->img)}}"
+                                                        width="100" height="100" />
+
+                                                        <button class="btn btn-info border border-dark text-light btn-xs"
+                                                        style="position: absolute; right: 0; bottom: 0" data-toggle="modal"
+                                                        title="Upload img" data-target="#uploadImgAdmin1">
+                                                            <i class="fa fa-edit"></i>
+                                                        </button>
+                                                    @else
+                                                        <img class="img-circle" src="{{asset('assets/img/image.jpg')}}"
+                                                        width="100" height="100" />
+
+                                                        <button class="btn btn-warning border border-dark text-light btn-xs"
+                                                        style="position: absolute; right: 0; bottom: 0" data-toggle="modal"
+                                                        title="Upload img" data-target="#uploadImgAdmin1">
+                                                            <i class="fa fa-plus"></i>
+                                                        </button>
+                                                    @endif
+                                                </div>
                                             </div>
-                                            <h5 class="font-strong m-b-10 m-t-10">{{$admin->name}}</h5>
-                                            <div class="m-b-20 text-muted">{{$admin->email}}</div>
+
+                                            <h5 class="font-strong m-b-10 m-t-10">{{ $admin->name }}</h5>
+                                            <div class="m-b-20 text-muted">{{ $admin->email }}</div>
                                         </div>
                                     </div>
+
+                                    <!-- Start add img modal -->
+                                    <div class="modal fade" id="uploadImgAdmin1" tabindex="-1" aria-labelledby="addDepartmentLabel"
+                                    aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="addDepartmentLabel">اضف صورة</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <form class="form-horizontal" action="{{route('admin.upload', $admin->id)}} "  enctype="multipart/form-data"  method="POST">
+                                                @csrf
+                                                    <div class="modal-body">
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-2 col-form-label" for="img">اختر الملف</label>
+                                                            <div class="col-sm-10">
+                                                                <input class="form-control text-right" id="img" type="file" name="img" required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">اغلاق</button>
+                                                        <button class="btn btn-info mr-3" type="submit">رفع</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end add img modal -->
 
                                     <ul class="list-group list-group-full list-group-divider p-0">
                                         <li class="list-group-item">الاسم الاول

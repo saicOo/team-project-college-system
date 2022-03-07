@@ -3,8 +3,21 @@
     <div id="sidebar-collapse">
         <div class="admin-block d-flex">
             <div>
-                <img src="{{asset('assets/img/admin-avatar.png')}}" width="45px" />
+                @if (Auth::user()->img)
+                    <img src="data:image/jpeg;base64,{{base64_encode(Auth::user()->img)}}" class="rounded-circle" width="45px" />
+                @else
+                    <div class="display-inline" style="position: relative; display: inline-block">
+                        <img src="{{asset('assets/img/admin-avatar.png')}}" width="45px" />
+
+                        <button class="btn btn-warning border border-dark text-light btn-xs"
+                        style="position: absolute; right: 0px; bottom: -5px;" data-toggle="modal"
+                        title="Upload img" data-target="#uploadImgAdmin">
+                            <i class="fa fa-plus"></i>
+                        </button>
+                    </div>
+                @endif
             </div>
+
             <div class="admin-info">
                 <div class="font-strong">{{Auth::user()->name}}
                 </div>
@@ -23,7 +36,7 @@
         </div>
         <ul class="side-menu metismenu">
             <li id="home-page">
-                <a href="/"><i class="sidebar-item-icon fa fa-th-large"></i>
+                <a href="{{route('home')}}"><i class="sidebar-item-icon fa fa-th-large"></i>
                     <span class="nav-label">الصفخة الرئيسية</span>
                 </a>
             </li>
@@ -52,14 +65,14 @@
                 </a>
             </li>
             <li class="heading">الطلاب</li>
-            <li id="std-pages">
+            <li>
                 <a href="javascript:;"><i class="sidebar-item-icon fa fa-smile-o"></i>
                     <span class="nav-label">الطلاب</span><i class="fa fa-angle-left arrow"></i></a>
                 <ul class="nav-2-level collapse">
-                    <li>
+                    <li id="stds-page">
                         <a href="{{route('students.index')}}">جميع الطلاب</a>
                     </li>
-                    <li>
+                    <li id="std-page">
                         <a href="javascript:;">
                             <span class="nav-label">الطلاب حسب القسم</span><i class="fa fa-angle-left arrow"></i></a>
                         <ul class="nav-3-level collapse">
@@ -81,5 +94,39 @@
         </ul>
     </div>
 </nav>
+
+
+<!-- Start add img modal -->
+<div class="modal fade" id="uploadImgAdmin" tabindex="-1" aria-labelledby="addDepartmentLabel"
+aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addDepartmentLabel">اضف صورة</h5>
+                <button type="button" class="close" data-dismiss="modal"
+                    aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form class="form-horizontal" action="{{route('admin.upload', Auth::user()->id)}} "  enctype="multipart/form-data"  method="POST">
+            @csrf
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label" for="img">اختر الملف</label>
+                        <div class="col-sm-10">
+                            <input class="form-control text-right" id="img" type="file" name="img" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"
+                        data-dismiss="modal">اغلاق</button>
+                    <button class="btn btn-info mr-3" type="submit">رفع</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- end add img modal -->
 
 

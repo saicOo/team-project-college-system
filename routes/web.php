@@ -52,11 +52,18 @@ Route::resource('student_details', 'Student_detailsController');
 // Routes Messages
 Route::resource('inbox', 'MessageController');
 Route::get('ajax_inbox', 'MessageController@ajax_show');
+
+/******* Students Routes *******/
 // map students routes
 Route::get('map_students', 'StudentController@not_mapped_students')->name('map_students.index');
 Route::get('map_students/map', 'StudentController@map')->name('map_students.map');
 Route::resource('students', 'StudentController');
 Route::post('students/search/{dept_id}', 'StudentController@search')->name('students.search');
+// upload std img
+Route::post('students/upload/{id}', 'StudentController@upload')->name('students.upload');
 
+/******** Admins Routes *******/
 // admin add|list routes
 Route::resource('admin', 'AdminController');
+// upload admin img
+Route::post('admin/upload/{id}', 'AdminController@upload')->name('admin.upload');

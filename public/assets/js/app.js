@@ -205,5 +205,11 @@ window.addEventListener('load', () => {
         $('#admin-pages').addClass('active');
     } else if (uri == 'department') {
         $('#dept-page').addClass('active');
+    } else if (uri == 'student') {
+        $('#std-page').addClass('active');
+    } else if (uri == 'students') {
+        $('#stds-page').addClass('active');
+    } else if (uri == 'inbox') {
+        $('#mail-page').addClass('active');
     }
 });

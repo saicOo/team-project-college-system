@@ -1,4 +1,3 @@
-
 <header class="header">
     <div class="page-brand">
         <a class="link" href="index.html">
@@ -21,18 +20,30 @@
         <ul class="nav navbar-toolbar">
             <li class="dropdown dropdown-user">
                 <a class="nav-link dropdown-toggle link" data-toggle="dropdown">
+                    @if (Auth::user()->img)
+                    <img src="data:image/jpeg;base64,{{base64_encode(Auth::user()->img)}}" width="45px" />
+                    @else
                     <img src="{{asset('assets/img/admin-avatar.png')}}" />
-                    <span></span>{{Auth::user()->email}}<i class="fa fa-angle-down m-r-5"></i></a>
+                    @endif
+                    <span>{{Auth::user()->email}}</span><i class="fa fa-angle-down m-r-5"></i></a>
                 <ul class="dropdown-menu dropdown-menu-left text-right">
-                    <a class="dropdown-item" href="{{ route('logout') }}"
-                    onclick="event.preventDefault();
-                                  document.getElementById('logout-form').submit();">
-                     <i class="fa fa-power-off"></i><span class="ml-2">تسجيل الخروج</span>
-                 </a>
 
-                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                     @csrf
-                 </form>
+                    <li>
+                        <a class="dropdown-item" href="{{ route('admin.show', Auth::user()->id) }}">
+                            <i class="fa fa-edit"></i><span class="ml-2">تعديل بياناتي</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                  document.getElementById('logout-form').submit();">
+                            <i class="fa fa-power-off"></i><span class="ml-2">تسجيل الخروج</span>
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </li>
 
                 </ul>
             </li>
@@ -40,5 +51,3 @@
         <!-- END TOP-RIGHT TOOLBAR-->
     </div>
 </header>
-
-

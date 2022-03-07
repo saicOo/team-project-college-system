@@ -34,6 +34,23 @@ class StudentController extends Controller
         ]);
     }
 
+    public function upload(Request $request, $id) // for img
+    {
+        $request->validate([
+            'img' => 'required|file|image|max:50000'
+        ]);
+
+        $bin = file_get_contents($request->img);
+
+        $std = Student_details::find($id);
+
+        $std->img = $bin;
+
+        $std->save();
+
+        return redirect(route('student_details.show', $id));
+    }
+
     public function update(Request $request, $id)
     {
         $std = Student_details::find($id);
@@ -142,6 +159,7 @@ class StudentController extends Controller
             if(!$dept1 && !$dept2 && !$dept3) break;
 
             $desire->dept_capacity_num--;
+            $desire->save();
             $std->save();
 
         }

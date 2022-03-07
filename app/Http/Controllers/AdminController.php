@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Admin;
 use Illuminate\Http\Request;
-
-use function PHPUnit\Framework\isNull;
+use mysqli;
 
 class AdminController extends Controller
 {
@@ -37,10 +36,11 @@ class AdminController extends Controller
         $admin->email = $validated['email'];
         $admin->password = bcrypt($validated['password']);
         $admin->role = (int) $validated['role'];
+        if($request->img) $admin->img = file_get_contents($request->img);
 
         $admin->save();
 
-        return redirect('/admin')->with('done', 'تمت اضافة الادمن بنجاح');
+        return redirect( route('admin.index') )->with('done', 'تمت اضافة الادمن بنجاح');
     }
 
     public function show($id, $done = NULL) // show and edit pages in profile
@@ -76,4 +76,22 @@ class AdminController extends Controller
 
         return redirect('/admin')->with('done', 'تم مسح بيانات الادمن بنجاح');
     }
+
+    public function upload(Request $request, $id)
+    {
+        $request->validate([
+            'img' => 'required|file|image|max:50000'
+        ]);
+
+        $bin = file_get_contents($request->img);
+
+        $admin = Admin::find($id);
+
+        $admin->img = $bin;
+
+        $admin->save();
+
+        return back();
+    }
+
 }

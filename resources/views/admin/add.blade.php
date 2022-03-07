@@ -71,6 +71,13 @@
                             @enderror
                         </div><br>
                         <div class="form-group">
+                            <label for="img0">صورة</label>
+                            <input type="file" id="img0" class="form-control col-lg-4 col-sm-6 col-12" name="img">
+                            @error('img')
+                            <span class="text-danger" dir="ltr">*{{$message}}</span>
+                            @enderror
+                        </div><br>
+                        <div class="form-group">
                             <button class="btn btn-primary" type="submit">اضافة</button>
                         </div>
                     </form>
