@@ -40,12 +40,15 @@ class AdminController extends Controller
 
         $admin->save();
 
-        return redirect('/admin');
+        return redirect('/admin')->with('done', 'تمت اضافة الادمن بنجاح');
     }
 
-    public function show($id) // show and edit pages in profile
+    public function show($id, $done = NULL) // show and edit pages in profile
     {
-        return view('admin.profile', ['admin' => Admin::find($id)]);
+        return view('admin.profile', [
+            'admin' => Admin::find($id),
+            'done' => $done
+        ]);
     }
 
     public function update(Request $request, $id)
@@ -64,13 +67,13 @@ class AdminController extends Controller
 
         $admin->save();
 
-        return $this->show($id);
+        return $this->show($id, 'تم تعديل بيانات الادمن بنجاح');
     }
 
     public function destroy($id)
     {
         Admin::destroy($id);
 
-        return redirect('/admin');
+        return redirect('/admin')->with('done', 'تم مسح بيانات الادمن بنجاح');
     }
 }

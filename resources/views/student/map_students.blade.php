@@ -2,6 +2,11 @@
 
 @section('content')
 
+@if (Session::has('done'))
+    <div class="alert alert-success mt-3 text-center font-weight-bold">
+        {{Session::get('done')}}
+    </div>
+@endif
 <!-- START PAGE CONTENT-->
 <div class="page-heading">
     <h1 class="page-title">جميع الطلاب المتقدمين</h1>

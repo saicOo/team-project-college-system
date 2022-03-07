@@ -41,7 +41,7 @@
                     </ul>
             </li>
             <li class="heading">الاقسام</li>
-            <li>
+            <li id="dept-page">
                 <a href="{{route('department.index')}}"><i class="sidebar-item-icon fa fa-sitemap"></i>
                     <span class="nav-label">الاقسام</span>
                 </a>

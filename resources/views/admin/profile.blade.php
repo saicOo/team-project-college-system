@@ -2,6 +2,11 @@
 
 @section('content')
 
+@if (isset($done))
+    <div class="alert alert-success mt-3 text-center font-weight-bold">
+        {{$done}}
+    </div>
+@endif
 <!-- START PAGE CONTENT-->
 <div class="page-heading">
     <h1 class="page-title">عرض بيانات الطالب</h1>
