@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 05, 2022 at 03:24 AM
+-- Generation Time: Mar 07, 2022 at 01:46 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.24
 
@@ -68,11 +68,11 @@ CREATE TABLE `alert_msgss` (
 
 CREATE TABLE `comment_news` (
   `id` int(10) UNSIGNED NOT NULL,
-  `comment` text NOT NULL,
+  `comment` text DEFAULT NULL,
   `date_comment` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `news_id` int(10) UNSIGNED NOT NULL,
-  `admin_id` bigint(20) UNSIGNED NOT NULL,
-  `std_id` int(10) UNSIGNED NOT NULL
+  `news_id` int(10) UNSIGNED DEFAULT NULL,
+  `admin_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `std_id` int(10) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -88,7 +88,8 @@ CREATE TABLE `departments` (
   `dept_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `dept_capacity_num` int(11) NOT NULL,
   `price` decimal(8,2) NOT NULL,
-  `minimum_degree` decimal(5,2) NOT NULL
+  `minimum_degree` decimal(5,2) NOT NULL,
+  `minimum_degree_en` decimal(5,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -154,8 +155,8 @@ CREATE TABLE `private_qas` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `private_q` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `private_ans` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `std_id` int(10) UNSIGNED NOT NULL
+  `private_ans` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `std_id` int(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -189,7 +190,7 @@ CREATE TABLE `student_detailss` (
   `address` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `age` date DEFAULT NULL,
   `gender` enum('ذكر','انثي') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `english_degree` int(3) DEFAULT NULL,
+  `english_degree` decimal(5,2) DEFAULT NULL,
   `degree` decimal(5,2) DEFAULT NULL,
   `national_id` bigint(20) DEFAULT NULL,
   `img` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -279,7 +280,7 @@ ALTER TABLE `password_resets`
 --
 ALTER TABLE `private_qas`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `private_qas_std_id_foreign` (`std_id`);
+  ADD KEY `std_id` (`std_id`);
 
 --
 -- Indexes for table `student_desires`
@@ -390,7 +391,7 @@ ALTER TABLE `news`
 -- Constraints for table `private_qas`
 --
 ALTER TABLE `private_qas`
-  ADD CONSTRAINT `private_qas_std_id_foreign` FOREIGN KEY (`std_id`) REFERENCES `student_detailss` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `private_qas_ibfk_1` FOREIGN KEY (`std_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `student_desires`
