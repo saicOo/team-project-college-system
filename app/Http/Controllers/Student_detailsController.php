@@ -82,7 +82,7 @@ class Student_detailsController extends Controller
         'last_name' => 'required|max:25|min:2',
         'address' => 'required|max:100|min:2',
         'phone' => 'required|digits:11',
-        'national_id' => 'required|integer|digits:15',
+        'national_id' => 'required|integer|digits:14',
         'age' => 'required|date',
         'dept_id' => 'required|integer',
 

@@ -91,7 +91,7 @@
 
                             @foreach ($students as $std)
                             <tr>
-                                <td><a href="">{{$std->first_name . ' ' . $std->last_name}}</a></td>
+                                <td><a href="{{route('student_details.show', $std->id)}}">{{$std->first_name . ' ' . $std->last_name}}</a></td>
                                 <td>{{$std->national_id}}</td>
                                 <td> {{$std->degree}}% </td>
                                 <td>
@@ -108,7 +108,7 @@
                                         <!-- new status -->
                                         <input type="hidden" name="_method" value="put">
                                         <input type="hidden" name="status" value="1">
-                                        <button class="btn btn-primary"
+                                        <button class="btn btn-info"
                                             @if($std->status) disabled @endif
                                             type="submit">
                                             تأكيد الدفع

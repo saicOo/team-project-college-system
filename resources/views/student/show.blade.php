@@ -75,7 +75,7 @@
                         <tbody>
                             @foreach ($students as $std)
                                 <tr>
-                                    <td><a href="./profile.html">{{$std->first_name . ' ' . $std->last_name}}</a></td>
+                                    <td><a href="{{route('student_details.show', $std->id)}}">{{$std->first_name . ' ' . $std->last_name}}</a></td>
                                     <td> {{$std->national_id}} </td>
                                     <td> {{$std->degree}}% </td>
                                     <td>
