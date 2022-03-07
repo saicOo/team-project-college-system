@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 07, 2022 at 01:46 AM
+-- Generation Time: Mar 07, 2022 at 10:04 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.24
 
@@ -156,6 +156,7 @@ CREATE TABLE `private_qas` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `private_q` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `private_ans` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` int(11) NOT NULL DEFAULT 0,
   `std_id` int(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
