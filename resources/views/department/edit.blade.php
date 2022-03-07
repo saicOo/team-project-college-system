@@ -14,14 +14,9 @@
             <!-- START PAGE CONTENT-->
             <div class="page-heading">
                 <h1 class="page-title">تعديل الأقسام</h1>
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item">
-                        <a href="index.html"><i class="la la-home font-20"></i></a>
-                    </li>
-                </ol>
             </div>
-        <form action="{{ route('department.update' , $department->id)}} "  enctype="multipart/form-data" method ="POST">
-        @csrf
+            <form action="{{ route('department.update' , $department->id)}} "  enctype="multipart/form-data" method ="POST">
+             @csrf
             <div class="page-content fade-in-up">
                 <div class="row">
                     <div class="col-lg-8">

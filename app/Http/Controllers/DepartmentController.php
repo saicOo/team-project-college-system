@@ -81,12 +81,14 @@ class DepartmentController extends Controller
     public function update(Request $request,$id)
     {
         $request->validate([
-            "dept_name"            => ['required','unique:departments' ],
+            
+            "dept_name"            => ['required'],
             "dept_capacity_num"    => ['required','numeric'],
             "price"                => ['required','numeric'],
-            "minimum_degree"       => ['required','numeric' ,'max:500|min:250'],
-            "minimum_degree_en"    => ['required','numeric','max:60|min:30'],
+            "minimum_degree"       => ['required','numeric' ,'max:500|min250'],
+            "minimum_degree_en"    => ['required','numeric','max:60|min30'],
         ]);
+
         $department = Department::find($id);
         $department->dept_name         =$request->dept_name;
         $department->dept_capacity_num =$request->dept_capacity_num;
@@ -95,6 +97,7 @@ class DepartmentController extends Controller
         $department->minimum_degree_en =$request->minimum_degree_en;
         $department->save();
         return redirect("department")->with("done" , "تم تعديل القسم بنجاح");
+        
     }
 
     public function destroy($id)
