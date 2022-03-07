@@ -5,7 +5,7 @@
 
 
 @if(Session::has('done'))
-<div class="alert alert-success text-center mx-auto w-25">
+<div class="alert alert-success text-center mx-auto mt-3 font-weight-bold">
     {{ Session::get('done') }}
 </div>
 @endif
@@ -57,7 +57,7 @@
                                                 </div>
                                         </div>
                                     </tbody>
-                                </table>                     
+                                </table>
                                  <button class="btn btn-info">تحديث</button>
                             </div>
                         </div>
@@ -66,5 +66,4 @@
             </div>
         </form>
     </div>
-            @endsection    
-            
+            @endsection

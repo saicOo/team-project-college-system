@@ -57,21 +57,17 @@
                     <span class="nav-label">الطلاب</span><i class="fa fa-angle-left arrow"></i></a>
                 <ul class="nav-2-level collapse">
                     <li>
-                        <a href="./view/student/list_std.html">جميع الطلاب</a>
+                        <a href="{{route('students.index')}}">جميع الطلاب</a>
                     </li>
                     <li>
                         <a href="javascript:;">
                             <span class="nav-label">الطلاب حسب القسم</span><i class="fa fa-angle-left arrow"></i></a>
                         <ul class="nav-3-level collapse">
-                            <li>
-                                <a href="./view/student/list_std_sub.html">BIS</a>
-                            </li>
-                            <li>
-                                <a href="./view/student/list_std_sub.html">FMI</a>
-                            </li>
-                            <li>
-                                <a href="./view/student/list_std_sub.html">English commerce</a>
-                            </li>
+                            @foreach (session('depts') as $dept)
+                                <li>
+                                    <a href=" {{"/student/dept/$dept->id"}} ">{{$dept->dept_name}}</a>
+                                </li>
+                            @endforeach
                         </ul>
                     </li>
                 </ul>

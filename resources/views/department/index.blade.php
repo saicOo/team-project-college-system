@@ -5,8 +5,18 @@
 
 
 @if(Session::has('done'))
-<div class="alert alert-success text-center mx-auto w-25">
+<div class="alert alert-success text-center mx-auto mt-3 font-weight-bold">
     {{ Session::get('done') }}
+</div>
+@endif
+
+@if ($errors->any())
+<div class="alert alert-danger text-center mx-auto mt-3 font-weight-bold" dir="ltr">
+    @foreach ($errors->all() as $err)
+    <p class="m-0">
+        {{$err}}
+    </p>
+    @endforeach
 </div>
 @endif
 
@@ -42,7 +52,7 @@
                                                 <button type="button" class="close" data-dismiss="modal"
                                                     aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
-                                                </button> 
+                                                </button>
                                             </div>
                                             <form class="form-horizontal" action="{{route('department.store') }} "  enctype="multipart/form-data"  method="POST">
                                             @csrf
@@ -109,7 +119,7 @@
                                                 <td><a href="{{ route('department.edit' , $item->id )}}"><i class="text-success" style ="font-size:15px">نعديل</i></a></td>
                                                 <td><a onclick="return confirm('هل تريد حذف هذا العنصر بالفعل ؟')" href="{{ route('department.destroy' , $item->id )}}"><i class="text-danger" style ="font-size:15px">حذف</i></a></td>
                                             </tr>
-                                    @endforeach 
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -120,5 +130,4 @@
                     </div>
                 </div>
             </div>
-            @endsection    
-            
+            @endsection

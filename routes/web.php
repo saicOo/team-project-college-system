@@ -23,25 +23,25 @@ Route::get('/', 'HomeController@index')->name('home');
 
 #########   department Route  #########
 
-// Displye Data 
+// Displye Data
 Route::get('department' , 'DepartmentController@index' )->name('department.index');
 
-// create Data 
+// create Data
 Route::get('department/create' , 'DepartmentController@create' )->name('department.create');
 
-// store Data 
+// store Data
 Route::post('department/store' , 'DepartmentController@store' )->name('department.store');
 
-// show Data 
-Route::get('department/show/{id}' , 'DepartmentController@show' )->name('department.show');
+// show Data
+Route::get('student/dept/{dept}' , 'DepartmentController@show' )->name('department.show');
 
-// edit Data 
+// edit Data
 Route::get('department/edit/{id}' , 'DepartmentController@edit' )->name('department.edit');
 
-// update Data 
+// update Data
 Route::post('department/update/{id}' , 'DepartmentController@update' )->name('department.update');
 
-// Remove Data 
+// Remove Data
 Route::get('department/destroy/id/{id}' , 'DepartmentController@destroy' )->name('department.destroy');
 
 Route::resource('student_details', 'Student_detailsController');
@@ -51,8 +51,10 @@ Route::resource('private_qa', 'Private_qaController');
 Route::resource('public_qa', 'Public_qaController');
 
 // map students routes
-Route::get('map_students', 'MapStudentController@index')->name('map_students.index');
-Route::get('map_students/map', 'MapStudentController@map')->name('map_students.map');
+Route::get('map_students', 'StudentController@not_mapped_students')->name('map_students.index');
+Route::get('map_students/map', 'StudentController@map')->name('map_students.map');
+Route::resource('students', 'StudentController');
+Route::post('students/search/{dept_id}', 'StudentController@search')->name('students.search');
 
 // admin add|list routes
 Route::resource('admin', 'AdminController');
