@@ -58,7 +58,7 @@
                                     <div class="col-5">
                                         <h2 class="steps">خطوة 2</h2>
                                     </div>
-                                </div> <label class="fieldlabels">درجة الثانوية:</label>
+                                </div> <label class="fieldlabels"> درجة الثانوية (المئوية):</label>
                                 <input value="{{ old('degree') }}" type="text" name="degree" id="degree" class="@error('degree') is-invalid @enderror" />
                                 @error('degree')
                                 <div class="alert alert-danger">{{ $message }}</div>

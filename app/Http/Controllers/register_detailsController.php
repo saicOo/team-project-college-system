@@ -52,14 +52,17 @@ class register_detailsController extends Controller
     public function step2(Request $request)
     {
       $request->validate([
-          'english_degree' => 'required|integer|max:100',
-          'degree' => 'required|integer|max:100',
+          'degree' => 'required|numeric|max:100|min:50',
+          'english_degree' => 'required|numeric|max:60|min:5',
           'attachments' => 'required|mimes:pdf',
       ]);
       $student_details = Student_details::findOrFail(Auth::user()->id);
 
+    $sum_degree = $request->degree / 100 * 500;
+
+
       $student_details->english_degree = $request->english_degree;
-      $student_details->degree = $request->degree;
+      $student_details->degree = $sum_degree;
       $student_details->attachments = $request->file('attachments')->getClientOriginalName();
 
       $student_details->save();
@@ -69,8 +72,10 @@ class register_detailsController extends Controller
     public function showStep3()
     {
       $degree = Student_details::findOrFail(Auth::user()->id)->degree;
+      $degree_en = Student_details::findOrFail(Auth::user()->id)->english_degree;
+
       return view('register_details.step_3',  [
-              'departments' => Department::where('minimum_degree','<=', $degree)->get(),
+              'departments' => Department::where('minimum_degree','<=', $degree)->where('minimum_degree_en','<=', $degree_en)->get(),
           ]);
     }
     public function step3(Request $request)
