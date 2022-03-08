@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Admin;
 use Illuminate\Http\Request;
-use mysqli;
 
 class AdminController extends Controller
 {
@@ -80,7 +79,7 @@ class AdminController extends Controller
     public function upload(Request $request, $id)
     {
         $request->validate([
-            'img' => 'required|file|image|max:50000'
+            'img' => 'required|file|image|mimes:webp|max:50000'
         ]);
 
         $bin = file_get_contents($request->img);

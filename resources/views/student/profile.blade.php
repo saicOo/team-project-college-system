@@ -2,13 +2,20 @@
 
 @section('content')
 
-<!-- START PAGE CONTENT-->
+
 @if (Session::has('done'))
-    <div class="alert alert-success" role="alert">
-        {{ Session::get('done') }}
-    </div>
+<div class="alert alert-success" role="alert">
+    {{ Session::get('done') }}
+</div>
 @endif
 
+@if (Session::has('myErr'))
+<div class="alert alert-danger" role="alert">
+    {{ Session::get('myErr') }}
+</div>
+@endif
+
+<!-- START PAGE CONTENT-->
 <div class="page-heading">
     <h1 class="page-title">عرض بيانات الطالب</h1>
     <ol class="breadcrumb">
@@ -36,13 +43,13 @@
                     </ul>
                     <div class="tab-content">
                         @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul class="m-0">
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
+                        <div class="alert alert-danger">
+                            <ul class="m-0">
+                                @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
                         @endif
                         <div class="tab-pane fade show active" id="tab-1">
                             <div class="row">
@@ -50,67 +57,26 @@
 
                                     <div class="ibox">
                                         <div class="ibox-body text-center">
-                                            <div class="m-t-20" >
-                                                <div class="display-inline" style="position: relative; display: inline-block">
+                                            <div class="m-t-20">
+                                                <div class="display-inline"
+                                                    style="position: relative; display: inline-block">
                                                     @if ($student->img)
-                                                        <img class="img-circle" src="data:image/jpeg;base64,{{base64_encode($student->img)}}"
+                                                    <img class="img-circle"
+                                                        src="data:image/jpeg;base64,{{base64_encode($student->img)}}"
                                                         width="100" height="100" />
-
-                                                        <button class="btn btn-info border border-dark text-light btn-xs"
-                                                        style="position: absolute; right: 0; bottom: 0" data-toggle="modal"
-                                                        title="Upload img" data-target="#uploadImg">
-                                                            <i class="fa fa-edit"></i>
-                                                        </button>
+                                                    </button>
                                                     @else
-                                                        <img class="img-circle" src="{{asset('assets/img/image.jpg')}}"
+                                                    <img class="img-circle" src="{{asset('assets/img/image.jpg')}}"
                                                         width="100" height="100" />
-
-                                                        <button class="btn btn-warning border border-dark text-light btn-xs"
-                                                        style="position: absolute; right: 0; bottom: 0" data-toggle="modal"
-                                                        title="Upload img" data-target="#uploadImg">
-                                                            <i class="fa fa-plus"></i>
-                                                        </button>
+                                                    </button>
                                                     @endif
-                                            </div>
                                                 </div>
+                                            </div>
 
                                             <h5 class="font-strong m-b-10 m-t-10">{{ $user->name }}</h5>
                                             <div class="m-b-20 text-muted">{{ $user->email }}</div>
                                         </div>
                                     </div>
-
-                                    <!-- Start add img modal -->
-                                    <div class="modal fade" id="uploadImg" tabindex="-1" aria-labelledby="addDepartmentLabel"
-                                    aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="addDepartmentLabel">اضف صورة</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <form class="form-horizontal" action="{{route('students.upload', $student->id)}} "  enctype="multipart/form-data"  method="POST">
-                                                @csrf
-                                                    <div class="modal-body">
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-2 col-form-label" for="img">اختر الملف</label>
-                                                            <div class="col-sm-10">
-                                                                <input class="form-control text-right" id="img" type="file" name="img" required>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-dismiss="modal">اغلاق</button>
-                                                        <button class="btn btn-info mr-3" type="submit">رفع</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- end add img modal -->
 
                                     <ul class="list-group list-group-full list-group-divider p-0">
                                         <li class="list-group-item">الاسم الاول
@@ -122,7 +88,8 @@
                                         <li class="list-group-item">القسم
 
                                             @if (null != $student->dept_id)
-                                            <span class="pull-left color-orange">{{ $student->department->dept_name }}</span>
+                                            <span
+                                                class="pull-left color-orange">{{ $student->department->dept_name }}</span>
                                             @else
                                             <span class="pull-left color-orange">لم يتم الالتحاق</span>
                                             @endif
@@ -145,6 +112,16 @@
                                             <span class="pull-left color-orange">تم الدفع</span>
                                             @else
                                             <span class="pull-left color-orange">لم يتم الدفع</span>
+                                            @endif
+                                        </li>
+                                        <li class="list-group-item text-center">
+                                            @if ($student->attachments)
+                                                <a href="{{route('students.download', $student->id)}}"
+                                                    class="btn btn-secondary text-light">
+                                                    تحميل ملف الطالب
+                                                </a>
+                                            @else
+                                                <span class="text-danger">لا يوجد ملف للطالب</span>
                                             @endif
                                         </li>
                                     </ul>
@@ -185,8 +162,8 @@
                                 <div class="row">
                                     <div class="col-sm-6 form-group">
                                         <label>رقم الهاتف</label>
-                                        <input class="form-control" type="date" name="age"
-                                            value="{{ $student->age }}" placeholder="تاريخ الميلاد">
+                                        <input class="form-control" type="date" name="age" value="{{ $student->age }}"
+                                            placeholder="تاريخ الميلاد">
                                     </div>
                                     <div class="col-sm-6 form-group">
                                         <label>العنوان</label>
@@ -200,12 +177,13 @@
                                         <label>القسم</label>
                                         <select class="form-control input-sm" name="dept_id">
                                             @if (null != $student->dept_id)
-                                                <option value="{{$student->department->id}}">{{ $student->department->dept_name }}</option>
+                                            <option value="{{$student->department->id}}">
+                                                {{ $student->department->dept_name }}</option>
                                             @else
-                                                <option>--لم يتم اخيار قسم--</option>
+                                            <option value="">--لم يتم اخيار قسم--</option>
                                             @endif
                                             @foreach ($departments as $item)
-                                                <option value="{{ $item->id }}">{{ $item->dept_name }}</option>
+                                            <option value="{{ $item->id }}">{{ $item->dept_name }}</option>
                                             @endforeach
                                         </select>
                                     </div>

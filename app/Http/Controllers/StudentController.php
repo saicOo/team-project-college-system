@@ -34,10 +34,20 @@ class StudentController extends Controller
         ]);
     }
 
+    public function update(Request $request, $id)
+    {
+        $std = Student_details::find($id);
+        $std->status = 1;
+
+        $std->save();
+
+        return back()->with('done', 'تم تأكيد الدفع');
+    }
+
     public function upload(Request $request, $id) // for img
     {
         $request->validate([
-            'img' => 'required|file|image|max:50000'
+            'img' => 'required|file|image|mimes:webp|max:50000'
         ]);
 
         $bin = file_get_contents($request->img);
@@ -51,14 +61,19 @@ class StudentController extends Controller
         return redirect(route('student_details.show', $id));
     }
 
-    public function update(Request $request, $id)
+    public function download($id)
     {
-        $std = Student_details::find($id);
-        $std->status = 1;
+        $std = Student_details::select('attachments', 'national_id')->find($id);
 
-        $std->save();
-
-        return back()->with('done', 'تم تأكيد الدفع');
+        // copy pasted from ---
+        // https://laracasts.com/discuss/channels/eloquent/downloading-a-file-from-blob-in-db
+        return response($std->attachments)
+            ->header('Cache-Control', 'no-cache private')
+            ->header('Content-Description', 'File Transfer')
+            ->header('Content-Type', 'application/pdf')
+            ->header('Content-length', strlen($std->attachments))
+            ->header('Content-Disposition', 'attachment; filename=' . $std->national_id . '.pdf')
+            ->header('Content-Transfer-Encoding', 'binary');
     }
 
     public function search(Request $request, $dept_id)

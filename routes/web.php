@@ -61,12 +61,15 @@ Route::resource('students', 'StudentController');
 Route::post('students/search/{dept_id}', 'StudentController@search')->name('students.search');
 // upload std img
 Route::post('students/upload/{id}', 'StudentController@upload')->name('students.upload');
+// download std attachment file
+Route::get('students/download/{id}', 'StudentController@download')->name('students.download');
 
 /******** Admins Routes *******/
 // admin add|list routes
 Route::resource('admin', 'AdminController');
 // upload admin img
 Route::post('admin/upload/{id}', 'AdminController@upload')->name('admin.upload');
+
 ########### routes news ###########
 Route::resource('news', 'NewsController');
 Route::get('news/destroyComment/{id}', 'NewsController@destroyComment')->name('news.destroyComment');

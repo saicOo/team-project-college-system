@@ -6,6 +6,7 @@ use App\Student_desire;
 use App\Student;
 use App\Department;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class Student_detailsController extends Controller
 {
@@ -51,7 +52,7 @@ class Student_detailsController extends Controller
     $degree = Student_details::findOrFail($id)->degree;
     $degree_en = Student_details::findOrFail($id)->english_degree;
 
-    $departments = Department::where('minimum_degree','<=', $degree)->where('minimum_degree_en','<=', $degree_en)->get();
+    $departments = Department::select('dept_name')->where('minimum_degree','<=', $degree)->where('minimum_degree_en','<=', $degree_en)->get();
 
     $student = Student_details::findOrFail($id);
     $user = Student::findOrFail($id);
@@ -84,10 +85,25 @@ class Student_detailsController extends Controller
         'phone' => 'required|digits:11',
         'national_id' => 'required|integer|digits:14',
         'age' => 'required|date',
-        'dept_id' => 'required|integer',
-
+        'dept_id' => 'nullable|integer',
     ]);
+
+    if($request->dept_id){
+        $selected_dept = Department::find($request->dept_id);
+        if(!$selected_dept->dept_capacity_num) {
+            return back()->with('myErr', 'القسم ممتلئ');
+        }
+
+        $selected_dept->dept_capacity_num--; // decrement target department capacity by 1
+        $selected_dept->save();
+    }
+
     $student_details = Student_details::findOrFail($id);
+    $leave_dept = Department::find($student_details->dept_id);
+
+    $leave_dept->dept_capacity_num++; // increment left department capacity by 1
+    $leave_dept->save();
+
     $student_details->first_name = $request->first_name;
     $student_details->last_name = $request->last_name;
     $student_details->phone = $request->phone;
