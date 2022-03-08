@@ -32,7 +32,7 @@
                         {{-- form add new blog --}}
                         <form class="form-inline" method="POST" action="{{route('news.store')}}">
                             @csrf
-                            <textarea style="text-align: right" class="form-control mt-2 ml-sm-2 @error('text') is-invalid @enderror" rows="3" cols="150" name="text" id="text">{{ old('text') }}</textarea>
+                            <textarea placeholder="اكتب المقالة ............." style="text-align: right" class="form-control mt-2 ml-sm-2 @error('text') is-invalid @enderror" rows="3" cols="150" name="text" id="text">{{ old('text') }}</textarea>
 
                             <button class="btn btn-success" type="submit">نشر</button>
                         </form>

@@ -12,13 +12,10 @@
                     <td class="mail-message">{{ $message->private_q }}</td>
                     <td class="mail-label hidden-xs"><i class="fa fa-circle text-warning"></i></td>
                     <td class="text-right">{{ $message->created_at }}</td>
-                    <td><form action="{{ route('inbox.destroy', $message->id) }}" method="POST">
-                        {{ method_field('delete') }}
-                        {{ csrf_field() }}
-                        <button><i class="fa fa-trash-o"></i></button>
-
-                    </form>
-                </td>
+                    <td>
+                        <a class="btn btn-outline-danger" href="#" data-item_id="{{ $message->id }}" data-toggle="modal"
+                            data-target="#deleteM"><i class="fa fa-trash-o"></i></a>
+                    </td>
 
                 </tr>
                 {{-- If the message has been read and answered --}}
@@ -32,12 +29,10 @@
                     <td class="mail-message">{{ $message->private_q }}</td>
                     <td class="mail-label hidden-xs"></td>
                     <td class="text-right">{{ $message->created_at }}</td>
-                    <td><form action="{{ route('inbox.destroy', $message->id) }}" method="POST">
-                        {{ method_field('delete') }}
-                        {{ csrf_field() }}
-                        <button><i class="fa fa-trash-o"></i></button>
-                    </form>
-                </td>
+                    <td>
+                        <a class="btn btn-outline-danger" href="#" data-item_id="{{ $message->id }}" data-toggle="modal"
+                            data-target="#deleteM"><i class="fa fa-trash-o"></i></a>
+                    </td>
                 </tr>
                 {{-- If you do not read or reply --}}
             @else
@@ -51,12 +46,10 @@
                     <td class="mail-label hidden-xs"><i class="fa fa-circle text-success"></i></td>
 
                     <td class="text-right">{{ $message->created_at }}</td>
-                    <td><form action="{{ route('inbox.destroy', $message->id) }}" method="POST">
-                        {{ method_field('delete') }}
-                        {{ csrf_field() }}
-                        <button><i class="fa fa-trash-o"></i></button>
-                    </form>
-                </td>
+                    <td>
+                        <a class="btn btn-outline-danger" href="#" data-item_id="{{ $message->id }}" data-toggle="modal"
+                            data-target="#deleteM"><i class="fa fa-trash-o"></i></a>
+                    </td>
 
                 </tr>
             @endif

@@ -3,6 +3,11 @@
 <link href="{{ asset('assets/css/pages/mailbox.css') }}" rel="stylesheet">
 @endsection
 @section('content')
+@if (Session::has('delete'))
+                                <div class="alert alert-danger" role="alert">
+                                    {{ Session::get('delete') }}
+                                </div>
+                            @endif
         <!-- START PAGE CONTENT-->
         <div class="page-heading">
             <h1 class="page-title">صندوق بريد</h1>
@@ -25,6 +30,12 @@
                                         <input id="search" class="form-control" type="text" placeholder="ابحث عن البريد الالكتروني" style="text-align: right">
                                     </div>
                                 </form>
+                                <ul class="nav navbar-toolbar">
+                                    <li class="getFilter ml-4" data-status="0"><span class="badge badge-success badge-square btn">غير مقروءة</span></li>
+                                    <li class="getFilter ml-4" data-status="1"><span class="badge badge-warning badge-square btn">مقروءة</span></li>
+                                    <li class="getFilter ml-4" data-status="2"><span class="badge badge-info badge-square btn">تم الرد</span> </li>
+                                </ul>
+                                <input id="storg" type="hidden">
                             </div>
                             <div class="d-flex justify-content-between inbox-toolbar p-t-20">
 
@@ -47,6 +58,32 @@
 
         </div>
         <!-- END PAGE CONTENT-->
+        <div class="modal fade" id="deleteM" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">هل انت متأكد من الحذف</h5>
+
+                    <form action="{{ route('inbox.destroy', 'test') }}" method="post">
+                        {{ method_field('delete') }}
+                        {{ csrf_field() }}
+                </div>
+                <div class="modal-body">
+                    هل انت متاكد من عملية الحذف ؟
+                    <input type="hidden" name="item_id" id="item_id" value="">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary ml-4" data-dismiss="modal">الغاء</button>
+                    <button type="submit" class="btn btn-danger">تاكيد</button>
+
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- / modal delete-->
+
 @endsection
 @section('js')
 <script src="{{ asset('assets/js/scripts/mailbox.js') }}" type="text/javascript"></script>
@@ -75,4 +112,40 @@
      });
    });
 </script>
+<script type="text/javascript">
+	$(document).ready(function(){
+
+  function fetch_data(page, status) {
+      $.ajax({
+         url:"<?php echo url(''); ?>/ajaxFilter?page="+page+"&status="+status,
+         success:function(data){
+          $('.mailbox').html(data);
+         }
+      })
+     }
+       $(document).on('click', '.getFilter', function(){
+          var status = $(this).data("status");
+          var page = $('#hidden_page').val();
+          $('#storg').val(status) ;
+          fetch_data(page,status);
+       });
+       $(document).on('click', '.pagination a', function(e){
+           e.preventDefault();
+          var status = $('#storg').val();
+          var page = $(this).attr('href').split('page=')[1];
+          fetch_data(page,status);
+     });
+   });
+</script>
+
+
+<script type="text/javascript">
+    $('#deleteM').on('show.bs.modal', function(event) {
+        var button = $(event.relatedTarget);
+        var item_id = button.data('item_id');
+        var modal = $(this);
+        modal.find('.modal-body #item_id').val(item_id);
+    })
+</script>
+
 @endsection
