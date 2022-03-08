@@ -52,6 +52,7 @@ Route::resource('student_details', 'Student_detailsController');
 // Routes Messages
 Route::resource('inbox', 'MessageController');
 Route::get('ajax_inbox', 'MessageController@ajax_show');
+Route::get('ajaxFilter', 'MessageController@ajaxFilter');
 
 /******* Students Routes *******/
 // map students routes

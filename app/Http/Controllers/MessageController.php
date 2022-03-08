@@ -98,10 +98,10 @@ class MessageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $comment_news = Private_qa::findOrFail($id)->delete();
-
+        $comment_news = Private_qa::findOrFail($request->item_id)->delete();
+        session()->flash('delete',"تم الحذف بنجاح");
         return redirect()->back();
     }
     public function ajax_show(Request $request)
@@ -111,6 +111,15 @@ class MessageController extends Controller
             $search = str_replace(" ","%",$search);
             $messages = Private_qa::whereNotNull('private_q')->where('private_q','like','%'.$search.'%')->paginate(2);
 
+            return view('messages.ajax_inbox',compact('messages'));
+        }
+    }
+    public function ajaxFilter(Request $request)
+    {
+        if($request->ajax()){
+
+            $status = $request->get('status');
+            $messages = Private_qa::whereNotNull('private_q')->where('status',$status)->paginate(2);
             return view('messages.ajax_inbox',compact('messages'));
         }
         }

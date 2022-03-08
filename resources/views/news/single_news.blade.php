@@ -3,11 +3,11 @@
     <link href="{{ asset('assets/css/pages/mailbox.css') }}" rel="stylesheet">
 @endsection
 @section('content')
-@if (Session::has('delete'))
-                                <div class="alert alert-danger" role="alert">
-                                    {{ Session::get('delete') }}
-                                </div>
-                            @endif
+    @if (Session::has('delete'))
+        <div class="alert alert-danger" role="alert">
+            {{ Session::get('delete') }}
+        </div>
+    @endif
     @if (Session::has('done'))
         <div class="alert alert-success" role="alert">
             {{ Session::get('done') }}
@@ -32,16 +32,14 @@
                             <h5 class="inbox-title">{{ $news->adminName->name }}</h5>
                             <div class="m-t-5 font-13">
                                 <a class="text-muted m-l-5"
-                                    href="{{ route('student_details.show', $news->adminName->id) }}">{{ $news->adminName->email }}</a>
+                                    href="{{ route('admin.show', $news->adminName->id) }}">{{ $news->adminName->email }}</a>
                             </div>
                             <div class="p-r-10 font-13">
-                                {{-- delete news --}}
-                                <form action="{{ route('news.destroy', $news->id) }}" method="POST"
-                                    class="text-left">
-                                    {{ method_field('delete') }}
-                                    {{ csrf_field() }}
-                                    <input type="submit" class="btn btn-outline-danger" value="حذف">
-                                </form>
+                                <!-- open modal delete -->
+                                <a class="btn btn-outline-danger mt-3" href="#" data-toggle="modal"
+                                    data-target="#deleteNews"><i
+                                        class="text-danger fas fa-trash-alt"></i>&nbsp;&nbsp;حذف
+                                </a>
                             </div>
                         </div>
                         <div class="inbox-toolbar m-l-20">
@@ -64,13 +62,14 @@
                             @foreach ($comment_news as $item)
                                 <li class="media">
                                     @if ($item->std_id)
-                                        <a class="media-img" href="javascript:;">
+                                        <a class="media-img"
+                                            href="{{ route('student_details.show', $item->std_id) }}">
                                             <?php $images = $item->studentName->img; ?>
                                             <img class="img-circle"
                                                 src="data:image/jpeg;base64,{{ base64_encode($images) }}" width="40" />
                                         </a>
                                     @else
-                                        <a class="media-img" href="javascript:;">
+                                        <a class="media-img" href="{{ route('admin.show', $news->adminName->id) }}">
                                             <img class="img-circle"
                                                 src="data:image/jpeg;base64,{{ base64_encode(Auth::user()->img) }}"
                                                 width="40" />
@@ -103,10 +102,11 @@
                     {{ method_field('PUT') }}
                     <div class="form-group">
                         <label for="comment">الرد</label>
-                        <textarea class="form-control @error('comment') is-invalid @enderror" id="comment" rows="3" name="comment"
-                            placeholder="محتوي الرد علي الرسالة" style="direction: rtl;"></textarea>
-                            @error('comment')
-                            <div class="alert alert-danger">حدث خطأ في النشر يجب أن لا يقل عدد الاحرف عن حرفين و لا يزيد عن 150 حرف</div>
+                        <textarea class="form-control @error('comment') is-invalid @enderror" id="comment" rows="3"
+                            name="comment" placeholder="محتوي الرد علي الرسالة" style="direction: rtl;"></textarea>
+                        @error('comment')
+                            <div class="alert alert-danger">
+                                {{$message}}</div>
                         @enderror
                     </div>
                     <button class="btn btn-primary" type="submit">ارسال</button>
@@ -118,4 +118,31 @@
     </div>
     </div>
     <!-- END PAGE CONTENT-->
+
+    <!-- modal delete-->
+    <div class="modal fade" id="deleteNews" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">هل انت متأكد من الحذف</h5>
+
+                    <form action="{{ route('news.destroy', $news->id)}}" method="post">
+                        {{ method_field('delete') }}
+                        {{ csrf_field() }}
+                </div>
+                <div class="modal-body">
+                    هل انت متاكد من عملية الحذف ؟
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary ml-4" data-dismiss="modal">الغاء</button>
+                    <button type="submit" class="btn btn-danger">تاكيد</button>
+
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- / modal delete-->
 @endsection
+
