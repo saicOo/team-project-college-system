@@ -82,7 +82,7 @@ class Student_detailsController extends Controller
   public function update(Request $request ,$id)
   {
     $request->validate([
-        'img' => 'required|image|mimes:webp|max:200',
+        'img' => 'required|image|mimes:webp|max:1000',
     ]);
     $student_details = Student_details::findOrFail($id);
 
