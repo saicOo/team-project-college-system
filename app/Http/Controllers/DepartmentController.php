@@ -33,7 +33,7 @@ class DepartmentController extends Controller
 
         // add new dept in session for side bar use
         Session::forget('depts');
-        Session::put('depts', Department::all('dept_name'));
+        Session::put('depts', Department::all('id', 'dept_name'));
 
         return redirect("department")->with("done" , "تمت اضافة القسم بنجاح");
     }
@@ -81,7 +81,7 @@ class DepartmentController extends Controller
     public function update(Request $request,$id)
     {
         $request->validate([
-            
+
             "dept_name"            => ['required'],
             "dept_capacity_num"    => ['required','numeric'],
             "price"                => ['required','numeric'],
@@ -96,14 +96,24 @@ class DepartmentController extends Controller
         $department->minimum_degree    =$request->minimum_degree;
         $department->minimum_degree_en =$request->minimum_degree_en;
         $department->save();
+
+        // add new dept in session for side bar use
+        Session::forget('depts');
+        Session::put('depts', Department::all('id', 'dept_name'));
+
         return redirect("department")->with("done" , "تم تعديل القسم بنجاح");
-        
+
     }
 
     public function destroy($id)
     {
         $department = Department::find($id);
         $department->DELETE();
+
+        // add new dept in session for side bar use
+        Session::forget('depts');
+        Session::put('depts', Department::all('id', 'dept_name'));
+
         return redirect("department")->with('done' , "تم حذف القسم المطلوب");
     }
 
