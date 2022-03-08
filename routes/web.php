@@ -67,3 +67,7 @@ Route::post('students/upload/{id}', 'StudentController@upload')->name('students.
 Route::resource('admin', 'AdminController');
 // upload admin img
 Route::post('admin/upload/{id}', 'AdminController@upload')->name('admin.upload');
+########### routes news ###########
+Route::resource('news', 'NewsController');
+Route::get('news/destroyComment/{id}', 'NewsController@destroyComment')->name('news.destroyComment');
+###########################################################################

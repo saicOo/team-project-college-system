@@ -28,7 +28,7 @@ class AdminController extends Controller
             'lname' => 'required|string',
             'email' => 'required|email|unique:admins,email',
             'password' => 'required|min:8|alpha_num|confirmed',
-            'role' => 'required'
+            'role' => 'required',
         ]);
 
         $admin = new Admin();

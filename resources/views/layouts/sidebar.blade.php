@@ -91,6 +91,12 @@
                     <span class="nav-label">صندوق البريد</span>
                 </a>
             </li>
+            <li class="heading">الاخبار</li>
+            <li id="mail-page">
+                <a href="{{route('news.index')}}"><i class="sidebar-item-icon fa fa-envelope"></i>
+                    <span class="nav-label">اخبار</span>
+                </a>
+            </li>
         </ul>
     </div>
 </nav>
