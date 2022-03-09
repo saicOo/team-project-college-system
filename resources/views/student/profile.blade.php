@@ -179,7 +179,7 @@
                                             <option value="{{$student->department->id}}">
                                                 {{ $student->department->dept_name }}</option>
                                             @else
-                                            <option value="">--لم يتم اخيار قسم--</option>
+                                            <option value="">--لم يتم اختيار قسم--</option>
                                             @endif
                                             @foreach ($departments as $item)
                                             <option value="{{ $item->id }}">{{ $item->dept_name }}</option>

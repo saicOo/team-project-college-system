@@ -8,7 +8,8 @@
     <meta name="viewport" content="width=device-width initial-scale=1.0">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'انجاز') }}</title>
+    <link href="{{ asset('assets/img/logos/icons8-fast-forward-100.png') }}" rel="icon" type="image/x-icon">
     <!-- GLOBAL MAINLY STYLES-->
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
 
