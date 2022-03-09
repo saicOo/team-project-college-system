@@ -5,6 +5,7 @@ use App\Student_desire;
 use App\Department;
 use App\Student_details;
 use App\User;
+use App\Private_qa;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,12 @@ class register_detailsController extends Controller
 {
     public function showStep1()
     {
-      return view('register_details.step_1');
+        if(Student_details::find(Auth::user()->id)->first_name){
+            return redirect()->route('showStep2');
+        }else{
+
+            return view('register_details.step_1');
+        }
     }
 
     public function step1(Request $request)
@@ -45,7 +51,12 @@ class register_detailsController extends Controller
     }
     public function showStep2()
     {
-      return view('register_details.step_2');
+        if(Student_details::find(Auth::user()->id)->degree){
+            return redirect()->route('showStep3');
+        }else{
+
+            return view('register_details.step_2');
+        }
     }
     public function step2(Request $request)
     {
@@ -76,6 +87,7 @@ class register_detailsController extends Controller
     }
     public function step3(Request $request)
     {
+
         $student_degree = Student_details::findOrFail(Auth::user()->id)->degree;
         $student_english_degree = Student_details::findOrFail(Auth::user()->id)->english_degree;
         $department = Department::where('minimum_degree','<=', $student_degree)->where('minimum_degree_en','<=', $student_english_degree)->get();
@@ -98,6 +110,12 @@ class register_detailsController extends Controller
                 $student_desire->desire_2_id = $request->desire_2;
                 $student_desire->desire_3_id  = $request->desire_3 ;
                 $student_desire->save();
+
+                $Private_qa = new Private_qa;
+                $Private_qa->std_id = Auth::user()->id;
+                $Private_qa->private_ans = "تهانينا تم اكتمال بياناتك بنجاح ترقب نتيجة التنسيق قريبا";
+                $Private_qa->save();
+
                 $student_status = User::findOrFail(Auth::user()->id);
                 $student_status->status = 1;
                 $student_status->save();

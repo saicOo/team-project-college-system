@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Alert_msgs;
 use App\Private_qa;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;

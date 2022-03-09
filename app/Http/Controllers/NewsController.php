@@ -113,7 +113,10 @@ class NewsController extends Controller
     }
     public function search(Request $request)
     {
-        if($request->search != ''){
+        $request->validate([
+            'search' => 'required',
+        ]);
+
             $search = $request->search;
             $news = News::where('text','like','%'.$search.'%')->paginate(3);
             $newsSide = News::orderByDesc('id')->limit(3)->get();
@@ -125,10 +128,8 @@ class NewsController extends Controller
 
                 return view('blog.blogs',compact('news','comment_news_count','newsSide'));
             }else{
-                return redirect()->back();
+                return redirect()->back()->with('notFound',"لا يوجد نتائج بحث مشابها");
             }
-        }else{
-            return redirect()->back();
-        }
+
         }
 }
