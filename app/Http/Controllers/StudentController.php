@@ -138,7 +138,8 @@ class StudentController extends Controller
     */
     public function map()
     {
-        $stds = Student_details::all();
+        $ids = Student_desire::select('id')->get()->pluck('id');
+        $stds = Student_details::whereIn('id', $ids)->get();
 
         foreach($stds as $std) {
 
