@@ -13,7 +13,7 @@ class register_detailsController extends Controller
 {
     public function showStep1()
     {
-        if(Student_details::find(Auth::user()->id)->first_name){
+        if(isset(Student_details::find(Auth::user()->id)->first_name)){
             return redirect()->route('showStep2');
         }else{
 
