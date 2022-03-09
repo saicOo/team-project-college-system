@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 08, 2022 at 01:29 AM
+-- Generation Time: Mar 09, 2022 at 07:04 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.24
 
@@ -196,7 +196,7 @@ CREATE TABLE `student_detailss` (
   `degree` decimal(5,2) DEFAULT NULL,
   `national_id` bigint(20) DEFAULT NULL,
   `img` longblob DEFAULT NULL,
-  `attachments` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `attachments` longblob DEFAULT NULL,
   `status` int(1) NOT NULL DEFAULT 0,
   `dept_id` int(10) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
