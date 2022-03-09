@@ -13,7 +13,7 @@ class StudentController extends Controller
 
     public function index($students = NULL)
     {
-        if(Session::has('stds')){
+        if(Session::has('stds')){ // check if you come from route or from search method
             $students = Session::get('stds');
         }
 
@@ -86,7 +86,7 @@ class StudentController extends Controller
             } else {
                 $stds = Student_details::all()->where([
                     ['first_name', $request->first_name],
-                    ['status', ($request->paid) ? 1 : 0]
+                    ['status', ($request->paid) ? 1 : 0] // if paid selected in search return 1 for status, otherwise return 0
                 ]);
             }
         } else {

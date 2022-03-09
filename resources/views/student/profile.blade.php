@@ -170,23 +170,24 @@
                                             value="{{ $student->address }}" placeholder="العنوان">
                                     </div>
                                 </div>
-                                <div class="row">
+                                @if (null != $student->dept_id)
+                                    <div class="row">
+                                        <div class="col-sm-6 form-group">
+                                            <label>القسم</label>
+                                            <select class="form-control input-sm" name="dept_id">
 
-                                    <div class="col-sm-6 form-group">
-                                        <label>القسم</label>
-                                        <select class="form-control input-sm" name="dept_id">
-                                            @if (null != $student->dept_id)
-                                            <option value="{{$student->department->id}}">
-                                                {{ $student->department->dept_name }}</option>
-                                            @else
-                                            <option value="">--لم يتم اختيار قسم--</option>
-                                            @endif
-                                            @foreach ($departments as $item)
-                                            <option value="{{ $item->id }}">{{ $item->dept_name }}</option>
-                                            @endforeach
-                                        </select>
+                                                <option value="{{$student->department->id}}">
+                                                    {{ $student->department->dept_name }}
+                                                </option>
+
+                                                @foreach ($departments as $item)
+                                                <option value="{{ $item->id }}">{{ $item->dept_name }}</option>
+                                                @endforeach
+                                                
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>
+                                @endif
                                 <div class="form-group">
                                     <button class="btn btn-default" type="supmit">تعديل</button>
                                 </div>

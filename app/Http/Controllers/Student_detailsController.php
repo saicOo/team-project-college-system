@@ -52,7 +52,7 @@ class Student_detailsController extends Controller
     $degree = Student_details::findOrFail($id)->degree;
     $degree_en = Student_details::findOrFail($id)->english_degree;
 
-    $departments = Department::select('dept_name')->where('minimum_degree','<=', $degree)->where('minimum_degree_en','<=', $degree_en)->get();
+    $departments = Department::select('dept_name', 'id')->where('minimum_degree','<=', $degree)->where('minimum_degree_en','<=', $degree_en)->get();
 
     $student = Student_details::findOrFail($id);
     $user = Student::findOrFail($id);
@@ -90,12 +90,15 @@ class Student_detailsController extends Controller
 
     if($request->dept_id){
         $selected_dept = Department::find($request->dept_id);
+        
         if(!$selected_dept->dept_capacity_num) {
             return back()->with('myErr', 'القسم ممتلئ');
         }
 
         $selected_dept->dept_capacity_num--; // decrement target department capacity by 1
         $selected_dept->save();
+    } else {
+        return back()->with('myErr', 'يجب ادخال قسم محدد');
     }
 
     $student_details = Student_details::findOrFail($id);
