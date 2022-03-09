@@ -87,6 +87,9 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'comment' => 'required|max:150|min:2',
+        ]);
         $comment_news = new Comment_news;
         $comment_news->std_id = Auth::user()->id;
         $comment_news->news_id = $id;
@@ -114,7 +117,7 @@ class NewsController extends Controller
             $search = $request->search;
             $news = News::where('text','like','%'.$search.'%')->paginate(3);
             $newsSide = News::orderByDesc('id')->limit(3)->get();
-            $newsSide = News::orderByDesc('id')->limit(3)->get();
+
             foreach ($news as $item) {
                 $comment_news_count[] = Comment_news::where('news_id',$item->id)->get()->count();
             }

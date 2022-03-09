@@ -5,14 +5,14 @@
 		<div class="hero-area section">
 
 			<!-- Backgound Image -->
-			<div class="bg-image bg-parallax overlay" style="background-image:url(./assets/img/page-background.jpg)"></div>
+			<div class="bg-image bg-parallax overlay" style="background-image:url({{asset('assets/img/page-background.jpg')}})"></div>
 			<!-- /Backgound Image -->
 
 			<div class="container">
 				<div class="row">
 					<div class="col-md-10 col-md-offset-1 text-center">
 						<ul class="hero-area-tree">
-							<li><a href="index.html">الرئيسية</a></li>
+							<li><a href="{{route('home')}}" rel="noopener">الرئيسية</a></li>
 							<li>استمارة بياناتك</li>
 						</ul>
 						<h1 class="white-text">ابدأ في تسجيل بياناتك</h1>
@@ -60,7 +60,7 @@
                                 </div> <br><br>
                                 <h2 class="orange-text text-center"><strong>بالتوفيق !</strong></h2> <br>
                                 <div class="row justify-content-center">
-                                    <div class="col-4"> <img src="./assets/img/Done-rafiki.svg" class="fit-image">
+                                    <div class="col-4"> <img src="{{asset('assets/img/Done-rafiki.svg')}}" class="fit-image" alt="img">
                                     </div>
                                 </div> <br><br>
                                 <div class="row justify-content-center">

@@ -5,7 +5,7 @@
     <div id="home" class="hero-area">
 
         <!-- Backgound Image -->
-        <div class="bg-image bg-parallax overlay" style="background-image:url(./assets/img/home-background.jpg)"></div>
+        <div class="bg-image bg-parallax overlay" style="background-image:url({{asset('assets/img/home-background.jpg')}})"></div>
         <!-- /Backgound Image -->
 
         <div class="home-wrapper">
@@ -98,7 +98,7 @@
 
                 <div class="col-md-6">
                     <div class="about-img">
-                        <img src="./assets/img/about.png" alt="">
+                        <img src="./assets/img/about.png" alt="img">
                     </div>
                 </div>
 
@@ -144,61 +144,6 @@
 
         <!-- container -->
         <div class="container">
-
-            <!-- row -->
-            <div class="row">
-                <div class="section-header text-center">
-                    <h2>الاقسام</h2>
-                    <p class="lead">اقسام كلية التجارة - لغة انجليزية</p>
-                </div>
-
-                <!-- card -->
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="./assets/img/bis.jpg" class="card-img-top" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">BIS</h5>
-                            <p class="card-text">كلية BIS هي اختصار لـ«Business Information System» وهو أحد البرامج
-                                التابعة لكلية التجارة مع كلية إدارة الأعمال</p>
-                            <a href="#" class="btn main-button">اعرف المزيد</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- /card -->
-
-                <!-- card -->
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="./assets/img/fmi.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">FMI</h5>
-                            <p class="card-text">هو الاختصار لمسمى " الأسواق والمنشآت المالية" Financial Markets &
-                                Institutions . وهو برنامج دراسي أكاديمى تطبيقى</p>
-                            <a href="#" class="btn main-button">اعرف المزيد</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- /card -->
-
-                <!-- card -->
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="./assets/img/enComm.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">English commerce</h5>
-                            <p class="card-text">يقوم الطالب بدراسة المواد الخاصة بمجال التجارة ولكن باللغة الأنجليزية
-                            </p>
-                            <a href="#" class="btn main-button">اعرف المزيد</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- /card -->
-
-            </div>
-            <!-- /row -->
-
-            <hr class="section-hr">
-
             <!-- row -->
             <div class="row">
 
@@ -211,8 +156,8 @@
                 </div>
 
                 <div class="col-md-5 col-md-offset-1">
-                    <a class="about-video" href="https://www.youtube.com/watch?v=P-dznsHGzN0&t=15s" target="_blank">
-                        <img src="./assets/img/about-video.jpg" alt="">
+                    <a class="about-video" href="https://www.youtube.com/watch?v=P-dznsHGzN0&t=15s" rel="noopener" target="_blank">
+                        <img src="./assets/img/about-video.jpg" alt="img">
                         <i class="play-icon fa fa-play"></i>
                     </a>
                 </div>
@@ -230,7 +175,7 @@
     <div id="contact-cta" class="section">
 
         <!-- Backgound Image -->
-        <div class="bg-image bg-parallax overlay" style="background-image:url(./assets/img/cta2-background.jpg)"></div>
+        <div class="bg-image bg-parallax overlay" style="background-image:url({{asset('assets/img/cta2-background.jpg')}})"></div>
         <!-- Backgound Image -->
 
         <!-- container -->

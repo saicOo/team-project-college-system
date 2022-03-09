@@ -6,14 +6,14 @@
 		<div class="hero-area section">
 
 			<!-- Backgound Image -->
-			<div class="bg-image bg-parallax overlay" style="background-image:url(./assets/img/page-background.jpg)"></div>
+			<div class="bg-image bg-parallax overlay" style="background-image:url({{asset('assets/img/page-background.jpg')}})"></div>
 			<!-- /Backgound Image -->
 
 			<div class="container">
 				<div class="row">
 					<div class="col-md-10 col-md-offset-1 text-center">
 						<ul class="hero-area-tree">
-							<li><a href="index.html">الرئيسية</a></li>
+							<li><a href="{{route('home')}}" rel="noopener">الرئيسية</a></li>
 							<li>استمارة بياناتك</li>
 						</ul>
 						<h1 class="white-text">ابدأ في تسجيل بياناتك</h1>

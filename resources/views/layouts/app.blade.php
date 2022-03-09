@@ -8,7 +8,7 @@
 
         <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'انجاز') }}</title>
         <link href="{{ asset('assets/img/icons8-fast-forward-100.png') }}" rel="icon" type="image/x-icon">
 
         <!-- Bootstrap -->
@@ -41,9 +41,9 @@
                     <!-- footer nav -->
                     <div class="col-md-12">
                         <ul class="footer-nav">
-                            <li><a href="{{route('home')}}">الرئيسية</a></li>
-                            <li><a href="{{route('news.index')}}">الاخبار</a></li>
-						<li><a href="contact">تواصل معنا</a></li>
+                            <li><a href="{{route('home')}}" rel="noopener">الرئيسية</a></li>
+                            <li><a href="{{route('news.index')}}" rel="noopener">الاخبار</a></li>
+						<li><a href="{{url('contact')}}" rel="noopener">تواصل معنا</a></li>
 					</ul>
 				</div>
 				<!-- /footer nav -->

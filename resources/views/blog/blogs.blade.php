@@ -13,7 +13,7 @@
             <div class="row">
                 <div class="col-md-10 col-md-offset-1 text-center">
                     <ul class="hero-area-tree">
-                        <li><a href="{{route('home')}}">الرئيسية</a></li>
+                        <li><a href="{{route('home')}}" rel="noopener">الرئيسية</a></li>
                         <li>الاخبار</li>
                     </ul>
                     <h1 class="white-text">الاخبار</h1>
@@ -46,7 +46,7 @@
                                 <div class="single-blog">
                                     <div class="blog-img">
                                         <a href="{{ route('news.show', $item->id) }}">
-                                            <img src="{{asset('assets/img/post_college.png')}}" alt="">
+                                            <img src="{{asset('assets/img/post_college.png')}}" alt="img">
                                         </a>
                                     </div>
                                     <h4><a href="{{ route('news.show', $item->id) }}">{{ $item->text }}</a></h4>
@@ -95,7 +95,7 @@
                         <form method="post" action="{{route('news')}}">
                             @csrf
                             <input class="input" type="text" name="search" placeholder="بحث">
-                            <button><i class="fa fa-search"></i></button>
+                            <button title="بحث"><i class="fa fa-search"></i></button>
                         </form>
                     </div>
                     <!-- /search widget -->
@@ -109,7 +109,7 @@
                         <div class="single-post">
 
                             <a class="single-post-img" href="{{ route('news.show', $item->id) }}">
-                                <img src="{{asset('assets/img/post_college.png')}}" alt="">
+                                <img src="{{asset('assets/img/post_college.png')}}" alt="img">
                             </a>
                             <a href="{{ route('news.show', $item->id) }}">{{$item->text}}</a>
                             <p><small>By : {{ $item->adminName->name }} .{{ $item->date_news }}</small></p>

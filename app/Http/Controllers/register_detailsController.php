@@ -25,7 +25,7 @@ class register_detailsController extends Controller
           'national_id' => 'required|integer|digits:15',
           'age' => 'required|date',
           'gender' => 'required',
-          'img' => 'required|mimes:jpeg,png,jpg',
+          'img' => 'required|image|mimes:webp|max:200',
       ]);
       $student_details = new Student_details;
       $student_details->id = Auth::user()->id;
@@ -38,11 +38,9 @@ class register_detailsController extends Controller
 
 
       $student_details->national_id = $request->national_id;
-      $student_details->img = $request->file('img')->getClientOriginalName();
+      $student_details->img = file_get_contents($request->img);
 
       $student_details->save();
-      $request->img->move(public_path('attachments'), $student_details->img);
-
       return redirect()->route('showStep2');
     }
     public function showStep2()
@@ -53,7 +51,7 @@ class register_detailsController extends Controller
     {
       $request->validate([
           'degree' => 'required|numeric|max:100|min:50',
-          'english_degree' => 'required|numeric|max:60|min:5',
+          'english_degree' => 'required|numeric|max:60|min:30',
           'attachments' => 'required|mimes:pdf',
       ]);
       $student_details = Student_details::findOrFail(Auth::user()->id);
@@ -63,10 +61,8 @@ class register_detailsController extends Controller
 
       $student_details->english_degree = $request->english_degree;
       $student_details->degree = $sum_degree;
-      $student_details->attachments = $request->file('attachments')->getClientOriginalName();
-
+      $student_details->attachments = file_get_contents($request->attachments);
       $student_details->save();
-      $request->attachments->move(public_path('attachments'), $student_details->attachments);
       return redirect()->route('showStep3');
     }
     public function showStep3()

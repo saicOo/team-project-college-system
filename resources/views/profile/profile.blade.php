@@ -13,7 +13,7 @@
       <div class="row">
         <div class="col-md-10 col-md-offset-1 text-center">
           <ul class="hero-area-tree">
-            <li><a href="{{route('home')}}">الرئيسية</a></li>
+            <li><a href="{{route('home')}}" rel="noopener">الرئيسية</a></li>
             <li>الصفحة الشخصية</li>
           </ul>
           <h1 class="white-text">اطلع علي بياناتك</h1>
@@ -32,8 +32,46 @@
 
     <div class="container bootdey flex-grow-1 container-p-y">
 
-      <div class="media py-3 mb-3">
-        <img src="{{ asset("attachments/$student_details->img") }}" alt="" class="avatar">
+      <div class="media py-3 mb-3" style="position: relative;">
+        <img src="data:image/jpeg;base64,{{base64_encode($student_details->img)}}" alt="img" class="avatar">
+        <button class="btn btn-info border border-dark text-light btn-xs"
+                                                        style="position: absolute; right: 0; bottom: 0" data-toggle="modal"
+                                                        title="اضافة صورة" data-target="#uploadImg">
+                                                            <i class="fa fa-edit"></i>
+                                                        </button>
+                                                        <!-- Start add img modal -->
+                                    <div class="modal fade" id="uploadImg" tabindex="-1" aria-labelledby="addDepartmentLabel"
+                                    aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="addDepartmentLabel">اضف صورة</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <form class="form-horizontal" action="{{route('student_details.update', $student_details->id)}} "  enctype="multipart/form-data"  method="POST">
+                                                @csrf
+                                                {{ method_field("PUT") }}
+                                                    <div class="modal-body">
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-2 col-form-label" for="img">اختر الملف</label>
+                                                            <div class="col-sm-10">
+                                                                <input class="form-control text-right" id="img" type="file" name="img" required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">اغلاق</button>
+                                                        <button class="btn btn-info mr-3" type="submit">رفع</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end add img modal -->
         <div class="media-body ml-4">
           <h4 class="font-weight-bold col-sm-12">{{Auth::user()->name}}</h4>
           <h5 class="col-sm-12">{{Auth::user()->email}}</h5>

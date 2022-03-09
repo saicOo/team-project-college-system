@@ -14,8 +14,8 @@
             <div class="row">
                 <div class="col-md-10 col-md-offset-1 text-center">
                     <ul class="hero-area-tree">
-                        <li><a href="{{route('home')}}">الرئيسية</a></li>
-                        <li><a href="{{route('news.index')}}">الاخبار</a></li>
+                        <li><a href="{{route('home')}}" rel="noopener">الرئيسية</a></li>
+                        <li><a href="{{route('news.index')}}" rel="noopener">الاخبار</a></li>
                         <li>عنوان الخبر</li>
                     </ul>
                     <h1 class="white-text">عنوان خبر</h1>
@@ -59,11 +59,21 @@
                         @foreach ($comment_news as $item)
                             <div class="media">
                                 <div class="media-left">
+                                    @if ($item->std_id)
                                     <?php $images = $item->studentName->img; ?>
-                                    <img src='{{ asset("attachments/$images") }}' alt="">
+                                    <img src='data:image/jpeg;base64,{{base64_encode($images)}}' alt="img">
+                                    @else
+                                    <?php $images = $item->adminName->img; ?>
+                                    <img src='data:image/jpeg;base64,{{base64_encode($images)}}' alt="img">
+                                    @endif
                                 </div>
                                 <div class="media-body">
+                                    @if ($item->std_id)
                                     <h4 class="media-heading">{{ $item->studentName->first_name }}</h4>
+                                    @else
+                                    <h4 class="media-heading">{{ $item->adminName->name }}</h4>
+
+                                    @endif
                                     <p>{{ $item->comment }}</p>
 
                                     <div class="date-reply"><span>{{ $item->date_comment }}</span></div>
@@ -88,8 +98,11 @@
                             <form action="{{ route('news.update', $news->id) }}" method="POST">
                                 @csrf
                                 {{ method_field('PUT') }}
-                                <textarea class="input" name="comment" placeholder="التعليق"></textarea>
-                                <button class="main-button icon-button">تعليق</button>
+                                <textarea class="input" name="comment" class="@error('comment') is-invalid @enderror" placeholder="التعليق"></textarea>
+                                @error('comment')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                                <button type="submit" title="تعليق" class="main-button icon-button">تعليق</button>
                             </form>
                         </div>
                         @endif
@@ -114,7 +127,7 @@
                             <div class="single-post">
 
                                 <a class="single-post-img" href="{{ route('news.show', $item->id) }}">
-                                    <img src="{{asset('assets/img/post_college.png')}}" alt="">
+                                    <img src="{{asset('assets/img/post_college.png')}}" alt="img">
                                 </a>
                                 <a href="{{ route('news.show', $item->id) }}">{{ $item->text }}</a>
                                 <p><small>By : {{ $item->adminName->name }} .{{ $item->date_news }}</small></p>

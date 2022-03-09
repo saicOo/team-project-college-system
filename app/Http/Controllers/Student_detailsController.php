@@ -79,9 +79,16 @@ class Student_detailsController extends Controller
    * @param  int  $id
    * @return Response
    */
-  public function update($id)
+  public function update(Request $request ,$id)
   {
+    $request->validate([
+        'img' => 'required|image|mimes:webp|max:200',
+    ]);
+    $student_details = Student_details::findOrFail($id);
 
+    $student_details->img = file_get_contents($request->img);
+    $student_details->save();
+    return redirect()->back();
   }
 
   /**

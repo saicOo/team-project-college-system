@@ -7,7 +7,7 @@
 
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>{{ config('app.name', 'Laravel') }}</title>
+  <title>{{ config('app.name', 'انجاز') }}</title>
   <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="{{ asset('assets/css/sgin-in.css') }}" />
 </head>
@@ -38,7 +38,7 @@
                                     </span>
                                 @enderror --}}
                 </div>
-                <button type="submit" class="btn solid">
+                <button type="submit" class="btn solid" title="تسجيل الدخول">
                     تسجيل الدخول
                 </button>
             </form>
@@ -92,11 +92,11 @@
           <p>
             اشترك لدينا الان و املئ استماراتك الان
           </p>
-          <button class="btn transparent" id="sign-up-btn">
+          <button class="btn transparent" id="sign-up-btn" title="اشترك الان">
             اشترك الان
           </button>
         </div>
-        <img src="{{asset('assets/img/Mobile login-bro.svg')}}" class="image" alt="" />
+        <img src="{{asset('assets/img/Mobile login-bro.svg')}}" class="image" alt="img" />
       </div>
       <div class="panel right-panel">
         <div class="content">
@@ -104,11 +104,11 @@
           <p>
             قم بتسجيل الدخول لمتابعة حسابك
           </p>
-          <button class="btn transparent" id="sign-in-btn">
+          <button class="btn transparent" id="sign-in-btn" title="تسجيل الدخول">
             تسجيل الدخول
           </button>
         </div>
-        <img src="{{ asset('assets/img/Secure login-rafiki.svg') }}" class="image" alt="" />
+        <img src="{{ asset('assets/img/Secure login-rafiki.svg') }}" class="image" alt="img" />
       </div>
     </div>
   </div>

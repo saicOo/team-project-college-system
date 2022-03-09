@@ -27,7 +27,7 @@
         <div class="media">
             <div class="media-right">
                 <div class="logo-container">
-                    <img class="media-object" src="https://img.icons8.com/carbon-copy/50/000000/fast-forward.png" />
+                    <img class="media-object" src="https://img.icons8.com/carbon-copy/50/000000/fast-forward.png" alt="img" />
                 </div>
             </div>
             <div class="media-body">

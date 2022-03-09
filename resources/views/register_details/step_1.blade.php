@@ -7,14 +7,14 @@
 		<div class="hero-area section">
 
 			<!-- Backgound Image -->
-			<div class="bg-image bg-parallax overlay" style="background-image:url(./assets/img/page-background.jpg)"></div>
+			<div class="bg-image bg-parallax overlay" style="background-image:url({{asset('assets/img/page-background.jpg')}})"></div>
 			<!-- /Backgound Image -->
 
 			<div class="container">
 				<div class="row">
 					<div class="col-md-10 col-md-offset-1 text-center">
 						<ul class="hero-area-tree">
-							<li><a href="index.html">الرئيسية</a></li>
+							<li><a href="{{route('home')}}" rel="noopener">الرئيسية</a></li>
 							<li>استمارة بياناتك</li>
 						</ul>
 						<h1 class="white-text">ابدأ في تسجيل بياناتك</h1>
@@ -91,8 +91,10 @@
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                                 <label class="fieldlabels">صورة شخصية:</label>
-                                <input type="file" name="img" accept="image/*" />
-
+                                <input type="file" name="img" accept="image/*" class="@error('img') is-invalid @enderror"/>
+                                @error('img')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                                 <label for="men"  class="fieldlabels">ذكر:</label>
                                 <input  type="radio" id="men" name="gender" value="ذكر" class="@error('gender') is-invalid @enderror" id="gender" />
                                 <label for="woman" class="fieldlabels">انثي:</label>
