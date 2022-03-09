@@ -25,17 +25,13 @@
                         <div class="mailbox-header">
                             <div class="d-flex justify-content-between">
                                 <h5 class="d-none d-lg-block inbox-title"><i class="fa fa-envelope-o m-r-5"></i> صندوق الوارد ({{$messagesCount}})</h5>
-                                <form class="mail-search" action="javascript:;" >
-                                    <div class="input-group">
-                                        <input id="search" class="form-control" type="text" placeholder="ابحث عن البريد الالكتروني" style="text-align: right">
-                                    </div>
-                                </form>
-                                <ul class="nav navbar-toolbar">
-                                    <li class="getFilter ml-4" data-status="0"><span class="badge badge-success badge-square btn">غير مقروءة</span></li>
-                                    <li class="getFilter ml-4" data-status="1"><span class="badge badge-warning badge-square btn">مقروءة</span></li>
-                                    <li class="getFilter ml-4" data-status="2"><span class="badge badge-info badge-square btn">تم الرد</span> </li>
+
+                                <ul class="nav navbar-toolbar" style="font-size: 20px">
+                                    <li class="getFilter ml-4" data-status="0"><span class="badge badge-success badge-square btn">غير مقروءة  {{$msgCount0}}</span></li>
+                                    <li class="getFilter ml-4" data-status="1"><span class="badge badge-warning badge-square btn">مقروءة  {{$msgCount1}}</span></li>
+                                    <li class="getFilter ml-4" data-status="2"><span class="badge badge-info badge-square btn">تم الرد  {{$msgCount2}}</span> </li>
                                 </ul>
-                                <input id="storg" type="hidden">
+                                <input id="storg" type="hidden" value="all">
                             </div>
                             <div class="d-flex justify-content-between inbox-toolbar p-t-20">
 
@@ -87,31 +83,6 @@
 @endsection
 @section('js')
 <script src="{{ asset('assets/js/scripts/mailbox.js') }}" type="text/javascript"></script>
-
-<script type="text/javascript">
-	$(document).ready(function(){
-
-  function fetch_data(page, search="") {
-      $.ajax({
-         url:"<?php echo url(''); ?>/ajax_inbox?page="+page+"&search="+search,
-         success:function(data){
-          $('.mailbox').html(data);
-         }
-      })
-     }
-       $(document).on('keyup', '#search', function(){
-          var search = $('#search').val();
-          var page = $('#hidden_page').val();
-          fetch_data(page,search);
-       });
-       $(document).on('click', '.pagination a', function(e){
-           e.preventDefault();
-          var search = $('#search').val();
-          var page = $(this).attr('href').split('page=')[1];
-          fetch_data(page,search);
-     });
-   });
-</script>
 <script type="text/javascript">
 	$(document).ready(function(){
 

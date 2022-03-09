@@ -16,7 +16,7 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $news = News::orderByDesc('id')->paginate(3);
+        $news = News::orderByDesc('id')->paginate(4);
 
 
         if($news->count() > 0){
@@ -126,23 +126,21 @@ class NewsController extends Controller
         session()->flash('delete',"تم الحذف بنجاح");
         return redirect()->back();
     }
-    public function search(Request $request)
+
+        public function ajax_show(Request $request)
     {
-        if($request->search != ''){
-            $search = $request->search;
-            $news = News::where('text','like','%'.$search.'%')->paginate(3);
-
-            foreach ($news as $item) {
-                $comment_news_count[] = Comment_news::where('news_id',$item->id)->get()->count();
-            }
-            if($news->count() != 0){
-
-                return view('blog.blogs',compact('news','comment_news_count'));
+        if($request->ajax()){
+            $search = $request->get('search');
+            $search = str_replace(" ","%",$search);
+            $news = News::orderByDesc('id')->where('text','like','%'.$search.'%')->paginate(4);
+            if($news->count() > 0){
+                foreach ($news as $item) {
+                    $comment_news_count[] = Comment_news::where('news_id',$item->id)->get()->count();
+                }
             }else{
-                return redirect()->back();
+                      $comment_news_count= 0;
             }
-        }else{
-            return redirect()->back();
+            return view('news.ajax_news',compact('news','comment_news_count'));
         }
-        }
+    }
 }

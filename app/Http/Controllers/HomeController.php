@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Department;
 use App\Student_details;
+use App\Private_qa;
+use App\Student;
+use App\News;
+use App\Comment_news;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -51,12 +55,28 @@ class HomeController extends Controller
             $each_dept_count[$dept->dept_name] = count($reg_stds->where('dept_id', $dept->id)); // rest
         }
 
+        // get messages for limit 4
+        $messages = Private_qa::orderByDesc('id')->whereNotNull('private_q')->limit(4)->get();
+
+        // get news and comments for limit 4
+        $news = News::orderByDesc('id')->limit(4)->get();
+        if($news->count() > 0){
+            foreach ($news as $item) {
+                $comment_news_count[] = Comment_news::where('news_id',$item->id)->get()->count();
+            }
+        }else{
+                  $comment_news_count= 0;
+        }
+
         return view('home', [
             'all_stds'  => $all_stds_count,
             'reg_stds'  => $reg_stds_count,
             'depts'     => $depts_count,
             'money'     => $money,
-            'each_dept' => $each_dept_count
+            'each_dept' => $each_dept_count,
+            'messages' => $messages,
+            'news' => $news,
+            'comment_news_count' => $comment_news_count,
         ]);
     }
 }

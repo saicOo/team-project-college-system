@@ -15,9 +15,12 @@ class MessageController extends Controller
      */
     public function index()
     {
-      $messages = Private_qa::whereNotNull('private_q')->paginate(2);
-      $messagesCount = Private_qa::where('status','0')->count();
-        return view('messages.inbox',compact('messages','messagesCount'));
+      $messages = Private_qa::orderByDesc('id')->whereNotNull('private_q')->paginate(4);
+      $messagesCount = Private_qa::count();
+      $msgCount0 = Private_qa::where('status','0')->count();
+      $msgCount1 = Private_qa::where('status','1')->count();
+      $msgCount2 = Private_qa::where('status','2')->count();
+        return view('messages.inbox',compact('messages','messagesCount','msgCount0','msgCount1','msgCount2'));
     }
 
     /**
@@ -104,23 +107,18 @@ class MessageController extends Controller
         session()->flash('delete',"تم الحذف بنجاح");
         return redirect()->back();
     }
-    public function ajax_show(Request $request)
-    {
-        if($request->ajax()){
-            $search = $request->get('search');
-            $search = str_replace(" ","%",$search);
-            $messages = Private_qa::whereNotNull('private_q')->where('private_q','like','%'.$search.'%')->paginate(2);
 
-            return view('messages.ajax_inbox',compact('messages'));
-        }
-    }
     public function ajaxFilter(Request $request)
     {
         if($request->ajax()){
-
-            $status = $request->get('status');
-            $messages = Private_qa::whereNotNull('private_q')->where('status',$status)->paginate(2);
-            return view('messages.ajax_inbox',compact('messages'));
+            if($request->get('status') == "all"){
+                $messages = Private_qa::orderByDesc('id')->whereNotNull('private_q')->paginate(4);
+                return view('messages.ajax_inbox',compact('messages'));
+            }else{
+                $status = $request->get('status');
+                $messages = Private_qa::orderByDesc('id')->whereNotNull('private_q')->where('status',$status)->paginate(4);
+                return view('messages.ajax_inbox',compact('messages'));
+            }
         }
         }
 }

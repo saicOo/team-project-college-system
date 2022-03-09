@@ -64,9 +64,9 @@
                                     @if ($item->std_id)
                                         <a class="media-img"
                                             href="{{ route('student_details.show', $item->std_id) }}">
-                                            <?php $images = $item->studentName->img; ?>
+
                                             <img class="img-circle"
-                                                src="data:image/jpeg;base64,{{ base64_encode($images) }}" width="40" />
+                                                src="data:image/jpeg;base64,{{ base64_encode($item->studentName->img) }}" width="40" />
                                         </a>
                                     @else
                                         <a class="media-img" href="{{ route('admin.show', $news->adminName->id) }}">

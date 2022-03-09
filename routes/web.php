@@ -51,7 +51,6 @@ Route::resource('public_qa', 'Public_qaController');
 Route::resource('student_details', 'Student_detailsController');
 // Routes Messages
 Route::resource('inbox', 'MessageController');
-Route::get('ajax_inbox', 'MessageController@ajax_show');
 Route::get('ajaxFilter', 'MessageController@ajaxFilter');
 
 /******* Students Routes *******/
@@ -74,4 +73,5 @@ Route::post('admin/upload/{id}', 'AdminController@upload')->name('admin.upload')
 ########### routes news ###########
 Route::resource('news', 'NewsController');
 Route::get('news/destroyComment/{id}', 'NewsController@destroyComment')->name('news.destroyComment');
+Route::get('ajax_news', 'NewsController@ajax_show');
 ###########################################################################
