@@ -183,13 +183,15 @@
                                                 @foreach ($departments as $item)
                                                 <option value="{{ $item->id }}">{{ $item->dept_name }}</option>
                                                 @endforeach
-                                                
+
                                             </select>
                                         </div>
                                     </div>
+                                @else
+                                    <input type="hidden" name="dept_id" value="">
                                 @endif
                                 <div class="form-group">
-                                    <button class="btn btn-default" type="supmit">تعديل</button>
+                                    <button class="btn btn-default" type="submit">تعديل</button>
                                 </div>
                             </form>
                         </div>

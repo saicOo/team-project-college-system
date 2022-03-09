@@ -52,7 +52,12 @@ class Student_detailsController extends Controller
     $degree = Student_details::findOrFail($id)->degree;
     $degree_en = Student_details::findOrFail($id)->english_degree;
 
-    $departments = Department::select('dept_name', 'id')->where('minimum_degree','<=', $degree)->where('minimum_degree_en','<=', $degree_en)->get();
+    // كان بيطلع ايرور اما الطالب يكون مالي اول جزء بس في الفورم
+    // ومش مالي الباقي عشان مبيباقش لسه دخل درجته
+    $departments = [];
+    if ($degree) {
+        $departments = Department::select('dept_name', 'id')->where('minimum_degree','<=', $degree)->where('minimum_degree_en','<=', $degree_en)->get();
+    }
 
     $student = Student_details::findOrFail($id);
     $user = Student::findOrFail($id);
@@ -78,6 +83,7 @@ class Student_detailsController extends Controller
    */
   public function update(Request $request , $id)
   {
+
     $request->validate([
         'first_name' => 'required|max:25|min:2',
         'last_name' => 'required|max:25|min:2',
@@ -88,24 +94,27 @@ class Student_detailsController extends Controller
         'dept_id' => 'nullable|integer',
     ]);
 
+    $student_details = Student_details::findOrFail($id);
+
     if($request->dept_id){
+
         $selected_dept = Department::find($request->dept_id);
-        
+
         if(!$selected_dept->dept_capacity_num) {
             return back()->with('myErr', 'القسم ممتلئ');
         }
 
         $selected_dept->dept_capacity_num--; // decrement target department capacity by 1
         $selected_dept->save();
-    } else {
+
+        $leave_dept = Department::find($student_details->dept_id);
+
+        $leave_dept->dept_capacity_num++; // increment left department capacity by 1
+        $leave_dept->save();
+
+    } elseif ($student_details->dept_id) { // لو الطالب ليه قسم و الريكويست مفيهوش رقم القسم طلع الايرور
         return back()->with('myErr', 'يجب ادخال قسم محدد');
     }
-
-    $student_details = Student_details::findOrFail($id);
-    $leave_dept = Department::find($student_details->dept_id);
-
-    $leave_dept->dept_capacity_num++; // increment left department capacity by 1
-    $leave_dept->save();
 
     $student_details->first_name = $request->first_name;
     $student_details->last_name = $request->last_name;
