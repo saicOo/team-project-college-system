@@ -30,13 +30,18 @@
 
         <!-- container -->
         <div class="container-fluid">
-
+            @if (Session::has('errorMassage'))
+            <div class="alert alert-warning text-center" role="alert">
+                {{ Session::get('errorMassage') }}
+            </div>
+        @endif
             <!-- row -->
             <div style="display: flex;justify-content: center;">
                 <div class="col-11 col-sm-9 col-md-7 col-lg-6 col-xl-5 text-center p-0 mt-3 mb-2">
                     <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
                         <h2 id="heading">استمارة بيانات</h2>
                         <p>املئ كل البيانات للتنقل إلى الخطوة التالية</p>
+
                         <form id="msform" action="{{ route('step3') }}" method="POST">
                             @csrf
                             <!-- progressbar -->
@@ -50,7 +55,6 @@
                                 <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
                                     aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
                             </div> <br> <!-- fieldsets -->
-
 
                             <fieldset>
                                 <div class="form-card">
@@ -101,6 +105,7 @@
 
     </div>
     <!-- /Contact -->
+
 @endsection
 @section('script')
 @endsection

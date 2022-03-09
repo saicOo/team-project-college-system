@@ -21,9 +21,9 @@ class register_detailsController extends Controller
           'first_name' => 'required|max:25|min:2',
           'last_name' => 'required|max:25|min:2',
           'address' => 'required|max:100|min:2',
-          'phone' => 'required|digits:11',
-          'national_id' => 'required|integer|digits:15',
-          'age' => 'required|date',
+          'phone' => 'required|digits:11|unique:student_detailss,phone',
+          'national_id' => 'required|integer|digits:14|unique:student_detailss,national_id',
+          'age' => 'required|date|after:1998-01-01|before:2003-01-01',
           'gender' => 'required',
           'img' => 'required|image|mimes:webp|max:200',
       ]);
@@ -76,15 +76,35 @@ class register_detailsController extends Controller
     }
     public function step3(Request $request)
     {
-        $student_desire = new Student_desire;
-        $student_desire->id = Auth::user()->id;
-        $student_desire->desire_1_id  = $request->desire_1;
-        $student_desire->desire_2_id = $request->desire_2;
-        $student_desire->desire_3_id  = $request->desire_3 ;
-        $student_desire->save();
-        $student_status = User::findOrFail(Auth::user()->id);
-        $student_status->status = 1;
-        $student_status->save();
-      return view('register_details.step_4');
+        $student_degree = Student_details::findOrFail(Auth::user()->id)->degree;
+        $student_english_degree = Student_details::findOrFail(Auth::user()->id)->english_degree;
+        $department = Department::where('minimum_degree','<=', $student_degree)->where('minimum_degree_en','<=', $student_english_degree)->get();
+        $counter =0;
+        foreach ($department as $item) {
+            if($item->id == $request->desire_1){
+               ++$counter;
+        }
+            if($item->id == $request->desire_2){
+               ++$counter;
+        }
+            if($item->id == $request->desire_3){
+               ++$counter;
+    }
+}
+            if($counter == 3){
+                $student_desire = new Student_desire;
+                $student_desire->id = Auth::user()->id;
+                $student_desire->desire_1_id  = $request->desire_1;
+                $student_desire->desire_2_id = $request->desire_2;
+                $student_desire->desire_3_id  = $request->desire_3 ;
+                $student_desire->save();
+                $student_status = User::findOrFail(Auth::user()->id);
+                $student_status->status = 1;
+                $student_status->save();
+                return view('register_details.step_4');
+            }else{
+                session()->flash('errorMassage',"محاولة اختراق فاشلة XD");
+return redirect()->back();
+            }
     }
 }

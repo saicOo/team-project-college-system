@@ -76,7 +76,7 @@
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                                 <label class="fieldlabels">السن:</label>
-                                <input value="{{ old('age') }}" id="age" class="@error('age') is-invalid @enderror" type="date" name="age" />
+                                <input value="{{ old('age') }}"  min="1998-01-01" max="2003-01-01" id="age" class="@error('age') is-invalid @enderror" type="date" name="age" />
                                 @error('age')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
