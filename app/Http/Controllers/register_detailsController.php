@@ -21,11 +21,17 @@ class register_detailsController extends Controller
           'first_name' => 'required|max:25|min:2',
           'last_name' => 'required|max:25|min:2',
           'address' => 'required|max:100|min:2',
+<<<<<<< HEAD
           'phone' => 'required|digits:11|unique:student_detailss,phone',
           'national_id' => 'required|integer|digits:14|unique:student_detailss,national_id',
           'age' => 'required|date|after:1998-01-01|before:2003-01-01',
+=======
+          'phone' => 'required|digits:11',
+          'national_id' => 'required|integer|digits:14',
+          'age' => 'required|date',
+>>>>>>> 96a79d3cbe6e21aef52c815aeed6e022e0fa50c1
           'gender' => 'required',
-          'img' => 'required|image|mimes:webp|max:200',
+          'img' => 'required|image|mimes:webp|max:1000',
       ]);
       $student_details = new Student_details;
       $student_details->id = Auth::user()->id;

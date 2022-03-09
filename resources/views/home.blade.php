@@ -187,7 +187,7 @@
                 <div class="col-md-8 col-md-offset-2 text-center">
                     <h2 class="white-text">تواصل معنا</h2>
                     <p class="lead white-text">للاستفسارات و المقتراحات و الشكاوى</p>
-                    <a class="main-button icon-button" href="contact.html">تواصل معنا الان</a>
+                    <a class="main-button icon-button" href="{{url('contact')}}">تواصل معنا الان</a>
                 </div>
 
             </div>

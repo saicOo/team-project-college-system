@@ -33,7 +33,7 @@
     <div class="container bootdey flex-grow-1 container-p-y">
 
       <div class="media py-3 mb-3" style="position: relative;">
-        <img src="data:image/jpeg;base64,{{base64_encode($student_details->img)}}" alt="img" class="avatar">
+        <img src="data:image/jpeg;base64,{{base64_encode($student_details->img)}}" alt="img" width="100" height="100" style="border-radius: 50%;">
         <button class="btn btn-info border border-dark text-light btn-xs"
                                                         style="position: absolute; right: 0; bottom: 0" data-toggle="modal"
                                                         title="اضافة صورة" data-target="#uploadImg">
