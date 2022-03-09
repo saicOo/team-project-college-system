@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Department;
+use App\Private_qa;
 use App\Student_desire;
 use App\Student_details;
 use Illuminate\Http\Request;
@@ -139,14 +140,11 @@ class StudentController extends Controller
     public function map()
     {
         $ids = Student_desire::select('id')->get()->pluck('id');
-        $stds = Student_details::whereIn('id', $ids)->get();
+        $stds = Student_details::where('dept_id', NULL)->whereIn('id', $ids)->get();
 
         foreach($stds as $std) {
 
-            if ($std->dept_id) continue;
-
             $desires = Student_desire::find($std->id);
-
 
             $desire = Department::find($desires->desire_1_id);
             $dept1 = $desire->dept_capacity_num; $dept2 = 0; $dept3 = 0;
@@ -177,6 +175,13 @@ class StudentController extends Controller
             $desire->dept_capacity_num--;
             $desire->save();
             $std->save();
+
+            $msg = new Private_qa;
+
+            $msg->private_ans = 'تهانينا! لقد تم قبولك في قسم ' . $desire->dept_name . '. برجاء الاسراع في تقديم الاوراق و دفع الرسوم قبل الميعاد المحدد.';
+            $msg->std_id = $std->id;
+
+            $msg->save();
 
         }
 
