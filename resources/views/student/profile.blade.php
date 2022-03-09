@@ -72,7 +72,6 @@
                                                     @endif
                                                 </div>
                                             </div>
-
                                             <h5 class="font-strong m-b-10 m-t-10">{{ $user->name }}</h5>
                                             <div class="m-b-20 text-muted">{{ $user->email }}</div>
                                         </div>

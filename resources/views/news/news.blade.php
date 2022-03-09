@@ -49,8 +49,7 @@
                             <button class="btn btn-success" type="submit">نشر</button>
                         </form>
                         @error('text')
-                            <div class="alert alert-danger">حدث خطأ في النشر يجب أن لا يقل عدد الاحرف عن حرفين و لا يزيد عن 150
-                                حرف</div>
+                            <div class="alert alert-danger">{{$message}}</div>
                         @enderror
 
                     </div>

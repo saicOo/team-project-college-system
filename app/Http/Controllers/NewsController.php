@@ -51,7 +51,7 @@ class NewsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'text' => 'required|max:150|min:2',
+            'text' => 'required|max:500|min:10',
         ]);
         $news = new News;
         $news->text = $request->text;

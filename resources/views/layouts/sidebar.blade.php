@@ -120,7 +120,10 @@ aria-hidden="true">
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label" for="img">اختر الملف</label>
                         <div class="col-sm-10">
-                            <input class="form-control text-right" id="img" type="file" name="img" required>
+                            <input class="form-control text-right @error('img') is-invalid @enderror" id="img" type="file" name="img" required>
+                            @error('img')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                 </div>
