@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 09, 2022 at 07:04 AM
+-- Generation Time: Mar 10, 2022 at 09:42 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.24
 
@@ -46,20 +46,6 @@ CREATE TABLE `admins` (
 
 INSERT INTO `admins` (`id`, `name`, `email`, `email_verified_at`, `password`, `role`, `img`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'admin', 'admin@gmail.com', NULL, '$2y$10$QPYvkG8KLP2ZtVA/qn9HG..oBcvKobFaVmvEUMAxet7IIBfzLrag2', 0, NULL, NULL, '2022-02-21 12:17:42', '2022-02-21 12:17:42');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `alert_msgss`
---
-
-CREATE TABLE `alert_msgss` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `msg_content` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `std_id` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -194,7 +180,7 @@ CREATE TABLE `student_detailss` (
   `gender` enum('ذكر','انثي') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `english_degree` decimal(5,2) DEFAULT NULL,
   `degree` decimal(5,2) DEFAULT NULL,
-  `national_id` bigint(20) DEFAULT NULL,
+  `national_id` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `img` longblob DEFAULT NULL,
   `attachments` longblob DEFAULT NULL,
   `status` int(1) NOT NULL DEFAULT 0,
@@ -229,13 +215,6 @@ CREATE TABLE `users` (
 ALTER TABLE `admins`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `admins_email_unique` (`email`);
-
---
--- Indexes for table `alert_msgss`
---
-ALTER TABLE `alert_msgss`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `alert_msgss_std_id_foreign` (`std_id`);
 
 --
 -- Indexes for table `comment_news`
@@ -318,12 +297,6 @@ ALTER TABLE `admins`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `alert_msgss`
---
-ALTER TABLE `alert_msgss`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `comment_news`
 --
 ALTER TABLE `comment_news`
@@ -368,12 +341,6 @@ ALTER TABLE `users`
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `alert_msgss`
---
-ALTER TABLE `alert_msgss`
-  ADD CONSTRAINT `alert_msgss_std_id_foreign` FOREIGN KEY (`std_id`) REFERENCES `student_detailss` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `comment_news`
