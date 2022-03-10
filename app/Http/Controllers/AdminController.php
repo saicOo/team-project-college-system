@@ -24,19 +24,16 @@ class AdminController extends Controller
     {
         $validated = $request->validate([
             'fname' => 'required|string',
-            'lname' => 'required|string',
             'email' => 'required|email|unique:admins,email',
             'password' => 'required|min:8|alpha_num|confirmed',
             'role' => 'required',
         ]);
 
         $admin = new Admin();
-        $admin->name = $validated['fname'] . ' ' . $validated['lname'];
+        $admin->name = $validated['fname'];
         $admin->email = $validated['email'];
         $admin->password = bcrypt($validated['password']);
         $admin->role = (int) $validated['role'];
-        if($request->img) $admin->img = file_get_contents($request->img);
-
         $admin->save();
 
         return redirect( route('admin.index') )->with('done', 'تمت اضافة الادمن بنجاح');
@@ -52,19 +49,25 @@ class AdminController extends Controller
 
     public function update(Request $request, $id)
     {
-        $validated = $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|email',
-            'role' => 'required'
-        ]);
-
-        $admin = Admin::find($id);
-
-        $admin->name = $validated['name'];
-        $admin->email = $validated['email'];
-        $admin->role = $validated['role'];
-
-        $admin->save();
+        if(isset($request->password)){
+            $validated = $request->validate([
+                'password' => 'required|min:8|alpha_num|confirmed',
+            ]);
+            $admin = Admin::find($id);
+            $admin->password = bcrypt($validated['password']);
+            $admin->save();
+        }else{
+            $validated = $request->validate([
+                'name' => 'required|string',
+                'email' => 'required|email',
+                'role' => 'required'
+            ]);
+            $admin = Admin::find($id);
+            $admin->name = $validated['name'];
+            $admin->email = $validated['email'];
+            $admin->role = $validated['role'];
+            $admin->save();
+        }
 
         return $this->show($id, 'تم تعديل بيانات الادمن بنجاح');
     }
@@ -79,7 +82,7 @@ class AdminController extends Controller
     public function upload(Request $request, $id)
     {
         $request->validate([
-            'img' => 'required|file|image|mimes:webp|max:50000'
+            'img' => 'required|file|image|mimes:webp|max:1000'
         ]);
 
         $bin = file_get_contents($request->img);

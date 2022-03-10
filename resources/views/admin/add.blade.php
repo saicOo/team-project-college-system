@@ -25,22 +25,15 @@
                 <div class="ibox-body">
                     <form action="{{route('admin.store')}}" method="POST">
                         @csrf
-                        <div class="row">
-                            <div class="col-sm-6 form-group">
+
+                            <div class="form-group">
                                 <label for="fname">الاسم الاول</label>
                                 <input class="form-control" type="text" name="fname" id="fname">
                                 @error('fname')
                                 <span class="text-danger" dir="ltr">*{{$message}}</span>
                                 @enderror
                             </div>
-                            <div class="col-sm-6 form-group">
-                                <label for="lname">الاسم الاخير</label>
-                                <input class="form-control" type="text" name="lname" id="lname">
-                                @error('lname')
-                                <span class="text-danger" dir="ltr">*{{$message}}</span>
-                                @enderror
-                            </div>
-                        </div>
+
                         <div class="form-group">
                             <label for="email">البريد الاكتروني</label>
                             <input class="form-control" type="text" name="email" id="email">
@@ -67,13 +60,6 @@
                                 <option value="2">موظف اعتيادي</option>
                             </select>
                             @error('role')
-                            <span class="text-danger" dir="ltr">*{{$message}}</span>
-                            @enderror
-                        </div><br>
-                        <div class="form-group">
-                            <label for="img0">صورة</label>
-                            <input type="file" id="img0" class="form-control col-lg-4 col-sm-6 col-12" name="img">
-                            @error('img')
                             <span class="text-danger" dir="ltr">*{{$message}}</span>
                             @enderror
                         </div><br>

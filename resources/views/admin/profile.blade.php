@@ -132,15 +132,9 @@
                                         <!-- end add img modal -->
 
                                         <ul class="list-group list-group-full list-group-divider p-0">
-                                            <li class="list-group-item">الاسم الاول
+                                            <li class="list-group-item">الاسم
                                                 <span
                                                     class="pull-left color-orange">{{ explode(' ', $admin->name)[0] }}</span>
-                                            </li>
-
-                                            <li class="list-group-item">الاسم الثاني
-                                                <span class="pull-left color-orange">
-                                                    {{                                                     isset(explode(' ', $admin->name)[1]) ? explode(' ', $admin->name)[1] : '--' }}
-                                                </span>
                                             </li>
 
                                             <li class="list-group-item">المنصب
@@ -203,6 +197,15 @@
                                                 <option value="2">موظف اعتيادي</option>
                                             </select>
                                         </div>
+                                        <div class="col-sm-6 form-group">
+                                            <button type="button"
+                                                                class="btn btn-warning border text-light"
+                                                                style="position: absolute; right: 0; bottom: 0"
+                                                                data-toggle="modal" title="update password"
+                                                                data-target="#updatePassword">
+                                                                تعديل الرقم السري
+                                                            </button>
+                                        </div>
                                     </div>
 
                                     <div class="form-group">
@@ -220,4 +223,53 @@
 
     </div>
 
+    <!-- Start add password modal -->
+    <div class="modal fade" id="updatePassword" tabindex="-1"
+    aria-labelledby="addDepartmentLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addDepartmentLabel">اضف صورة</h5>
+                <button type="button" class="close" data-dismiss="modal"
+                    aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form class="form-horizontal"
+                action="{{ route('admin.update', $admin->id) }}" method="POST">
+                @csrf
+                <input type="hidden" name="_method" value="PUT">
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label for="password" class="col-md-4 col-form-label text-md-right">الرقم السري</label>
+
+                        <div class="col-md-6">
+                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+
+                            @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="password-confirm" class="col-md-4 col-form-label text-md-right">اعد كتابة الرقم السري</label>
+
+                        <div class="col-md-6">
+                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"
+                        data-dismiss="modal">اغلاق</button>
+                    <button class="btn btn-info mr-3" type="submit">رفع</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- end add password modal -->
 @endsection
