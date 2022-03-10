@@ -16,10 +16,10 @@ class MessageController extends Controller
     public function index()
     {
       $messages = Private_qa::orderByDesc('id')->whereNotNull('private_q')->paginate(4);
-      $messagesCount = Private_qa::count();
-      $msgCount0 = Private_qa::where('status','0')->count();
-      $msgCount1 = Private_qa::where('status','1')->count();
-      $msgCount2 = Private_qa::where('status','2')->count();
+      $messagesCount = Private_qa::whereNotNull('private_q')->count();
+      $msgCount0 = Private_qa::where('status','0')->whereNotNull('private_q')->count();
+      $msgCount1 = Private_qa::where('status','1')->whereNotNull('private_q')->count();
+      $msgCount2 = Private_qa::where('status','2')->whereNotNull('private_q')->count();
         return view('messages.inbox',compact('messages','messagesCount','msgCount0','msgCount1','msgCount2'));
     }
 
