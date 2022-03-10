@@ -170,7 +170,7 @@
                                             value="{{ $student->address }}" placeholder="العنوان">
                                     </div>
                                 </div>
-                                @if (null != $student->dept_id)
+                                @if (null != $student->dept_id && $student->status == 0)
                                     <div class="row">
                                         <div class="col-sm-6 form-group">
                                             <label>القسم</label>
