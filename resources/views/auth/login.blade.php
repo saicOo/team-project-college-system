@@ -20,23 +20,13 @@
             <form method="POST" action="{{ route('login') }}" class="sign-in-form">
                 @csrf
               <h2 class="title">تسجيل الدخول</h2>
-              <div class="input-field">
+              <div class="input-field @error('email') is-invalid @enderror">
                   <i class="fas fa-envelope"></i>
-                  <input type="email" placeholder="البريد الالكتروني" name="email" class="@error('email') is-invalid @enderror" value="{{ old('email') }}" required autocomplete="email" autofocus />
-                  {{-- @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror --}}
+                  <input type="email" placeholder="البريد الالكتروني" name="email" required autocomplete="email" autofocus title="example@gmail.com"/>
                 </div>
-                <div class="input-field">
+                <div class="input-field @error('password') is-invalid @enderror">
                     <i class="fas fa-lock"></i>
-                    <input type="password" class="@error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="كلمة المرور" />
-                    {{-- @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror --}}
+                    <input type="password" name="password" required autocomplete="current-password" placeholder="كلمة المرور" title="ادخل اراقم او حروف لا تقل عن 8" />
                 </div>
                 <button type="submit" class="btn solid" title="تسجيل الدخول">
                     تسجيل الدخول
@@ -49,32 +39,17 @@
             <form class="sign-up-form" method="POST" action="{{ route('register') }}">
                 @csrf
           <h2 class="title">اشترك الان</h2>
-          <div class="input-field">
+          <div class="input-field @error('name') is-invalid @enderror">
             <i class="fas fa-user"></i>
-            <input type="text" placeholder="الاسم" class="@error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus />
-            {{-- @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror --}}
+            <input type="text" placeholder="الاسم" name="name"  required autocomplete="name" autofocus />
           </div>
-          <div class="input-field">
+          <div class="input-field @error('email') is-invalid @enderror">
             <i class="fas fa-envelope"></i>
-            <input type="email" placeholder="البريد الالكتروني" class="@error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" />
-            {{-- @error('email')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror --}}
+            <input type="email" placeholder="البريد الالكتروني" name="email"  required autocomplete="email"  title="example@gmail.com" />
           </div>
-          <div class="input-field">
+          <div class="input-field @error('password') is-invalid @enderror">
             <i class="fas fa-lock"></i>
-            <input type="password" placeholder="كلمة المرور" class="@error('password') is-invalid @enderror" name="password" required autocomplete="new-password" />
-            {{-- @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror --}}
+            <input type="password" placeholder="كلمة المرور" name="password" required autocomplete="new-password" title="ادخل اراقم او حروف لا تقل عن 8"/>
           </div>
           <div class="input-field">
             <i class="fas fa-key"></i>

@@ -95,6 +95,7 @@ form.sign-in-form {
   -o-border-radius: 55px;
 }
 
+
 .input-field i {
   text-align: center;
   line-height: 55px;
@@ -117,7 +118,9 @@ form.sign-in-form {
   color: #aaa;
   font-weight: 500;
 }
-
+.is-invalid {
+    border: 1px solid #dc3545 ;
+}
 .social-text {
   padding: 0.7rem 0;
   font-size: 1rem;

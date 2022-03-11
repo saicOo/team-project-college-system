@@ -11,6 +11,10 @@ use Illuminate\Http\Request;
 
 class register_detailsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function showStep1()
     {
         if(isset(Student_details::find(Auth::user()->id)->first_name)){

@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -16,6 +17,7 @@ class NewsController extends Controller
      */
     public function index()
     {
+
         $news = News::orderByDesc('id')->paginate(3);
         $newsSide = News::orderByDesc('id')->limit(3)->get();
 
