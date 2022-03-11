@@ -49,7 +49,7 @@ class AdminController extends Controller
 
     public function update(Request $request, $id)
     {
-        if(isset($request->password)){
+        if($request->password){
             $validated = $request->validate([
                 'password' => 'required|min:8|alpha_num|confirmed',
             ]);
@@ -60,12 +60,13 @@ class AdminController extends Controller
             $validated = $request->validate([
                 'name' => 'required|string',
                 'email' => 'required|email',
-                'role' => 'required'
             ]);
             $admin = Admin::find($id);
             $admin->name = $validated['name'];
             $admin->email = $validated['email'];
-            $admin->role = $validated['role'];
+            if($request->role){
+                $admin->role = $validated['role'];
+            }
             $admin->save();
         }
 

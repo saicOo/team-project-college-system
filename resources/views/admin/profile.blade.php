@@ -176,8 +176,9 @@
                                                 value="{{ $admin->email }}">
                                         </div>
                                     </div>
-                                    <div class="row">
 
+                                    @if (Auth::user()->role == 0)
+                                    <div class="row">
                                         <div class="col-sm-6 form-group">
                                             <label for="role">درجة الصلاحيات</label>
                                             <select class="form-control input-sm" name="role" id="role">
@@ -207,7 +208,7 @@
                                                             </button>
                                         </div>
                                     </div>
-
+                                    @endif
                                     <div class="form-group">
                                         <button class="btn btn-primary" type="submit">تعديل</button>
                                     </div>

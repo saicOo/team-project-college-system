@@ -40,6 +40,9 @@
                     <span class="nav-label">الصفخة الرئيسية</span>
                 </a>
             </li>
+            @if (Auth::user()->role == 0)
+
+
             <li class="heading">الادمن</li>
             <li id="admin-pages">
                 <a href="javascript:;"><i class="sidebar-item-icon fa fa-bookmark"></i>
@@ -53,6 +56,7 @@
                         </li>
                     </ul>
             </li>
+            @endif
             <li class="heading">الاقسام</li>
             <li id="dept-page">
                 <a href="{{route('department.index')}}"><i class="sidebar-item-icon fa fa-sitemap"></i>
