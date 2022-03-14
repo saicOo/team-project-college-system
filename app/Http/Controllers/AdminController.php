@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Admin;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -10,14 +11,20 @@ class AdminController extends Controller
 
     public function index()
     {
-        $admins = Admin::all();
+        if(Auth::user()->role == 0){
+            $admins = Admin::all();
+            return view('admin.show', ['admins' => $admins]);
+        }else{
+            return redirect()->back();
+        }
 
-        return view('admin.show', ['admins' => $admins]);
     }
 
     public function create()
     {
+        if(Auth::user()->role == 0){
         return view('admin.add');
+        }
     }
 
     public function store(Request $request)
@@ -65,7 +72,7 @@ class AdminController extends Controller
             $admin->name = $validated['name'];
             $admin->email = $validated['email'];
             if($request->role){
-                $admin->role = $validated['role'];
+                $admin->role = $request->role;
             }
             $admin->save();
         }
@@ -75,9 +82,13 @@ class AdminController extends Controller
 
     public function destroy($id)
     {
-        Admin::destroy($id);
 
-        return redirect('/admin')->with('done', 'تم مسح بيانات الادمن بنجاح');
+        if (Auth::user()->id == $id){
+            return redirect('/admin')->with('error', 'لا يمكن حذف الادمن الحالي وهو قيد التشغيل');
+        }else{
+            Admin::destroy($id);
+            return redirect('/admin')->with('done', 'تم مسح بيانات الادمن بنجاح');
+        }
     }
 
     public function upload(Request $request, $id)

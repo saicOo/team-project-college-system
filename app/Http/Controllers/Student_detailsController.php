@@ -6,6 +6,7 @@ use App\Student_desire;
 use App\Student;
 use App\Department;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class Student_detailsController extends Controller
@@ -83,6 +84,7 @@ class Student_detailsController extends Controller
    */
   public function update(Request $request , $id)
   {
+    if (Auth::user()->role == 0 || Auth::user()->role == 2) {
 
     $request->validate([
         'first_name' => 'required|max:25|min:2',
@@ -124,10 +126,12 @@ class Student_detailsController extends Controller
     $student_details->age = $request->age;
     $student_details->dept_id = $request->dept_id;
 
-
     $student_details->save();
     session()->flash('done',"تم التعديل بنجاح");
     return redirect()->back();
+}
+session()->flash('error',"غير متوفره لديك صلاحية التعديل");
+    return  redirect()->back();
   }
 
   /**

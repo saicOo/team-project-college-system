@@ -4,14 +4,19 @@
 
 
 @if (Session::has('done'))
-<div class="alert alert-success" role="alert">
+<div class="alert alert-success text-center" role="alert">
     {{ Session::get('done') }}
 </div>
 @endif
 
 @if (Session::has('myErr'))
-<div class="alert alert-danger" role="alert">
+<div class="alert alert-danger text-center" role="alert">
     {{ Session::get('myErr') }}
+</div>
+@endif
+@if (Session::has('error'))
+<div class="alert alert-warning  text-center" role="alert">
+    {{ Session::get('error') }}
 </div>
 @endif
 

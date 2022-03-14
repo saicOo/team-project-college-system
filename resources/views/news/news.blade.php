@@ -17,6 +17,7 @@
         </ol>
     </div>
     <div class="page-content fade-in-up">
+
         <div class="row">
             <div class="col-12">
                 <div class="ibox">
@@ -56,6 +57,7 @@
                 </div>
             </div>
         </div>
+
         <div class="row">
             <div class="col-12">
                 <div class="ibox">

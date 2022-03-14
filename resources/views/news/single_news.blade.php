@@ -85,17 +85,20 @@
                                         <small class="float-left text-muted">{{ $item->date_comment }}</small>
                                     </div>
                                     <div class="font-13">{{ $item->comment }}</div>
+                                    
                                     <div class="float-left">
                                         {{-- delete comment admin and student --}}
                                         <a class="btn btn-outline-danger"
                                             href="{{ route('news.destroyComment', $item->id) }}">حذف</a>
                                     </div>
+
                     </div>
                     </li>
                     @endforeach
                     </ul>
                 </div>
             </div>
+
             <div class="ibox" style="padding: 20px;">
                 <form action="{{ route('news.update', $news->id) }}" method="post">
                     @csrf
@@ -111,7 +114,6 @@
                     </div>
                     <button class="btn btn-primary" type="submit">ارسال</button>
                 </form>
-
             </div>
 
         </div>

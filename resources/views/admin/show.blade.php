@@ -7,6 +7,11 @@
         {{Session::get('done')}}
     </div>
 @endif
+@if (Session::has('error'))
+    <div class="alert alert-warning mt-3 text-center font-weight-bold">
+        {{Session::get('error')}}
+    </div>
+@endif
 <!-- START PAGE CONTENT-->
 <div class="page-heading">
     <h1 class="page-title">عرض ادمن</h1>

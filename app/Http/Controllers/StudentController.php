@@ -45,22 +45,22 @@ class StudentController extends Controller
         return back()->with('done', 'تم تأكيد الدفع');
     }
 
-    public function upload(Request $request, $id) // for img
-    {
-        $request->validate([
-            'img' => 'required|file|image|mimes:webp|max:50000'
-        ]);
+    // public function upload(Request $request, $id)
+    // {
+    //     $request->validate([
+    //         'img' => 'required|file|image|mimes:webp|max:50000'
+    //     ]);
 
-        $bin = file_get_contents($request->img);
+    //     $bin = file_get_contents($request->img);
 
-        $std = Student_details::find($id);
+    //     $std = Student_details::find($id);
 
-        $std->img = $bin;
+    //     $std->img = $bin;
 
-        $std->save();
+    //     $std->save();
 
-        return redirect(route('student_details.show', $id));
-    }
+    //     return redirect(route('student_details.show', $id));
+    // }
 
     public function download($id)
     {
