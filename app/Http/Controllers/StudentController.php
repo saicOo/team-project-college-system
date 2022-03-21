@@ -170,7 +170,7 @@ class StudentController extends Controller
 
             }
 
-            if(!$dept1 && !$dept2 && !$dept3) break;
+            if(!$dept1 && !$dept2 && !$dept3) continue;
 
             $desire->dept_capacity_num--;
             $desire->save();
