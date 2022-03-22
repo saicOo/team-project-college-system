@@ -34,10 +34,11 @@
                 <!-- Box header -->
                 <div class="ibox-head">
                     <div class="ibox-title">قائمة الطلاب</div>
-                    <!-- Search form -->
+                    <!-- Btn Search form -->
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#search">
                         بحث
                     </button>
+                    <!-- Modal search form -->
                     <div class="modal fade" id="search" tabindex="-1" aria-labelledby="searchLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -93,7 +94,7 @@
                             <tr>
                                 <td><a href="{{route('student_details.show', $std->id)}}">{{$std->first_name . ' ' . $std->last_name}}</a></td>
                                 <td>{{$std->national_id}}</td>
-                                <td> {{$std->degree}}% </td>
+                                <td> {{$std->degree}}</td>
                                 <td>
                                     @if($std->status)
                                         <span class="badge badge-success m-b-5">تم الدفع</span>

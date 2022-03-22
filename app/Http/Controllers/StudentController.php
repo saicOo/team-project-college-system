@@ -45,23 +45,6 @@ class StudentController extends Controller
         return back()->with('done', 'تم تأكيد الدفع');
     }
 
-    // public function upload(Request $request, $id)
-    // {
-    //     $request->validate([
-    //         'img' => 'required|file|image|mimes:webp|max:50000'
-    //     ]);
-
-    //     $bin = file_get_contents($request->img);
-
-    //     $std = Student_details::find($id);
-
-    //     $std->img = $bin;
-
-    //     $std->save();
-
-    //     return redirect(route('student_details.show', $id));
-    // }
-
     public function download($id)
     {
         $std = Student_details::select('attachments', 'national_id')->find($id);
@@ -119,8 +102,6 @@ class StudentController extends Controller
         $desires = Student_desire::all();
 
         $depts = Department::all();
-
-        // dd($depts->firstWhere('id', $desires->firstWhere('id', 1)->desire_1_id)->dept_name);
 
         return view ('student.map_students',
             [

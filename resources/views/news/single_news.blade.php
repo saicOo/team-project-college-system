@@ -69,11 +69,19 @@
                                                 src="data:image/jpeg;base64,{{ base64_encode($item->studentName->img) }}" width="40" />
                                         </a>
                                     @else
-                                        <a class="media-img" href="{{ route('admin.show', $news->adminName->id) }}">
-                                            <img class="img-circle"
-                                                src="data:image/jpeg;base64,{{ base64_encode(Auth::user()->img) }}"
-                                                width="40" />
-                                        </a>
+                                    @if ($news->adminName->img)
+                                    <a class="media-img" href="{{ route('admin.show', $news->adminName->id) }}">
+                                        <img class="img-circle"
+                                        src="data:image/jpeg;base64,{{ base64_encode($news->adminName->img) }}"
+                                        width="40" />
+                                    </a>
+                                    @else
+                                    <a class="media-img" href="{{ route('admin.show', $news->adminName->id) }}">
+                                        <img class="img-circle"
+                                        src="{{asset('assets/img/admin-avatar.png')}}"
+                                        width="40" />
+                                    </a>
+                                    @endif
                                     @endif
 
                                     <div class="media-body">
@@ -85,7 +93,7 @@
                                         <small class="float-left text-muted">{{ $item->date_comment }}</small>
                                     </div>
                                     <div class="font-13">{{ $item->comment }}</div>
-                                    
+
                                     <div class="float-left">
                                         {{-- delete comment admin and student --}}
                                         <a class="btn btn-outline-danger"

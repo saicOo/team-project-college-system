@@ -9,11 +9,7 @@ use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $news = News::orderByDesc('id')->paginate(4);
@@ -32,22 +28,6 @@ class NewsController extends Controller
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -62,12 +42,6 @@ class NewsController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\News  $news
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $news = News::findOrFail($id);
@@ -76,24 +50,6 @@ class NewsController extends Controller
         return view('news.single_news',compact('news','comment_news','comment_news_count'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\News  $news
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(News $news)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\News  $news
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -108,18 +64,14 @@ class NewsController extends Controller
         return redirect()->back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\News  $news
-     * @return \Illuminate\Http\Response
-     */
+    // delete news
     public function destroy($id)
     {
         $news = News:: findOrFail($id)->delete();
         session()->flash('delete',"تم الحذف بنجاح");
         return redirect()->Route('news.index');
     }
+    // delete comment
     public function destroyComment($id)
     {
         $comment_news = Comment_news:: findOrFail($id)->delete();
@@ -127,6 +79,7 @@ class NewsController extends Controller
         return redirect()->back();
     }
 
+    // Search by news content
         public function ajax_show(Request $request)
     {
         if($request->ajax()){

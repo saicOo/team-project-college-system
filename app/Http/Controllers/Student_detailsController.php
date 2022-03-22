@@ -52,9 +52,6 @@ class Student_detailsController extends Controller
   {
     $degree = Student_details::findOrFail($id)->degree;
     $degree_en = Student_details::findOrFail($id)->english_degree;
-
-    // كان بيطلع ايرور اما الطالب يكون مالي اول جزء بس في الفورم
-    // ومش مالي الباقي عشان مبيباقش لسه دخل درجته
     $departments = [];
     if ($degree) {
         $departments = Department::select('dept_name', 'id')->where('minimum_degree','<=', $degree)->where('minimum_degree_en','<=', $degree_en)->get();

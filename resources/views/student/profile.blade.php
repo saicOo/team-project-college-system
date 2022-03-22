@@ -40,11 +40,12 @@
                             <a class="nav-link active" href="#tab-1" data-toggle="tab"><i class="ti-bar-chart"></i>
                                 بيانات الطالب</a>
                         </li>
+                        @if (Auth::user()->role == 0 || Auth::user()->role == 2)
                         <li class="nav-item">
                             <a class="nav-link" href="#tab-2" data-toggle="tab"><i class="ti-settings"></i>
                                 تعديل البيانات</a>
                         </li>
-
+                        @endif  
                     </ul>
                     <div class="tab-content">
                         @if ($errors->any())
@@ -134,6 +135,7 @@
                             </div>
 
                         </div>
+                        @if (Auth::user()->role == 0 || Auth::user()->role == 2)
                         <div class="tab-pane fade" id="tab-2">
                             <form action="{{ route('student_details.update', $student->id) }}" method="POST">
                                 @csrf
@@ -200,6 +202,7 @@
                                 </div>
                             </form>
                         </div>
+                        @endif
                     </div>
                 </div>
             </div>
