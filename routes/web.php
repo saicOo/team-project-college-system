@@ -18,8 +18,11 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-
 Route::middleware('auth')->group(function () {
+    Route::get('home', function () {
+        return view('notFound.not_found');
+    });
+    Route::middleware('CheckAccept')->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
     /******** Admins Routes *******/
     // admin add|list routes
@@ -80,5 +83,6 @@ Route::middleware('auth')->group(function () {
     Route::get('ajaxFilter', 'MessageController@ajaxFilter');
     });
 ###########################################################################
+});
 });
 

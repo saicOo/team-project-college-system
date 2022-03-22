@@ -84,13 +84,14 @@ class AdminController extends Controller
     {
 
         if (Auth::user()->id == $id){
-            return redirect('/admin')->with('error', 'لا يمكن حذف الادمن الحالي وهو قيد التشغيل');
+            return redirect('/admin')->with('error', 'لا يمكن تعطيل الادمن الحالي وهو قيد التشغيل');
         }else{
-            Admin::destroy($id);
-            return redirect('/admin')->with('done', 'تم مسح بيانات الادمن بنجاح');
+            $admin = Admin::find($id);
+            $admin->role = 3;
+            $admin->save();
+            return redirect('/admin')->with('done', 'تم تعطيل حساب الادمن بنجاح');
         }
     }
-
     public function upload(Request $request, $id)
     {
         $request->validate([

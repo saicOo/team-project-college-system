@@ -37,7 +37,7 @@
                                     <th>ID</th>
                                     <th>الاسم</th>
                                     <th>المنصب</th>
-                                    <th>حذف</th>
+                                    <th>تعطيل</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -53,20 +53,20 @@
                                         @elseif ($admin->role == 2)
                                             {{'موظف اعتيادي'}}
                                         @else
-                                            {{'موظف مستجد'}}
+                                            {{'حساب معطل'}}
                                         @endif
                                     </td>
                                     <td>
+                                        @if ($admin->role <3)
                                         <form action="{{route('admin.destroy', $admin->id)}}" method="POST">
                                             @csrf
-
                                             <input type="hidden" name="_method" value="delete">
                                             <button class="btn btn-danger btn-xs" data-toggle="tooltip"
-                                                data-original-title="ازالة" type="submit">
-                                                <i class="fa fa-times font-14"></i>
-                                            </button>
-
-                                        </form>
+                                            data-original-title="تعطيل" type="submit">
+                                            <i class="fa fa-times font-14"></i>
+                                        </button>
+                                    </form>
+                                    @endif
                                     </td>
                                 </tr>
                                 @endforeach

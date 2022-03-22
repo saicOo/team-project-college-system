@@ -148,7 +148,7 @@
                                                     @elseif ($admin->role == 2)
                                                         {{ 'موظف اعتيادي' }}
                                                     @else
-                                                        {{ 'موظف مستجد' }}
+                                                        {{ 'حساب معطل' }}
                                                     @endif
                                                 </span>
                                             </li>
@@ -189,7 +189,7 @@
                                                             @elseif ($admin->role == 2)
                                                                 {{ 'موظف اعتيادي' }}
                                                             @else
-                                                                {{ 'موظف مستجد' }}
+                                                                {{ 'حساب معطل' }}
                                                             @endif
                                                         </option>
                                                         <option value="0">مدير</option>
