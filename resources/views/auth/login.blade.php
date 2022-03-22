@@ -8,6 +8,7 @@
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>{{ config('app.name', 'انجاز') }}</title>
+  <link href="{{ asset('assets/img/icons8-fast-forward-100.png') }}" rel="icon" type="image/x-icon">
   <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="{{ asset('assets/css/sgin-in.css') }}" />
 </head>

@@ -60,11 +60,16 @@
                             <div class="media">
                                 <div class="media-left">
                                     @if ($item->std_id)
-                                    <?php $images = $item->studentName->img; ?>
-                                    <img src='data:image/jpeg;base64,{{base64_encode($images)}}' alt="img">
+
+                                    <img src='data:image/jpeg;base64,{{base64_encode($item->studentName->img)}}' alt="img">
                                     @else
-                                    <?php $images = $item->adminName->img; ?>
-                                    <img src='data:image/jpeg;base64,{{base64_encode($images)}}' alt="img">
+                                    @if ($item->adminName->img)
+
+                                    <img src='data:image/jpeg;base64,{{base64_encode($item->adminName->img)}}' alt="img">
+                                    @else
+                                    <img src="{{asset("assets/img/avatar.png")}}" alt="img">
+
+                                    @endif
                                     @endif
                                 </div>
                                 <div class="media-body">
