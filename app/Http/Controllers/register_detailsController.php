@@ -55,10 +55,13 @@ class register_detailsController extends Controller
     }
     public function showStep2()
     {
-        if(Student_details::find(Auth::user()->id)->degree){
+        if(Student_details::where('id',Auth::user()->id)->count() === 0){
+            return redirect()->route('showStep1');
+        }
+        elseif (Student_details::find(Auth::user()->id)->degree) {
             return redirect()->route('showStep3');
-        }else{
 
+        }else{
             return view('register_details.step_2');
         }
     }
@@ -84,10 +87,15 @@ class register_detailsController extends Controller
     {
       $degree = Student_details::findOrFail(Auth::user()->id)->degree;
       $degree_en = Student_details::findOrFail(Auth::user()->id)->english_degree;
+        if (Student_details::find(Auth::user()->id)->degree) {
+            return view('register_details.step_3',  [
+                'departments' => Department::where('minimum_degree','<=', $degree)->where('minimum_degree_en','<=', $degree_en)->get(),
+            ]);
+        } else {
+            return redirect()->back();
+        }
 
-      return view('register_details.step_3',  [
-              'departments' => Department::where('minimum_degree','<=', $degree)->where('minimum_degree_en','<=', $degree_en)->get(),
-          ]);
+
     }
     public function step3(Request $request)
     {

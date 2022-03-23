@@ -51,14 +51,14 @@ class Student_detailsController extends Controller
    */
   public function show($id)
   {
-      if($id = Auth::user()->id){
+      if($id == Auth::user()->id){
 
           $student_details = Student_details::findOrFail($id);
           $student_desire = Student_desire::findOrFail($id);
               return view('profile.profile',compact('student_details','student_desire'));
 
     }else{
-            return "test";
+        return redirect()->back();
     }
   }
 
