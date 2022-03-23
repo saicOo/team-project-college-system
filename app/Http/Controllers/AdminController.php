@@ -67,13 +67,13 @@ class AdminController extends Controller
             $validated = $request->validate([
                 'name' => 'required|string',
                 'email' => 'required|email',
+                'role' => 'required',
             ]);
             $admin = Admin::find($id);
             $admin->name = $validated['name'];
             $admin->email = $validated['email'];
-            if($request->role){
-                $admin->role = $request->role;
-            }
+            $admin->role = $request->role;
+
             $admin->save();
         }
 

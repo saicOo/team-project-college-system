@@ -28,7 +28,7 @@
 
                             <div class="form-group">
                                 <label for="fname">الاسم الاول</label>
-                                <input class="form-control" type="text" name="fname" id="fname">
+                                <input class="form-control" type="text" name="fname" id="fname" value="{{ old('fname') }}">
                                 @error('fname')
                                 <span class="text-danger" dir="ltr">*{{$message}}</span>
                                 @enderror
@@ -36,7 +36,7 @@
 
                         <div class="form-group">
                             <label for="email">البريد الاكتروني</label>
-                            <input class="form-control" type="text" name="email" id="email">
+                            <input class="form-control" type="text" name="email" id="email" value="{{ old('email') }}">
                             @error('email')
                             <span class="text-danger" dir="ltr">*{{$message}}</span>
                             @enderror
@@ -55,6 +55,7 @@
                         <div class="form-group">
                             <label for="role">المنصب</label>
                             <select class="form-control col-lg-4 col-sm-6 col-12" name="role" id="role">
+                                <option value="">---اختر المنصب---</option>
                                 <option value="0">مدير</option>
                                 <option value="1">موظف شئون طلاب</option>
                                 <option value="2">موظف اعتيادي</option>

@@ -176,10 +176,11 @@
                                             </div>
                                         </div>
 
-                                        @if (Auth::user()->role == 0)
-                                            <div class="row">
-                                                <div class="col-sm-6 form-group">
-                                                    <label for="role">درجة الصلاحيات</label>
+                                        @if (Auth::user()->role == 0 && $admin->id !== Auth::user()->id)
+                                        <div class="row">
+                                           
+                                            <div class="col-sm-6 form-group">
+                                                <label for="role">درجة الصلاحيات</label>
                                                     <select class="form-control input-sm" name="role" id="role">
                                                         <option value="{{ $admin->role }}">
                                                             @if ($admin->role == 0)
@@ -197,6 +198,7 @@
                                                         <option value="2">موظف اعتيادي</option>
                                                     </select>
                                                 </div>
+
                                                 <div class="col-sm-6 form-group">
                                                     <button type="button" class="btn btn-warning border text-light"
                                                         style="position: absolute; right: 0; bottom: 0" data-toggle="modal"
