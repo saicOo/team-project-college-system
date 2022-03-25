@@ -35,6 +35,17 @@ class StudentController extends Controller
         ]);
     }
 
+    public function showstudant($students = NULL)
+    {
+        if(Session::has('stds')){ // check if you come from route or from search method
+            $students = Session::get('stds');
+        }
+        $students = Student_details::all();
+            return view('student.showstudant', [
+                'students'  => $students
+            ]);
+    }
+
     public function update(Request $request, $id)
     {
         $std = Student_details::find($id);

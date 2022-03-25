@@ -68,6 +68,9 @@
                     <span class="nav-label">توزيع الطلاب</span>
                 </a>
             </li>
+            <li id="stds-page">
+                        <a href="{{route('students.showstudant')}}"><i class="sidebar-item-icon fa fa-users"></i>جميع الطلاب المسجلين</a>
+                    </li>
             <li class="heading">الطلاب</li>
             <li>
                 <a href="javascript:;"><i class="sidebar-item-icon fa fa-smile-o"></i>

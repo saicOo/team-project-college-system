@@ -66,6 +66,7 @@ Route::middleware('auth')->group(function () {
             Route::get('map_students/map', 'StudentController@map')->name('map_students.map');
             Route::resource('students', 'StudentController');
             Route::post('students/search/{dept_id}', 'StudentController@search')->name('students.search');
+            Route::get('showstudant' , 'StudentController@showstudant' )->name('students.showstudant');
             // download std attachment file
             Route::get('students/download/{id}', 'StudentController@download')->name('students.download');
         });
