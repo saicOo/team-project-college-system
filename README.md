@@ -3,7 +3,7 @@
 - clone branch lara-college-system-admin
 
 ```
-git clone -b lara-college-system-student https://github.com/saicOo/team-project-college-system.git
+git clone -b lara-college-system-st https://github.com/saicOo/team-project-college-system.git
 ```
 
 - Go to the folder `team-project-college-system`
