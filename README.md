@@ -8,7 +8,7 @@ git clone -b lara-college-system-st https://github.com/saicOo/team-project-colle
 
 - Go to the folder `team-project-college-system`
 
-- Run `composer install` on your cmd or terminal
+- Run `composer install` or `composer update` on your cmd or terminal
 
 - Copy `.env.example` file to `.env` on the root folder.
 
